@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ATENGINE">
+      <UniqueIdentifier>{5a344431-3f04-41c7-a082-8d1c5b44dba8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATENGINE\MAIN">
+      <UniqueIdentifier>{a4137ee2-d9ce-4d53-882a-02038e6979ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATENGINE\ThirdPartyLibraries">
+      <UniqueIdentifier>{cbd7490d-48a2-4bf0-90ea-a049e114032d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ANYTOOL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ANYTOOLDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TOOL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN_FUNCTION.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DDOS.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ImplantOpenGL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\ATBAudioEngine\ATBAudioEngine.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Gadget\Gadget.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\HeaderFile\HeaderFile.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CMatrix3.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CMatrix4.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CVictor2D.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\OpenGLDefine\OpenGL_Define.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Vector3D_Matrix4D\CMatrix_4.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Vector3D_Matrix4D\CVector3D.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\BITMAP.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Camera.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Object.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\OpenGL_AY_Engine.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Textures.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\ThirdPartyLibraries\NOTHINGS_STD\stb_image.h">
+      <Filter>ATENGINE\ThirdPartyLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\ThirdPartyLibraries\NOTHINGS_STD\stb_image_resize.h">
+      <Filter>ATENGINE\ThirdPartyLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\ThirdPartyLibraries\NOTHINGS_STD\stb_image_write.h">
+      <Filter>ATENGINE\ThirdPartyLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ANYTOOL.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ANYTOOLDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TOOL.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN_FUNCTION.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DDOS.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ImplantOpenGL.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ATENGINE\MAIN\OpenGLDefine\OpenGL_Define.cpp">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ANYTOOL.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ANYTOOL.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\ANYTOOL.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\BITMAPIMAGE\ANYTOOL.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
