@@ -167,6 +167,8 @@ public:
 	void InitMusicProgressInfoData(CProgressCtrl *MusicProgress, CSliderCtrl *EditMusicProgress, CSliderCtrl *EditMusicVolume, CMFCButton *PauseMusic);
 	//是否在播放音乐
 	int IsPlayMusic();
+	//设置是否在播放音乐
+	void SetIsPlayMusicState(int State = 0);
 	//获取音乐信息数据来自AT引擎
 	void GetMusicInfoDataFromATBAudioEngine();
 	//设置音乐进度

@@ -71,6 +71,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ATATATVideoPlayer", "ATATATVideoPlayer\ATATATVideoPlayer.vcxproj", "{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -539,6 +541,20 @@ Global
 		{CD8FE39B-8162-4A45-95A8-275BDEF502E5}.Release|x64.Build.0 = Release|x64
 		{CD8FE39B-8162-4A45-95A8-275BDEF502E5}.Release|x86.ActiveCfg = Release|Win32
 		{CD8FE39B-8162-4A45-95A8-275BDEF502E5}.Release|x86.Build.0 = Release|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Debug|Win32.Build.0 = Debug|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Debug|x64.ActiveCfg = Debug|x64
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Debug|x64.Build.0 = Debug|x64
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Debug|x86.ActiveCfg = Debug|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Debug|x86.Build.0 = Debug|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Release|Any CPU.ActiveCfg = Release|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Release|Win32.ActiveCfg = Release|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Release|Win32.Build.0 = Release|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Release|x64.ActiveCfg = Release|x64
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Release|x64.Build.0 = Release|x64
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Release|x86.ActiveCfg = Release|Win32
+		{BDF4B95E-3468-4E3B-9985-E9A2A35C53D8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

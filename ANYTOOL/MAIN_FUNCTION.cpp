@@ -569,7 +569,7 @@ void FUNCTION::PlayFrameAnimation(CDC *pCDC)
 
 void FUNCTION::PlayerMusic()
 {
-	CFileDialog CFileDialog(TRUE, NULL, NULL, 0, (LPCTSTR)_TEXT("音乐文件(*.mp3)|*.mp3|所有文件(*.*)|*.*||"));
+	CFileDialog CFileDialog(TRUE, NULL, NULL, 0, (LPCTSTR)_TEXT("音乐文件(*.mp3)|*.mp3|视频文件(*.mp4)|*.mp4|视频文件(*.mkv)|*.mkv|所有文件(*.*)|*.*||"));
 
 	if (CFileDialog.DoModal() == IDOK)
 	{
@@ -587,7 +587,6 @@ void FUNCTION::PauseMusic()
 		{
 			m_PauseMusic->SetWindowTextW(CString("StartMusic"));
 			ATA->PauseAllMusics();
-			m_ISPlayMusic = 1;
 			m_ISPauseMusic = 1;
 			return;
 		}
@@ -595,7 +594,6 @@ void FUNCTION::PauseMusic()
 		{
 			m_PauseMusic->SetWindowTextW(CString("PauseMusic"));
 			ATA->PlayMusics(MAIN::CString_To_String(m_CurPlayerMusic), FALSE);
-			m_ISPlayMusic = 1;
 			m_ISPauseMusic = 0;
 			return;
 		}
@@ -610,7 +608,10 @@ void FUNCTION::InitMusicProgressInfoData(CProgressCtrl *MusicProgress, CSliderCt
 	m_PauseMusic = PauseMusic;
 	MusicProgress->SetPos(0);
 	EditMusicProgress->SetPos(0);
-	if (EditMusicVolume->GetPos()) {}
+	if (EditMusicVolume->GetPos()) 
+	{
+		MAIN::SetMusicVolume();
+	}
 	else
 	{
 		EditMusicVolume->SetPos(100);
@@ -621,6 +622,10 @@ int FUNCTION::IsPlayMusic()
 {
 	return m_ISPlayMusic;
 }
+void FUNCTION::SetIsPlayMusicState(int State)
+{
+	m_ISPlayMusic = State;
+}
 
 void FUNCTION::GetMusicInfoDataFromATBAudioEngine()
 {
@@ -628,7 +633,12 @@ void FUNCTION::GetMusicInfoDataFromATBAudioEngine()
 	{
 		string MusicName = MAIN::CString_To_String(m_CurPlayerMusic);
 
-		m_MusicProgress->SetPos((int)(100 / ATA->GetTimeMinute(MusicName)) * (ATA->GetCurTimeMinute(MusicName)));
+		if (!MusicName.empty())
+		{
+			m_MusicProgress->SetPos((int)(100 / ATA->GetTimeMinute(MusicName)) * (ATA->GetCurTimeMinute(MusicName)));
+
+			m_EditMusicProgress->SetPos((int)(100 / ATA->GetTimeMinute(MusicName)) * (ATA->GetCurTimeMinute(MusicName)));
+		}
 	}
 }
 
@@ -637,9 +647,12 @@ void FUNCTION::SetMusicProgress()
 	if (m_ISPlayMusic == 1)
 	{
 		string MusicName = MAIN::CString_To_String(m_CurPlayerMusic);
-		double Scale = (((double)ATA->GetTimeMinute(MusicName)) / (double)100);
-		ATA->SetTimeMinute(MusicName,
-			(double)(m_EditMusicProgress->GetPos()) * Scale);
+		if (!MusicName.empty())
+		{
+			double Scale = (((double)ATA->GetTimeMinute(MusicName)) / (double)100);
+			ATA->SetTimeMinute(MusicName,
+				(double)(m_EditMusicProgress->GetPos()) * Scale);
+		}
 	}
 }
 
@@ -647,7 +660,10 @@ void FUNCTION::SetMusicVolume()
 {
 	if (m_ISPlayMusic == 1)
 	{
-		ATA->SetVolume(m_EditMusicVolume->GetPos());
+		if (!m_CurPlayerMusic.IsEmpty())
+		{
+			ATA->SetVolume(m_EditMusicVolume->GetPos());
+		}
 	}
 }
 

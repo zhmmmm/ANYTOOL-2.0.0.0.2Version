@@ -18,7 +18,7 @@ void Scene::Start()
 }
 
 
-static int W = 3;
+static int W = 2;
 static int WSpace = 1;
 static int Y = 190;
 static int Angle = 1;
@@ -32,6 +32,8 @@ void Scene::Update()
 	ATENGINE->Rotate(Angle++, ATATPOS3D(0, 0, 1));
 	Gadget::CreateQuadrangle2D();
 
+	Camera::CameraToWorld(this);
+
 	string Music = ATA->GetCurPlayMusic();
 	int X = -200;
 	static float Buf[128] = { 0 };
@@ -42,12 +44,12 @@ void Scene::Update()
 	for (int i = 0; i < 128; i++)
 	{
 
-		Y = Buf[i] * 1000;
+		Y = Buf[i] * 1000 - 198;
 
 		AT->CreateQuadrangle(
 			ATATRGB::RED, ATATPOS3D(X, Y, 0),
-			ATATRGB::WHITE, ATATPOS3D(X, 0, 0),
-			ATATRGB::WHITE, ATATPOS3D(X + W, 0, 0),
+			ATATRGB::WHITE, ATATPOS3D(X, -198, 0),
+			ATATRGB::WHITE, ATATPOS3D(X + W, -198, 0),
 			ATATRGB::RED, ATATPOS3D(X + W, Y, 0));
 
 		X = X + W + WSpace;
@@ -99,8 +101,8 @@ void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 void Scene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)
 {
 	//std::cout << "Êó±êÒÆ¶¯ " << "X = " << Mouse_X << " Y = " << Mouse_Y << std::endl;
-	m_LookAt_X = Mouse_X - m_WindowsWidth / 2;
-	m_LookAt_Y = -(Mouse_Y - m_WindowsHeight / 2);
+	//m_LookAt_X = Mouse_X - m_WindowsWidth / 2;
+	//m_LookAt_Y = -(Mouse_Y - m_WindowsHeight / 2);
 }
 
 void Scene::End()

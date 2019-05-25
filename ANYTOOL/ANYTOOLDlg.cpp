@@ -303,6 +303,8 @@ void CANYTOOLDlg::Init_DATA()
 	//int nWidth = GetSystemMetrics(SM_CXSCREEN);  //屏幕宽度    
 	//int nHeight = GetSystemMetrics(SM_CYSCREEN); //屏幕高度
 
+
+	MAIN_M_FUNCTION->InitMusicProgressInfoData(&m_MusicProgress, &m_EditMusicProgress, &m_EditMusicVolume, &m_PauseMusic);
 }
 //===============================================
 void CANYTOOLDlg::OnBnClicked_StartLOIC()
@@ -354,6 +356,7 @@ void CANYTOOLDlg::OnBnClicked_PlayMusic()
 	MAIN_M_FUNCTION->PlayerMusic();
 	if (MAIN_M_FUNCTION->IsPlayMusic() == 1)
 	{
+		m_IsAlreadyPlayMusic = TRUE;
 		MAIN_M_FUNCTION->InitMusicProgressInfoData(&m_MusicProgress, &m_EditMusicProgress, &m_EditMusicVolume, &m_PauseMusic);
 		SETTIME_MUSICS__GETPROGRESSINFODATA__BEGIN_MUSIC;
 	}
@@ -420,10 +423,14 @@ void CANYTOOLDlg::OnBnClicked_Ended()
 
 void CANYTOOLDlg::OnBnClicked_Exit()
 {
-	MAIN_M_FUNCTION->PauseMusic();
-	ATENGINE__ATUPDATEDATA__DRAW_END;
-	KILLTIME_MUSICS__GETPROGRESSINFODATA__END_MUSIC;
-	ATA->UninstallAudioEngine();
+	if (MAIN_M_FUNCTION->IsPlayMusic() == 1)
+	{
+		MAIN_M_FUNCTION->PauseMusic();
+		ATENGINE__ATUPDATEDATA__DRAW_END;
+		KILLTIME_MUSICS__GETPROGRESSINFODATA__END_MUSIC;
+		ATA->UninstallAudioEngine();
+		exit(0);
+	}
 	exit(0);
 }
 
@@ -479,11 +486,28 @@ void CANYTOOLDlg::OnNMCustomdrawSlider_EditMusicProgress(NMHDR *pNMHDR, LRESULT 
 
 	if (m_nSBCode == SB_THUMBTRACK)//滚动中
 	{
+		if (m_IsAlreadyPlayMusic)
+		{
+			if (MAIN_M_FUNCTION->IsPlayMusic())
+			{
+				MAIN_M_FUNCTION->SetIsPlayMusicState(0);
+			}
+		}
+
 		m_nSBCode = 0;
 	}
 	if (m_nSBCode == SB_ENDSCROLL)//结束滚动
 	{
-		MAIN_M_FUNCTION->SetMusicProgress();
+		if (m_IsAlreadyPlayMusic)
+		{
+			if (MAIN_M_FUNCTION->IsPlayMusic() == 0)
+			{
+				MAIN_M_FUNCTION->SetIsPlayMusicState(1);
+				SETTIME_MUSICS__GETPROGRESSINFODATA__BEGIN_MUSIC;
+
+				MAIN_M_FUNCTION->SetMusicProgress();
+			}
+		}
 		m_nSBCode = 0;
 	}
 
@@ -509,14 +533,24 @@ void CANYTOOLDlg::OnNMCustomdrawSlider_EditMusicVolume(NMHDR *pNMHDR, LRESULT *p
 	}
 	if (m_nSBCode == SB_ENDSCROLL)//结束滚动
 	{
-		MAIN_M_FUNCTION->SetMusicVolume();
+		if (m_IsAlreadyPlayMusic)
+		{
+			//为什么要加这段,在一直滑动这个控件时会莫名的调用CANYTOOLDlg::OnNMCustomdrawSlider_EditMusicProgress
+			//中的滚动中,导致播放状态设置为0 
+			MAIN_M_FUNCTION->SetIsPlayMusicState(1);
+			SETTIME_MUSICS__GETPROGRESSINFODATA__BEGIN_MUSIC;
+
+
+			MAIN_M_FUNCTION->SetMusicVolume();
+		}
+		
 		m_nSBCode = 0;
 	}
 
 
 	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-	UpdateData(FALSE);
 	*pResult = 0;
+	UpdateData(FALSE);
 	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
