@@ -1,4 +1,5 @@
-#include "Main.h"
+#include "ATCVideoEngine/ATCVideoEngine.h"
+#define Main main
 
 
 
@@ -6,24 +7,14 @@
 
 int Main()
 {
+	string VideoFileName("C:\\Users\\Administrator\\Desktop\\2.mp4");
 	
+	ATA->PlayMusics(VideoFileName);
 
-	VideoCapture capture("M.mp4");
+	ATV->LoadVideo(VideoFileName);
+	ATV->PlayVideo(VideoFileName);
 
-	
 
-	Mat frame;
-
-	while (waitKey(24) != 27)
-	{
-		capture >> frame;
-		imshow("°æ ”∆µ°ø", frame);
-	}
-	capture.release();
-	frame.release();
-	destroyAllWindows();
-	
-	
 
 	system("pause");
 	return 0;

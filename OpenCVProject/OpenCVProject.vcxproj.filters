@@ -13,15 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ATBAudioEngine">
+      <UniqueIdentifier>{7943cc27-84bc-401f-96f5-48d0cda920ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ATCVideoEngine\ATBAudioEngine\ATBAudioEngine.cpp">
+      <Filter>ATBAudioEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ATCVideoEngine\ATCVideoEngine.cpp">
+      <Filter>ATBAudioEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Main.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="ATCVideoEngine\ATBAudioEngine\ATBAudioEngine.h">
+      <Filter>ATBAudioEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="ATCVideoEngine\ATCVideoEngine.h">
+      <Filter>ATBAudioEngine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

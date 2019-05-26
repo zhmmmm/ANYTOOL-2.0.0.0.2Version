@@ -6,6 +6,7 @@
 #include "ATATATVideoPlayer.h"
 #include "ATATATVideoPlayerDlg.h"
 #include "afxdialogex.h"
+#include "ATBAudioEngine.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -99,6 +100,9 @@ BOOL CATATATVideoPlayerDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
+
+
+	ATA->PlayMusics("C:\\Users\\Administrator\\Desktop\\ANYTOOL\\OpenGL_PlusPlusVersion\\res\\Audio\\Musics\\夜色.flac");
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }

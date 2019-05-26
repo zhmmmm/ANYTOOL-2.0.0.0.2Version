@@ -146,10 +146,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ATCVideoEngine\ATBAudioEngine\ATBAudioEngine.cpp" />
+    <ClCompile Include="ATCVideoEngine\ATCVideoEngine.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Main.h" />
+    <ClInclude Include="ATCVideoEngine\ATBAudioEngine\ATBAudioEngine.h" />
+    <ClInclude Include="ATCVideoEngine\ATCVideoEngine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

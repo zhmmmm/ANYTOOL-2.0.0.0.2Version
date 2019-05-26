@@ -20,7 +20,7 @@ opencv_ffmpeg341_64.dll
 带d 的是Debug版本
 */
 
-
+	#include <opencv2/opencv.hpp>
 
 	// Read the image file
 	Mat image = imread("C:\\Users\\Administrator\\Desktop\\ANYTOOL\\OpenGL_PlusPlusVersion\\1.jpg");

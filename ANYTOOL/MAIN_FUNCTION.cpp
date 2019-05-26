@@ -577,6 +577,12 @@ void FUNCTION::PlayerMusic()
 		m_CurPlayerMusic = CFileDialog.GetPathName();
 		ATA->PlayMusics(MAIN::CString_To_String(CFileDialog.GetPathName()));
 		m_ISPlayMusic = 1;
+
+		if (m_ISPauseMusic == 1)
+		{
+			m_PauseMusic->SetWindowTextW(CString("PauseMusic"));
+			m_ISPauseMusic = 0;
+		}
 	}
 }
 void FUNCTION::PauseMusic()
