@@ -111,8 +111,6 @@ class ATEngine_Variable
 
 	unsigned int m_glClear;
 
-	BOOL m_EnablePoint;
-
 	double m_Fovy;
 	double m_Aspect;
 	double m_ZNear;
@@ -254,8 +252,64 @@ public:
 	*/
 	static void ATENGINE_CULLFACE(unsigned int CULLFACE = GL_BACK);
 
+	//顶点数组绘制
+	/*
+	顶点数组的维度 三维填3
+	顶点数据的存储类型 GL_FLOAT...
+	顶点与顶点之间的字节间隔数
+	顶点数据的起始位置 
+	*/
+	static void ATENGINE_VertexPointer(int Dimension, unsigned int ArrType,int Space,const void *Arr);
+	
+	//颜色数组绘制
+	/*
+	颜色数组的维度 三维填3
+	颜色数据的存储类型 GL_FLOAT...
+	颜色与颜色之间的字节间隔数
+	颜色数据的起始位置
+	*/
+	static void ATENGINE_ColorPointer(int Dimension, unsigned int ArrType, int Space, const void *Arr);
 
-	//回调函数
+	//数组绘制
+	/*
+	绘制的图元类型 
+	GL_POINTS				点(一个顶点)
+	GL_LINES				线段(2个顶点)
+	GL_LINE_LOOP			封闭线段//会首尾相连
+	GL_LINE_STRIP			连接线段
+	GL_TRIANGLES			三角形（3个顶点）
+	GL_TRIANGLE_STRIP		连接三角形
+	GL_TRIANGLE_FAN		三角形扇？
+	GL_QUADS				凸四边形
+	GL_QUAD_STRIP			连接凸四边形
+	GL_POLYGON			多边形（ >= 3个顶点）
+	绘制偏移
+	顶点总数
+	*/
+	static void ATENGINE_DrawArrays(unsigned int DrawModeType, int DrawOffset = 0, int VertexCount = 0);
+
+	//通过索引方式绘制
+	/*
+	绘制的图元类型
+	索引数量
+	索引数据类型
+	索引数据的起始位置
+	*/
+	static void ATENGINE_DrawElements(unsigned int DrawModeType, int IndexCount, unsigned int DataType, const void *Arr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//=============================================================回调函数
 	//窗口大小和激活状态改变是会调用
 	void ATENGINE_OnWindowsChange(void(*OnWindowsChange)(int Width, int Height));
 
@@ -303,7 +357,7 @@ public:
 	void ATENGINE_OnSetTimerEnd(unsigned int Millisecond, void(*OnTimerEnd)(int Timer_ID), int TimerID);
 	//投递重新绘制消息
 	void ATENGINE_PostRedisplayOnTimerBegin();
-
+	//===========上下函数功能一样
 	//刷新绘制
 	void ATENGINE_RefreshDraw();
 

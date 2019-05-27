@@ -11,45 +11,100 @@ void Scene::Start()
 	this->m_Windows_Y = 10;
 	this->m_WindowsWidth = 800;
 	this->m_WindowsHeight = 600;
-
+	this->m_CameraPos_Y = 20;
+	this->m_CameraPos_Z = 50;
 }
 
 
-static int W = 3;
-static int WSpace = 1;
-static int Y = 190;
+static int Angle = 0;
+float trag[] =
+{
+	0,10,+30,0,255,255,//记录的是顶点位置和顶点颜色
+	+30,10,-30,255,255,0,
+	-30,10,-30,255,0,0
+};
+
+unsigned char color[] =
+{
+255,0,0,
+255,255,0,
+255,255
+};
+
+float jzt[] = 
+{
+	//0,1,2
+	0,+20,0,255,0,0,//包含顶点和颜色数据
+	-20,0,0,255,255,0,
+	0,0,+20,0,0,255,
+	//0,2,3
+	0,+20,0,255,0,0,
+	0,0,+20,0,0,255,
+	+20,0,0,0,255,0,
+	//0,3,4
+	0,+20,0,255,0,0,
+	+20,0,0,0,255,0,
+	0,0,-20,0,255,255,
+
+	//0,4,1
+	0,+20,0,255,0,0,
+	0,0,-20,0,255,255,
+	-20,0,0,255,255,0,
+
+	//1,3,2
+	-20,0,0,255,255,0,
+	+20,0,0,0,255,0,
+	0,0,+20,0,0,255,
+	//1,4,3
+	-20,0,0,255,255,0,
+	0,0,-20,0,255,255,
+	+20,0,0,0,255,0,
+};
+
+unsigned int index[] =
+{
+	0,1,2,0,2,3,
+	4,6,5,4,7,6,
+	0,4,5,0,5,1,
+	2,6,7,2,7,3,
+	2,1,5,2,5,6,
+	0,3,7,0,7,4
+};
+
+float box[] =
+{
+	-20,+20,-20,//255,255,0,
+	-20,+20,+20,//255,0,255,
+	+20,+20,+20,//0,255,255,
+	+20,+20,-20,//255,0,0,
+	-20,-20,-20,//0,255,0,
+	-20,-20,+20,//0,0,255,
+	+20,-20,+20,//127,0,127,
+	+20,-20,-20,//0,127,0,
+};
 
 void Scene::Update()
 {
-	ATA->PlayMusics_s("res\\Audio\\Musics\\舞曲大帝国.mp3");
 	Camera::CameraToWorld(this);
-	this->m_CameraPos_Y = 0;
 
-	CLS;
-	std::cout << "总时间："<<ATA->GetTimeMinute("res\\Audio\\Musics\\舞曲大帝国.mp3") << std::endl;
-	std::cout <<"进度时间："<<ATA->GetCurTimeMinute("res\\Audio\\Musics\\舞曲大帝国.mp3")<< std::endl;
+	AT->ATENGINE_VertexPointer(
+		3,//维度
+		GL_FLOAT,//数据类型
+		12,//顶点数据与顶点数据之间的字节间隔数
+		box);
 
-	int X = -200;
-	static float Buf[128] = { 0 };
-	ATA->GetAudioStreamData("res\\Audio\\Musics\\舞曲大帝国.mp3", Buf);
-	for (int i = 0; i < 128; i++)
-	{
+	AT->ATENGINE_ColorPointer(
+		3,//代表颜色三个分量
+		GL_FLOAT,
+		12,//颜色和颜色数据之间的字节间隔数
+		color);
 
-		Y = Buf[i] * 1000;
-
-		AT->CreateQuadrangle(
-			ATATRGB::GREEN, ATATPOS3D(X, Y, 0),
-			ATATRGB::WHITE, ATATPOS3D(X, 0, 0),
-			ATATRGB::WHITE, ATATPOS3D(X + W, 0, 0),
-			ATATRGB::GREEN, ATATPOS3D(X + W, Y, 0));
-
-		X = X + W + WSpace;
-		Y = 190;
-
-	}
-	AT->DrawEnd();
-	ZeroMemory(Buf, 128);
-
+	//使用索引绘制
+	AT->ATENGINE_DrawElements(
+		GL_TRIANGLES,//要绘制图元类型
+		36,//索引数量
+		GL_UNSIGNED_INT,//索引的数据类型，必须是无符号的类型
+		index);//数组地址
 
 }
 
@@ -103,8 +158,8 @@ void Scene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
 void Scene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)
 {
 	std::cout << "鼠标移动 " << "X = " << Mouse_X << " Y = " << Mouse_Y << std::endl;
-	m_LookAt_X = Mouse_X - m_WindowsWidth / 2;
-	m_LookAt_Y = -(Mouse_Y - m_WindowsHeight / 2);
+	//m_LookAt_X = Mouse_X - m_WindowsWidth / 2;
+	//m_LookAt_Y = -(Mouse_Y - m_WindowsHeight / 2);
 }
 
 void Scene::End()

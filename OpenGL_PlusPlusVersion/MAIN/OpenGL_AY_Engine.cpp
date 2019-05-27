@@ -226,8 +226,6 @@ ATEngine_Variable::ATEngine_Variable()
 
 	m_glClear = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT;
 
-	m_EnablePoint = FALSE;
-
 	m_Fovy = 90.0;
 	m_Aspect = 1.0;
 	m_ZNear = 0.3;
@@ -378,6 +376,34 @@ void ATEngine::ATENGINE_RefreshDraw()
 {
 	glutPostRedisplay();
 }
+
+void ATEngine::ATENGINE_VertexPointer(int Dimension, unsigned int ArrType, int Space, const void *Arr)
+{
+	glVertexPointer(Dimension, ArrType,Space,Arr);
+}
+
+void ATEngine::ATENGINE_ColorPointer(int Dimension, unsigned int ArrType, int Space, const void *Arr)
+{
+	glColorPointer(Dimension, ArrType, Space, Arr);
+}
+
+void ATEngine::ATENGINE_DrawArrays(unsigned int DrawModeType, int DrawOffset, int VertexCount)
+{
+	glDrawArrays(DrawModeType,DrawOffset,VertexCount);
+}
+
+void ATEngine::ATENGINE_DrawElements(unsigned int DrawModeType, int IndexCount, unsigned int DataType, const void *Arr)
+{
+	glDrawElements(DrawModeType, IndexCount, DataType, Arr);
+}
+
+
+
+
+
+
+
+
 
 //»Øµ÷º¯Êý
 //=================================================

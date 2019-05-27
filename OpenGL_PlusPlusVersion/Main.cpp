@@ -90,6 +90,7 @@ int Main(int argc, char **argv)
 	ATENGINE->InitMode(GLUT_DOUBLE | GLUT_RGBA,
 		g_Object.m_Windows_X, g_Object.m_Windows_Y,
 		g_Object.m_WindowsWidth, g_Object.m_WindowsHeight);
+	ATVARIABLE->SetglClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	ATENGINE_MAINDRAW(MainDisplay);
 	ATENGINE_ONWINDOWSCHANGE(OnWindowsChange);
 	ATENGINE_ONORDINARYKEYBOARDDOWN(OnOrdinaryKeyboardDown);
@@ -102,7 +103,11 @@ int Main(int argc, char **argv)
 	ATENGINE_ONIDLE(OnIdle);
 
 	ATENGINE->ATENGINE_Enable();
+	ATENGINE->ATENGINE_Enable(GL_DEPTH_TEST);
 	ATENGINE->ATENGINE_CULLFACE();
+	ATENGINE->ATENGINE_EnableCilentState(GL_VERTEX_ARRAY);
+	ATENGINE->ATENGINE_EnableCilentState(GL_COLOR_ARRAY);
+
 
 	ATENGINE->ATENGINEMAIN_Loop();
 
