@@ -228,7 +228,7 @@ public:
 
 	//开启功能
 	/*
-	GL_CULL_FACE //允许面裁剪
+	GL_CULL_FACE //开启面裁剪
 	GL_DEPTH_TEST //开启深度测试
 	*/
 	static void ATENGINE_Enable(unsigned int FUNCTION = GL_CULL_FACE);
@@ -236,6 +236,7 @@ public:
 	//关闭功能
 	/*
 	GL_DEPTH_TEST //关闭深度测试
+	GL_CULL_FACE //关闭面裁剪
 	*/
 	static void ATENGINE_Disable(unsigned int FUNCTION = GL_DEPTH_TEST);
 

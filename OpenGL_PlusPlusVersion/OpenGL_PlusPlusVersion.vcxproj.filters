@@ -49,6 +49,12 @@
     <Filter Include="ATEngine\ATBAudioEngine">
       <UniqueIdentifier>{94692dc5-5cd0-4c8b-9df4-4236a7134414}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ATEngine\Geometry">
+      <UniqueIdentifier>{426c4875-8ae8-4f1f-9e98-bd6c8ec2497c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATEngine\HeaderFile">
+      <UniqueIdentifier>{3b67162b-956f-4f99-a671-fe610906eb12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -105,6 +111,9 @@
     <ClCompile Include="MAIN\ATBAudioEngine\ATBAudioEngine.cpp">
       <Filter>ATEngine\ATBAudioEngine</Filter>
     </ClCompile>
+    <ClCompile Include="MAIN\Model3D.cpp">
+      <Filter>ATEngine\Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MAIN\OpenGL_AY_Engine.h">
@@ -157,6 +166,12 @@
     </ClInclude>
     <ClInclude Include="MAIN\ATBAudioEngine\ATBAudioEngine.h">
       <Filter>ATEngine\ATBAudioEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN\Model3D.h">
+      <Filter>ATEngine\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN\HeaderFile\HeaderFile.h">
+      <Filter>ATEngine\HeaderFile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

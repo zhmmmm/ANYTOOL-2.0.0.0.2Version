@@ -18,6 +18,18 @@
 */
 #include "../ATBAudioEngine/ATBAudioEngine.h"
 
+//几何体
+/*
+
+*/
+#include "../Model3D.h"
+
+//向量
+/*
+
+*/
+#include "../Vector3D_Matrix4D/CVector3D.h"
+
 
 #define AT_INITOPENGL 0
 

@@ -149,6 +149,7 @@
     <ClCompile Include="MAIN\MatrixPackage\CMatrix3.cpp" />
     <ClCompile Include="MAIN\MatrixPackage\CMatrix4.cpp" />
     <ClCompile Include="MAIN\MatrixPackage\CVictor2D.cpp" />
+    <ClCompile Include="MAIN\Model3D.cpp" />
     <ClCompile Include="MAIN\Object.cpp" />
     <ClCompile Include="MAIN\OpenGLDefine\OpenGL_Define.cpp" />
     <ClCompile Include="MAIN\OpenGL_AY_Engine.cpp" />
@@ -165,9 +166,11 @@
     <ClInclude Include="MAIN\BITMAP.h" />
     <ClInclude Include="MAIN\Camera.h" />
     <ClInclude Include="MAIN\Gadget\Gadget.h" />
+    <ClInclude Include="MAIN\HeaderFile\HeaderFile.h" />
     <ClInclude Include="MAIN\MatrixPackage\CMatrix3.h" />
     <ClInclude Include="MAIN\MatrixPackage\CMatrix4.h" />
     <ClInclude Include="MAIN\MatrixPackage\CVictor2D.h" />
+    <ClInclude Include="MAIN\Model3D.h" />
     <ClInclude Include="MAIN\Object.h" />
     <ClInclude Include="MAIN\OpenGLDefine\OpenGL_Define.h" />
     <ClInclude Include="MAIN\OpenGL_AY_Engine.h" />

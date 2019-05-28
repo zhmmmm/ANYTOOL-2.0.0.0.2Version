@@ -53,6 +53,8 @@ class Scene:public Object
 	float p = 0;
 
 	Sprite *S = NULL;
+
+	Model3D m_Model;
 public:
 	virtual void Start();
 	virtual void Update();

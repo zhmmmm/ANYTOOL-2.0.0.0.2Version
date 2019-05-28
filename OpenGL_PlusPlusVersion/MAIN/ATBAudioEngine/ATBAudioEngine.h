@@ -2,7 +2,9 @@
 #include <map>
 #include <string>
 #include "BASS\\include\\bass.h"
-#pragma comment(lib,"../../MAIN\\ATBAudioEngine\\BASS\\lib\\bass.lib")
+//#pragma comment(lib,"../../MAIN\\ATBAudioEngine\\BASS\\lib\\bass.lib")
+//两种包含都可以
+#pragma comment(lib,"MAIN\\ATBAudioEngine\\BASS\\lib\\bass.lib")
 
 using namespace std;
 
