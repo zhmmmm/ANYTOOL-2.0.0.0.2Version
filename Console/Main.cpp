@@ -213,14 +213,25 @@ int Main()
 
 
 
+	//ATA->InitAudioEngine();
 	ATA->InitAudioEngine();
-	ATA->PlayMusics_s("舞曲大帝国.mp3");
-	std::cout << "总时间：" << ATA->GetTimeMinute("舞曲大帝国.mp3") << std::endl;
-
-	std::cout << "进度时间：" << ATA->GetCurTimeMinute("舞曲大帝国.mp3") << std::endl;
-
-	ATA->SetTimeMinute("舞曲大帝国.mp3", 3.0);
-
+	ATA->Init3DAudioEngine();
+	ATA->LoadMusics3D("ByMySide.mp3");
+	ATA->PlayMusics("ByMySide.mp3");
+	BASS_3DVECTOR Pos;
+	Pos.x = 20;
+	Pos.y = 0;
+	Pos.z = 0;
+	while (true)
+	{
+		Pos.x++;
+		if (Pos.x == 50)
+		{
+			Pos.x = 0;
+		}
+		ATA->SetMusics3DPos(Pos);
+		Sleep(150);
+	}
 
 
 	//wchar_t SelfName[] = L"C:\\Users\\Administrator\\Desktop\\Experiment\\Debug\\Experiment.exe";

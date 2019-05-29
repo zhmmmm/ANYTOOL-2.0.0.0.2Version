@@ -166,7 +166,183 @@ DWORD ATBAE::GetAudioStreamData(string AudioFileName, void *Buffer)
 }
 
 
+BOOL ATBAE::Init3DAudioEngine()
+{
+	return BASS_Set3DFactors(1, 1, 1);
+}
+BOOL ATBAE::Set3DFactors(float distf, float rollf, float doppf)
+{
+	return BASS_Set3DFactors(distf, rollf, doppf);
+}
 
+BOOL ATBAE::LoadMusics3D(string MusicFileName, DWORD Flags)
+{
+	map<string, HSTREAM>::iterator it = m_MusicMap.find(MusicFileName);
+	if (it != m_MusicMap.end())//存在
+	{
+		return TRUE;
+	}
+	HSTREAM HStream = BASS_SampleLoad(FALSE, MusicFileName.c_str(), 0, 0, 1, Flags);//从文件加载音乐
+	BASS_SampleGetChannel(HStream, FALSE);
+	if (HStream == NULL)
+	{
+		//加载失败
+		return FALSE;
+	}
+	//make_pair
+	m_MusicMap.insert(pair<string, HSTREAM>(MusicFileName, HStream));
+	return TRUE;
+}
+BOOL ATBAE::LoadSounds3D(string SoundFileName, DWORD Flags)
+{
+	map<string, HSTREAM>::iterator it = m_SoundMap.find(SoundFileName);
+	if (it != m_SoundMap.end())//存在
+	{
+		return TRUE;
+	}
+	HSTREAM HStream = BASS_SampleLoad(FALSE, SoundFileName.c_str(), 0, 0, 1, Flags);//从文件加载音乐
+	BASS_SampleGetChannel(HStream, FALSE);
+	if (HStream == NULL)
+	{
+		//加载失败
+		return FALSE;
+	}
+	//make_pair
+	m_MusicMap.insert(pair<string, HSTREAM>(SoundFileName, HStream));
+	return TRUE;
+}
+
+BOOL ATBAE::SetMusics3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
+{
+	BOOL ISSeting = FALSE;
+	string CurPlayMusic = ATBAE::GetCurPlayMusic();
+	if (!CurPlayMusic.empty())
+	{
+		HSTREAM HStream = ATBAE::GetStream(CurPlayMusic);
+		if (BASS_ChannelIsActive(HStream) == BASS_ACTIVE_PLAYING)
+		{
+			ISSeting = BASS_ChannelSet3DPosition((DWORD)HStream, &Pos, NULL, &Vel);
+		}
+	}
+	BASS_Apply3D();
+	return ISSeting;
+}
+BOOL ATBAE::SetSounds3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
+{
+	BOOL ISSeting = FALSE;
+	string CurPlaySounds = ATBAE::GetCurPlayMusic();
+	if (!CurPlaySounds.empty())
+	{
+		HSTREAM HStream = ATBAE::GetStream(CurPlaySounds);
+		if (BASS_ChannelIsActive(HStream) == BASS_ACTIVE_PLAYING)
+		{
+			ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &Vel);
+		}
+	}
+	BASS_Apply3D();
+	return ISSeting;
+}
+BOOL ATBAE::SetMusics3DPos(BASS_3DVECTOR Pos)
+{
+	BASS_3DVECTOR Vel;
+	Vel.x = 0;
+	Vel.y = 0;
+	Vel.z = 0;
+	return ATBAE::SetMusics3DPos(Pos, Vel);
+}
+BOOL ATBAE::SetSounds3DPos(BASS_3DVECTOR Pos)
+{
+	BASS_3DVECTOR Vel;
+	Vel.x = 0;
+	Vel.y = 0;
+	Vel.z = 0;
+	return ATBAE::SetSounds3DPos(Pos, Vel);
+}
+
+BOOL ATBAE::SetMusics3DPos(string MusicFileName, BASS_3DVECTOR Pos)
+{
+	BOOL ISSeting = FALSE;
+	if (!MusicFileName.empty())
+	{
+		HSTREAM HStream = ATBAE::GetStream(MusicFileName);
+		BASS_ChannelIsActive(HStream);
+		ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &m_Vel);
+	}
+	BASS_Apply3D();
+	return ISSeting;
+}
+BOOL ATBAE::SetSounds3DPos(string SoundFileName, BASS_3DVECTOR Pos)
+{
+	//ATBAE::SetMusic3DPos();
+
+	BOOL ISSeting = FALSE;
+	if (!SoundFileName.empty())
+	{
+		HSTREAM HStream = ATBAE::GetStream(SoundFileName);
+		BASS_ChannelIsActive(HStream);
+		ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &m_Vel);
+	}
+	BASS_Apply3D();
+	return ISSeting;
+}
+BOOL ATBAE::SetMusics3DPos(string MusicFileName, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
+{
+	BOOL ISSeting = FALSE;
+	if (!MusicFileName.empty())
+	{
+		HSTREAM HStream = ATBAE::GetStream(MusicFileName);
+		BASS_ChannelIsActive(HStream);
+		ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &Vel);
+	}
+	BASS_Apply3D();
+	return ISSeting;
+}
+BOOL ATBAE::SetSounds3DPos(string SoundFileName, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
+{
+	//ATBAE::SetMusic3DPos();
+
+	BOOL ISSeting = FALSE;
+	if (!SoundFileName.empty())
+	{
+		HSTREAM HStream = ATBAE::GetStream(SoundFileName);
+		BASS_ChannelIsActive(HStream);
+		ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &Vel);
+	}
+	BASS_Apply3D();
+	return ISSeting;
+}
+BOOL ATBAE::SetMusics3DPos(HSTREAM HStream, BASS_3DVECTOR Pos)
+{
+	BOOL ISSeting = FALSE;
+	BASS_ChannelIsActive(HStream);
+	ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &m_Vel);
+	BASS_Apply3D();
+	return ISSeting;
+}
+BOOL ATBAE::SetSounds3DPos(HSTREAM HStream, BASS_3DVECTOR Pos)
+{
+	BOOL ISSeting = FALSE;
+	BASS_ChannelIsActive(HStream);
+	ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &m_Vel);
+	BASS_Apply3D();
+	return ISSeting;
+}
+BOOL ATBAE::SetMusics3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
+{
+	BOOL ISSeting = FALSE;
+	BASS_ChannelIsActive(HStream);
+	ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &Vel);
+	BASS_Apply3D();
+	return ISSeting;
+}
+BOOL ATBAE::SetSounds3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
+{
+	BOOL ISSeting = FALSE;
+	BASS_ChannelIsActive(HStream);
+	ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &Vel);
+	BASS_Apply3D();
+	return ISSeting;
+}
 
 
 

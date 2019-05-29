@@ -15,9 +15,18 @@ void Scene::Start()
 	this->m_CameraPos_Z = 50;
 
 	m_Model.CreateQT(70, 100, 36);
+
+	ATA->Init3DAudioEngine();
+
+	ATA->LoadMusics3D("res\\Audio\\Musics\\dj - 预谋.mp3");
+	ATA->PlayMusics("res\\Audio\\Musics\\dj - 预谋.mp3");
 }
 
 static int Angle = 0;
+
+BASS_3DVECTOR Pos;
+
+int Volume = 0;
 
 void Scene::Update()
 {
@@ -27,6 +36,8 @@ void Scene::Update()
 
 	m_Model.DrawModel();
 	m_Model.UpdateColor();
+
+
 
 }
 
@@ -55,10 +66,16 @@ void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 	if (Key == 'a' || Key == 'A')
 	{
 		m_CameraPos_X -= m_MoveSpeed_X;
+
+		Pos.x--;
+		ATA->SetMusics3DPos(Pos);
 	}
 	if (Key == 'd' || Key == 'D')
 	{
 		m_CameraPos_X += m_MoveSpeed_X;
+
+		Pos.x++;
+		ATA->SetMusics3DPos(Pos);
 	}
 	if (Key == '\r')
 	{
@@ -70,11 +87,11 @@ void Scene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
 	std::cout << "功能按下！" << Key << " X = " << X << " Y = " << Y << std::endl;
 	if (Key == 101)
 	{
-		ATA->VolumeAdd();
+
 	}
 	if (Key == 103)
 	{
-		ATA->VolumeReduce();
+
 	}
 }
 void Scene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)

@@ -28,6 +28,11 @@ class ATBAE
 	BOOL m_IsPlayMusic = FALSE;
 	//当前播放的音乐
 	string m_CurPlayMusic;
+	//当前播放的音效
+	string m_CurPlaySounds;
+
+	BASS_3DVECTOR m_Pos;
+	BASS_3DVECTOR m_Vel;
 public:
 	static ATBAE *GetInstance();
 	BOOL InitAudioEngine();
@@ -37,7 +42,7 @@ public:
 	BOOL LoadSounds(string SoundFileName, DWORD Flags = BASS_SAMPLE_MONO);
 	BOOL SetVolume(int Volume = 100);
 	DWORD GetVolume() { return m_Volume; }
-	string GetCurPlayMusic(){return m_CurPlayMusic;}
+	string GetCurPlayMusic() { return m_CurPlayMusic; }
 	HSTREAM GetStream(string AudioFileName);
 	BOOL VolumeReduce();//--
 	BOOL VolumeAdd();//++
@@ -88,11 +93,48 @@ public:
 		}
 	*/
 	DWORD GetAudioStreamData(string AudioFileName, void *Buffer);
+	//=================================================================
+	//3D
+	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	//设置3D因子
+	/*
+	默认以米作为单位
+	// Initialize the default output device with 3D support
+
+	3D在设置音量时是无效的
+	*/
+
+	BOOL Init3DAudioEngine();
+	BOOL Set3DFactors(float distf = 1.0f, float rollf = 1.0f, float doppf = 1.0f);
+
+	//
+	/*
+	Don't move unless you know what you're doing
+
+	BASS_SAMPLE_LOOP | BASS_SAMPLE_3D | BASS_SAMPLE_MONO
+	BASS_SAMPLE_3D | BASS_SAMPLE_MONO
+	*/
+	BOOL LoadMusics3D(string MusicFileName, DWORD Flags = BASS_SAMPLE_LOOP | BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
+	BOOL LoadSounds3D(string SoundFileName, DWORD Flags = BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
+
+	BOOL SetMusics3DPos(BASS_3DVECTOR Pos);
+	BOOL SetMusics3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
+	BOOL SetSounds3DPos(BASS_3DVECTOR Pos);
+	BOOL SetSounds3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
+
+	BOOL SetMusics3DPos(string MusicFileName, BASS_3DVECTOR Pos);
+	BOOL SetMusics3DPos(string MusicFileName, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
+	BOOL SetMusics3DPos(HSTREAM HStream, BASS_3DVECTOR Pos);
+	BOOL SetMusics3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
+	BOOL SetSounds3DPos(string SoundFileName, BASS_3DVECTOR Pos);
+	BOOL SetSounds3DPos(string SoundFileName, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
+	BOOL SetSounds3DPos(HSTREAM HStream, BASS_3DVECTOR Pos);
+	BOOL SetSounds3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
 
 
 
-
-
+	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 	//TRUE ,重新播放,FALSE 接着播放
 	BOOL PlayMusics(string MusicFileName, BOOL Restart = TRUE);
@@ -117,6 +159,11 @@ public:
 	void DeleteAllMusic();
 	void DeleteAllSound();
 	void DeleteAllMusicAndSounds();
+	//释放说明
+	/*
+		//BASS_SampleFree(HStream);
+		采取的是流功能
+	*/
 	BOOL FreeATA();
 	//=================================================================
 	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -152,3 +199,23 @@ private:
 	//同类赋值 重载 = 运算符
 	ATBAE& operator = (const ATBAE& that);
 };
+
+/*
+wchar_t file[MAX_PATH] = L"";
+	OPENFILENAME ofn = { 0 };
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrFile = file;
+	ofn.Flags = OFN_FILEMUSTEXIST | OFN_HIDEREADONLY | OFN_EXPLORER;
+	ofn.lpstrTitle = L"OpenFile";
+	ofn.lpstrFilter = (L"音乐文件(*.mp3)|*.mp3|视频文件(*.mp4)|*.mp4|视频文件(*.mkv)|*.mkv|所有文件(*.*)|*.*||");
+	if (GetOpenFileName(&ofn))
+	{
+
+
+		int var = 0;
+		return FALSE;
+	}
+
+*/
