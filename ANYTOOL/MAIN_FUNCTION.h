@@ -109,6 +109,8 @@ class FUNCTION
 	CMFCButton *m_PauseMusic = NULL;
 	int m_ISPauseMusic = 0;
 public:
+	FUNCTION();
+	~FUNCTION();
 	//初始编辑框的内容
 	void INIT_CEditControl(CEdit *CEditControl, CString Text);
 	//初始编辑框的内容

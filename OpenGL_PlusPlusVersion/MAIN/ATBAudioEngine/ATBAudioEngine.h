@@ -39,7 +39,9 @@ public:
 	BOOL UninstallAudioEngine();
 
 	BOOL LoadMusics(string MusicFileName, DWORD Flags = BASS_SAMPLE_LOOP);
+	BOOL LoadMusicsAndPlay(string MusicFileName, DWORD Flags = BASS_SAMPLE_LOOP);
 	BOOL LoadSounds(string SoundFileName, DWORD Flags = BASS_SAMPLE_MONO);
+	BOOL LoadSoundsAndPlay(string SoundFileName, DWORD Flags = BASS_SAMPLE_MONO);
 	BOOL SetVolume(int Volume = 100);
 	DWORD GetVolume() { return m_Volume; }
 	string GetCurPlayMusic() { return m_CurPlayMusic; }
@@ -116,7 +118,9 @@ public:
 	BASS_SAMPLE_3D | BASS_SAMPLE_MONO
 	*/
 	BOOL LoadMusics3D(string MusicFileName, DWORD Flags = BASS_SAMPLE_LOOP | BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
+	BOOL LoadMusics3DAndPlay(string MusicFileName, DWORD Flags = BASS_SAMPLE_LOOP | BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
 	BOOL LoadSounds3D(string SoundFileName, DWORD Flags = BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
+	BOOL LoadSounds3DAndPlay(string SoundFileName, DWORD Flags = BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
 
 	BOOL SetMusics3DPos(BASS_3DVECTOR Pos);
 	BOOL SetMusics3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);

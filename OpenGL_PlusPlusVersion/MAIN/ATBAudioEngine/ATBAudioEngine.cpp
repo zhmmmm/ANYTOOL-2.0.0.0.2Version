@@ -70,6 +70,15 @@ BOOL ATBAE::LoadMusics(string MusicFileName, DWORD Flags)
 	return TRUE;
 }
 
+BOOL ATBAE::LoadMusicsAndPlay(string MusicFileName, DWORD Flags)
+{
+	if (ATBAE::LoadMusics(MusicFileName,Flags))
+	{
+		return ATBAE::PlayMusics(MusicFileName);
+	}
+	return FALSE;
+}
+
 BOOL ATBAE::LoadSounds(string SoundFileName, DWORD Flags)
 {
 	map<string, HSTREAM>::iterator it = m_SoundMap.find(SoundFileName);
@@ -86,6 +95,15 @@ BOOL ATBAE::LoadSounds(string SoundFileName, DWORD Flags)
 	//make_pair
 	m_SoundMap.insert(pair<string, HSTREAM>(SoundFileName, HStream));
 	return TRUE;
+}
+
+BOOL ATBAE::LoadSoundsAndPlay(string SoundFileName, DWORD Flags)
+{
+	if (ATBAE::LoadSounds(SoundFileName, Flags))
+	{
+		return ATBAE::PlaySounds(SoundFileName);
+	}
+	return FALSE;
 }
 
 BOOL ATBAE::SetVolume(int Volume)
@@ -193,6 +211,14 @@ BOOL ATBAE::LoadMusics3D(string MusicFileName, DWORD Flags)
 	m_MusicMap.insert(pair<string, HSTREAM>(MusicFileName, HStream));
 	return TRUE;
 }
+BOOL ATBAE::LoadMusics3DAndPlay(string MusicFileName, DWORD Flags)
+{
+	if (ATBAE::LoadMusics3D(MusicFileName, Flags))
+	{
+		return ATBAE::PlayMusics(MusicFileName);
+	}
+	return FALSE;
+}
 BOOL ATBAE::LoadSounds3D(string SoundFileName, DWORD Flags)
 {
 	map<string, HSTREAM>::iterator it = m_SoundMap.find(SoundFileName);
@@ -210,6 +236,14 @@ BOOL ATBAE::LoadSounds3D(string SoundFileName, DWORD Flags)
 	//make_pair
 	m_MusicMap.insert(pair<string, HSTREAM>(SoundFileName, HStream));
 	return TRUE;
+}
+BOOL ATBAE::LoadSounds3DAndPlay(string SoundFileName, DWORD Flags)
+{
+	if (ATBAE::LoadSounds3D(SoundFileName, Flags))
+	{
+		return ATBAE::PlaySounds(SoundFileName);
+	}
+	return FALSE;
 }
 
 BOOL ATBAE::SetMusics3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)

@@ -25,6 +25,7 @@ void Scene::Start()
 static int Angle = 0;
 
 BASS_3DVECTOR Pos;
+BASS_3DVECTOR Vel;
 
 int Volume = 0;
 
@@ -55,6 +56,9 @@ void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 		CVector3D t(m_CameraPos_X, m_CameraPos_Y, m_CameraPos_Z);
 		t += n * m_MoveSpeed_Z;
 		m_CameraPos_Z = t.z;
+
+		Vel.x++;
+		ATA->SetMusics3DPos(Pos, Vel);
 	}
 	if (Key == 's' || Key == 'S')
 	{

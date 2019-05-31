@@ -1,6 +1,16 @@
 #include "stdafx.h"
 #include "MAIN_FUNCTION.h"
 
+
+FUNCTION::FUNCTION()
+{
+	//ATA->Init3DAudioEngine();
+}
+FUNCTION::~FUNCTION()
+{
+
+}
+
 void FUNCTION::INIT_CEditControl(CEdit *CEditControl, CString Text)
 {
 	CEditControl->SetWindowTextW(Text);
@@ -573,9 +583,10 @@ void FUNCTION::PlayerMusic()
 
 	if (CFileDialog.DoModal() == IDOK)
 	{
-		ATA->DeleteAllMusicAndSounds();
+		ATA->StopAllMusicAndSounds();
 		m_CurPlayerMusic = CFileDialog.GetPathName();
-		ATA->PlayMusics(MAIN::CString_To_String(CFileDialog.GetPathName()));
+		string Temp = MAIN::CString_To_String(CFileDialog.GetPathName());
+		ATA->LoadMusicsAndPlay(Temp);
 		m_ISPlayMusic = 1;
 
 		if (m_ISPauseMusic == 1)
