@@ -1,7 +1,5 @@
 #include "MAIN/OpenGL_AY_Engine.h"
-#include "Scene.h"
-
-
+#include "MainScene.h"
 
 #define Main main
 
@@ -10,9 +8,7 @@
 // ATENGINE
 // ATVARIABLE
 
-LPPIXCOLOR *RGBData = NULL;
 Sprite *S = new Sprite();
-
 Scene g_Object;
 
 void MainDisplay();
@@ -78,13 +74,10 @@ void OnIdle()
 	//ATENGINE->ATENGINE_RefreshDraw();
 	ATENGINE->ATENGINE_FPSDRAW(1);
 }
-
+Texture2D Texture;
+unsigned int TID = 0;
 int Main(int argc, char **argv)
 {
-
-	//ATVARIABLE->SetPoint(TRUE);
-	//ATVARIABLE->SetPointPosition(0.5,0.5);
-
 	MainInit();
 	ATENGINE->Init(AT_INITOPENGL, &argc, argv);
 	ATENGINE->InitMode(GLUT_DOUBLE | GLUT_RGBA,
@@ -105,9 +98,12 @@ int Main(int argc, char **argv)
 	ATENGINE->ATENGINE_Enable();
 	ATENGINE->ATENGINE_Enable(GL_DEPTH_TEST);
 	ATENGINE->ATENGINE_CULLFACE();
+	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
+	ATENGINE->ATENGINE_EnableCilentState(GL_TEXTURE_COORD_ARRAY);
 	ATENGINE->ATENGINE_EnableCilentState(GL_VERTEX_ARRAY);
-	ATENGINE->ATENGINE_EnableCilentState(GL_COLOR_ARRAY);
+	//ATENGINE->ATENGINE_EnableCilentState(GL_COLOR_ARRAY);
 
+	g_Object.ATOpenGLInitData();
 
 	ATENGINE->ATENGINEMAIN_Loop();
 
@@ -120,17 +116,12 @@ int Main(int argc, char **argv)
 void MainInit()
 {
 	g_Object.Start();
-
-	int Ending = 0;
 }
 void MainDisplay()
 {
 	ATENGINE->ATENGINE_Runing_Draw_Begin();
 
-
 	g_Object.Update();
-
-
 
 	ATENGINE->ATENGINE_Runing_Draw_End();
 	ATENGINE->ATENGINE_SWAPBUFFERS();

@@ -55,8 +55,11 @@ class Scene:public Object
 	Sprite *S = NULL;
 
 	Model3D m_Model;
+
+	Texture2D m_Texture2D;
 public:
 	virtual void Start();
+	virtual void ATOpenGLInitData();
 	virtual void Update();
 	virtual void End();
 

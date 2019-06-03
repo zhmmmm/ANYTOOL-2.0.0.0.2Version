@@ -24,8 +24,15 @@ public:
 	float m_MoveSpeed_Y = 10.0f;
 	float m_MoveSpeed_Z = 10.0f;
 
-
+	//最开始的初始化
 	virtual void Start();
+	//带有OpenGL 功能的初始化
+	/*
+		某些功能是需要开启OpenGL的一些功能之后才有效
+
+		比如纹理的加载,是要开启支持纹理贴图功能才能加载成功
+	*/
+	virtual void ATOpenGLInitData();
 	virtual void Update();
 	virtual void End();
 

@@ -156,7 +156,7 @@
     <ClCompile Include="MAIN\Textures.cpp" />
     <ClCompile Include="MAIN\Vector3D_Matrix4D\CMatrix_4.cpp" />
     <ClCompile Include="MAIN\Vector3D_Matrix4D\CVector3D.cpp" />
-    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="ThirdPartyLibraries\CPLUSPLUS_SRC\stb_image_resize.cpp" />
     <ClCompile Include="ThirdPartyLibraries\CPLUSPLUS_SRC\stb_image_write.cpp" />
     <ClCompile Include="ThirdPartyLibraries\CPLUSPLUS_SRC\std_image.cpp" />
@@ -177,7 +177,7 @@
     <ClInclude Include="MAIN\Textures.h" />
     <ClInclude Include="MAIN\Vector3D_Matrix4D\CMatrix_4.h" />
     <ClInclude Include="MAIN\Vector3D_Matrix4D\CVector3D.h" />
-    <ClInclude Include="Scene.h" />
+    <ClInclude Include="MainScene.h" />
     <ClInclude Include="ThirdPartyLibraries\NOTHINGS_STD\stb_image.h" />
     <ClInclude Include="ThirdPartyLibraries\NOTHINGS_STD\stb_image_resize.h" />
     <ClInclude Include="ThirdPartyLibraries\NOTHINGS_STD\stb_image_write.h" />

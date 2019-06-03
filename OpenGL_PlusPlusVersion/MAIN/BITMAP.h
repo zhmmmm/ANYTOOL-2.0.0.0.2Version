@@ -1,6 +1,7 @@
 #pragma once
 #include "OpenGL_AY_Engine.h"
 
+//·ÅÆúµÄ
 class Sprite
 {
 	LPPIXCOLOR **m_BitMapRGBData = NULL;

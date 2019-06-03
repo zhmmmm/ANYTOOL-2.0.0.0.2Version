@@ -230,6 +230,7 @@ public:
 	/*
 	GL_CULL_FACE //开启面裁剪
 	GL_DEPTH_TEST //开启深度测试
+	GL_TEXTURE_2D //开启纹理2D贴图
 	*/
 	static void ATENGINE_Enable(unsigned int FUNCTION = GL_CULL_FACE);
 
@@ -244,6 +245,7 @@ public:
 	/*
 	GL_VERTEX_ARRAY //顶点数组支持
 	GL_COLOR_ARRAY //颜色数组支持
+	GL_TEXTURE_COORD_ARRAY //开启纹理坐标(UV)数组功能
 	*/
 	static void ATENGINE_EnableCilentState(unsigned int FUNCTION = GL_VERTEX_ARRAY);
 
@@ -292,21 +294,69 @@ public:
 	//通过索引方式绘制
 	/*
 	绘制的图元类型
-	索引数量
-	索引数据类型
-	索引数据的起始位置
+	索引的顶点数量
+	索引的数据类型 必须是无符号的类型
+	索引的数据的起始位置
 	*/
 	static void ATENGINE_DrawElements(unsigned int DrawModeType, int IndexCount, unsigned int DataType, const void *Arr);
 
+	//创建纹理ID
+	/*
+	要创建多少个纹理的id
+	用于接收纹理id的unsigned int数组
+	*/
+	static void ATENGINE_CreateTextureID(unsigned int TextureNum, unsigned int *Arr);
 
+	//绑定纹理ID
+	/*
+	GL_TEXTURE_2D //绑定2D纹理
+	*/
+	static void ATENGINE_BindTextureID(unsigned int TARGET, unsigned int ID);
 
+	//纹理采样
+	/*
+	//设置纹理的采样方式
+	//GL_NEAREST：最近点采样，效果差效率高
+	//GL_LINEAR：线性插值采样，效果好效率低
+	//GL_TEXTURE_MIN_FILTER表示这种采样方式
+	//作用在缩小纹理采样上面，所谓缩小就是指
+	//的模型三角形的绘制面积小于纹理三角形面
+	//积的时候，GL_TEXTURE_MAG_FILTER就表示
+	//这种采样作用在放大纹理采样上面，即模型
+	//三角形的绘制面积大于纹理三角形面积的时
+	//候，一般来说缩小、放大采样都需要设置
+	*/
+	static void ATENGINE_TexParameter(unsigned int TARGET = GL_TEXTURE_2D, unsigned int NAME = GL_TEXTURE_MIN_FILTER,float PARAM = GL_NEAREST);
 
+	//加载纹理
+	/*
+	//GL_TEXTURE_2D表示加载二维纹理
+	//0表示不创建多级渐进纹理
+	//GL_RGB表示纹理是RGB颜色模式
+	//纹理像素宽
+	//纹理像素高
+	//0表示不设置纹理边界
+	//GL_BGR_EXT     表示纹理像素的格式为B、G、R的排列
+	//GL_UNSIGNED_BYTE   表示纹理像素颜色分量的格式为unsigned char
+	//纹理像素颜色的起始地址
+	*ATENGINE->LoadBitMapRGBData("psb.bmp")
+	*/
+	static void ATENGINE_LoadTexture(unsigned int TARGET, int Level, int Internalformat, int Width, int Height, int Border, unsigned int Format, unsigned int Type, const void *Pixels);
 
+	//绑定纹理结束
+	static void ATENGINE_BindTextureEnd();
 
+	//纹理绘制坐标(UV)
+	/*
+	//纹理数组中每个纹理坐标的维度
+	//纹理数组类型
+	//每个纹理坐标之间的字节间隔数
+	//纹理数组首地址
+	*/
+	static void ATENGIEN_DrawTexturePointer(int Dimension, unsigned int Type, int DrawOffset, const void *Arr);
 
-
-
-
+	//释放纹理
+	static void ATENGINE_DeleteTexture(int Num, unsigned int*Arr);
 
 
 
@@ -596,6 +646,7 @@ public:
 	*/
 	void Translate(float X, float Y, float Z);
 	void Translate(ATATPOS3D ATATPos3D);
+	void Translate(ATATPOS2D ATATPos2D);
 	void Rotate(float Angle, float X, float Y, float Z);
 	void Rotate(float Angle, ATATPOS3D ATATPos3D);
 	void SetScaleX(float X);

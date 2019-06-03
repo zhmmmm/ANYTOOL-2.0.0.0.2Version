@@ -397,9 +397,40 @@ void ATEngine::ATENGINE_DrawElements(unsigned int DrawModeType, int IndexCount, 
 	glDrawElements(DrawModeType, IndexCount, DataType, Arr);
 }
 
+void ATEngine::ATENGINE_CreateTextureID(unsigned int TextureNum, unsigned int *Arr)
+{
+	glGenTextures(TextureNum, Arr);
+}
 
+void ATEngine::ATENGINE_BindTextureID(unsigned int TARGET, unsigned int ID)
+{
+	glBindTexture(TARGET, ID);
+}
 
+void ATEngine::ATENGINE_TexParameter(unsigned int TARGET, unsigned int NAME, float PARAM)
+{
+	glTexParameterf(TARGET, NAME, PARAM);
+}
 
+void ATEngine::ATENGINE_LoadTexture(unsigned int TARGET, int Level, int Internalformat, int Width, int Height, int Border, unsigned int Format, unsigned int Type, const void *Pixels)
+{
+	glTexImage2D(TARGET,Level, Internalformat, Width, Height, Border, Format, Type, Pixels);
+}
+
+void ATEngine::ATENGINE_BindTextureEnd()
+{
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void ATEngine::ATENGIEN_DrawTexturePointer(int Dimension, unsigned int Type, int DrawOffset, const void *Arr)
+{
+	glTexCoordPointer(Dimension,Type,DrawOffset,Arr);
+}
+
+void ATEngine::ATENGINE_DeleteTexture(int Num, unsigned int *Arr)
+{
+	glDeleteTextures(Num, Arr);
+}
 
 
 
@@ -1019,6 +1050,10 @@ void ATEngine::Translate(float X, float Y, float Z)
 void ATEngine::Translate(ATATPOS3D ATATPos3D)
 {
 	glTranslatef(ATATPos3D.Get_X(), ATATPos3D.Get_Y(), ATATPos3D.Get_Z());
+}
+void ATEngine::Translate(ATATPOS2D ATATPos2D)
+{
+	glTranslatef(ATATPos2D.Get_X(), ATATPos2D.Get_Y(),0.0f);
 }
 void ATEngine::Rotate(float Angle, float X, float Y, float Z)
 {

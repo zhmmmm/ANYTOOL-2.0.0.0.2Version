@@ -1,7 +1,13 @@
 /*
 场景说明:==>
 */
-#include "Scene.h"
+#include "MainScene.h"
+
+void Scene::ATOpenGLInitData()
+{
+	m_Texture2D.Create("LaKes.bmp");
+	m_Texture2D.Create("1.bmp");
+}
 
 void Scene::Start()
 {
@@ -11,15 +17,13 @@ void Scene::Start()
 	this->m_Windows_Y = 10;
 	this->m_WindowsWidth = 800;
 	this->m_WindowsHeight = 600;
-	this->m_CameraPos_Y = 20;
-	this->m_CameraPos_Z = 50;
+	this->m_CameraPos_Y = 0;
+	this->m_CameraPos_Z = 200;
 
-	m_Model.CreateQT(70, 100, 36);
+	//ATA->Init3DAudioEngine();
 
-	ATA->Init3DAudioEngine();
-
-	ATA->LoadMusics3D("res\\Audio\\Musics\\dj - 预谋.mp3");
-	ATA->PlayMusics("res\\Audio\\Musics\\dj - 预谋.mp3");
+	//ATA->LoadMusics3D("res\\Audio\\Musics\\dj - 预谋.mp3");
+	//ATA->PlayMusics("res\\Audio\\Musics\\dj - 预谋.mp3");
 }
 
 static int Angle = 0;
@@ -31,41 +35,26 @@ int Volume = 0;
 
 void Scene::Update()
 {
-	//ATA->PlayMusics_s("res\\Audio\\Musics\\dj - 预谋.mp3");
-
 	Camera::CameraToWorld(this);
 
-	m_Model.DrawModel();
-	m_Model.UpdateColor();
-
-
+	m_Texture2D.DrawTexture("1.bmp");
 
 }
 
 void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 {
-	CVector3D T(m_LookAt_X,m_LookAt_Y,m_LookAt_Z);
-	CVector3D C(m_CameraPos_X,m_CameraPos_Y,m_CameraPos_Z);
-
-	CVector3D n = (T - C).normalized();
-
 	std::cout << "普通按下！" << Key << " X = " << X << " Y = " << Y << std::endl;
 	if (Key == 'w' || Key == 'W')
 	{
-		//m_CameraPos_Z -= m_MoveSpeed_Z;
-		CVector3D t(m_CameraPos_X, m_CameraPos_Y, m_CameraPos_Z);
-		t += n * m_MoveSpeed_Z;
-		m_CameraPos_Z = t.z;
 
 		Vel.x++;
 		ATA->SetMusics3DPos(Pos, Vel);
+
+		this->m_CameraPos_Z -= 5;
 	}
 	if (Key == 's' || Key == 'S')
 	{
-		//m_CameraPos_Z += m_MoveSpeed_Z;
-		CVector3D t(m_CameraPos_X, m_CameraPos_Y, m_CameraPos_Z);
-		t -= n * m_MoveSpeed_Z;
-		m_CameraPos_Z = t.z;
+		this->m_CameraPos_Z += 5;
 	}
 	if (Key == 'a' || Key == 'A')
 	{
@@ -89,11 +78,11 @@ void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 void Scene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
 {
 	std::cout << "功能按下！" << Key << " X = " << X << " Y = " << Y << std::endl;
-	if (Key == 101)
+	if (Key == 101)//KEYUP
 	{
 
 	}
-	if (Key == 103)
+	if (Key == 103)//KEYDOWN
 	{
 
 	}

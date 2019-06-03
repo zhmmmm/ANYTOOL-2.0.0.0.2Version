@@ -9,3 +9,4 @@
 #include "../BITMAP.h"
 #include "../Gadget/Gadget.h"
 #include "../Camera.h"
+#include "../Textures.h"
