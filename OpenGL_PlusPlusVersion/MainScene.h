@@ -57,6 +57,8 @@ class Scene:public Object
 	Model3D m_Model;
 
 	Texture2D m_Texture2D;
+	Texture2D *m_T1 = NULL;
+	Texture2D *m_T2 = NULL;
 public:
 	virtual void Start();
 	virtual void ATOpenGLInitData();

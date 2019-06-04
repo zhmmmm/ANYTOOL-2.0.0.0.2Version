@@ -5,8 +5,9 @@
 
 void Scene::ATOpenGLInitData()
 {
-	m_Texture2D.Create("LaKes.bmp");
-	m_Texture2D.Create("1.bmp");
+
+	m_T1 = Texture2D::create("1.bmp");
+	m_T2 = Texture2D::create("psb.bmp");
 }
 
 void Scene::Start()
@@ -18,7 +19,7 @@ void Scene::Start()
 	this->m_WindowsWidth = 800;
 	this->m_WindowsHeight = 600;
 	this->m_CameraPos_Y = 0;
-	this->m_CameraPos_Z = 200;
+	this->m_CameraPos_Z = 260;
 
 	//ATA->Init3DAudioEngine();
 
@@ -36,9 +37,15 @@ int Volume = 0;
 void Scene::Update()
 {
 	Camera::CameraToWorld(this);
+	//m_Texture2D.SetTextureSize("LaKes.bmp",100,400);
+	//m_Texture2D.DrawTexture("LaKes.bmp");
+	//AT->Translate(ATATPOS3D(-100,0,0));
+	//m_Texture2D.DrawTexture(2);
 
-	m_Texture2D.DrawTexture("1.bmp");
+	m_T1->DrawTexture2D();
 
+	AT->Translate(ATATPOS3D(-100,0,0));
+	m_T2->DrawTexture2D();
 }
 
 void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
