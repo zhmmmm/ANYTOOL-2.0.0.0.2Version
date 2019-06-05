@@ -50,7 +50,9 @@
 #define ATENGINE_ONTIMEREND(MILLISECOND,ONTIMEREND,TIMERID) \
                ATENGINE->ATENGINE_OnSetTimerEnd((MILLISECOND), (ONTIMEREND), (TIMERID));
 
-
+/*
+	这些都是适用bmp格式的
+*/
 class ATROOT
 {
 public:
@@ -326,7 +328,7 @@ public:
 	//三角形的绘制面积大于纹理三角形面积的时
 	//候，一般来说缩小、放大采样都需要设置
 	*/
-	static void ATENGINE_TexParameter(unsigned int TARGET = GL_TEXTURE_2D, unsigned int NAME = GL_TEXTURE_MIN_FILTER,float PARAM = GL_NEAREST);
+	static void ATENGINE_TexParameter(unsigned int TARGET = GL_TEXTURE_2D, unsigned int PNAME = GL_TEXTURE_MIN_FILTER,float PARAM = GL_NEAREST);
 
 	//加载纹理
 	/*
@@ -421,6 +423,10 @@ private:
 public:
 	//矩阵视口相机
 	//2D正交投影
+	/*
+		如果设置了 请在绘制的地方 AT->ATENGINE_MatrixMode();
+		相机参数不建议设置
+	*/
 	void ATENGINE_WindowsChangeMatrixModeAndOrtho2D(unsigned int MatrixMode = GL_PROJECTION, double Width = 0, double Height = 0, MATRIXMODE SourcePoint = MATRIXMODE::CENTER);
 
 	//3D透视投影 开始的第一波不会架摄像机

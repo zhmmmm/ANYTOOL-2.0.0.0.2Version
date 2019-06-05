@@ -7,8 +7,6 @@
 
 // ATENGINE
 // ATVARIABLE
-
-Sprite *S = new Sprite();
 Scene g_Object;
 
 void MainDisplay();
@@ -74,8 +72,8 @@ void OnIdle()
 	//ATENGINE->ATENGINE_RefreshDraw();
 	ATENGINE->ATENGINE_FPSDRAW(1);
 }
-Texture2D Texture;
-unsigned int TID = 0;
+
+
 int Main(int argc, char **argv)
 {
 	MainInit();

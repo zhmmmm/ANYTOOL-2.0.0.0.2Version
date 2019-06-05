@@ -6,9 +6,11 @@
 #include "../../ThirdPartyLibraries/NOTHINGS_STD/stb_image.h"
 #include "../../ThirdPartyLibraries/NOTHINGS_STD/stb_image_resize.h"
 #include "../../ThirdPartyLibraries/NOTHINGS_STD/stb_image_write.h"
+#include "../../ThirdPartyLibraries/FreeImage/TextureManager.h"
 
-
-
+/*
+	一个重要的对象
+*/
 #include "../Object.h"
 
 

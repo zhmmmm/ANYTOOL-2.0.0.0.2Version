@@ -160,6 +160,7 @@
     <ClCompile Include="ThirdPartyLibraries\CPLUSPLUS_SRC\stb_image_resize.cpp" />
     <ClCompile Include="ThirdPartyLibraries\CPLUSPLUS_SRC\stb_image_write.cpp" />
     <ClCompile Include="ThirdPartyLibraries\CPLUSPLUS_SRC\std_image.cpp" />
+    <ClCompile Include="ThirdPartyLibraries\FreeImage\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MAIN\ATBAudioEngine\ATBAudioEngine.h" />
@@ -178,6 +179,8 @@
     <ClInclude Include="MAIN\Vector3D_Matrix4D\CMatrix_4.h" />
     <ClInclude Include="MAIN\Vector3D_Matrix4D\CVector3D.h" />
     <ClInclude Include="MainScene.h" />
+    <ClInclude Include="ThirdPartyLibraries\FreeImage\FreeImage.h" />
+    <ClInclude Include="ThirdPartyLibraries\FreeImage\TextureManager.h" />
     <ClInclude Include="ThirdPartyLibraries\NOTHINGS_STD\stb_image.h" />
     <ClInclude Include="ThirdPartyLibraries\NOTHINGS_STD\stb_image_resize.h" />
     <ClInclude Include="ThirdPartyLibraries\NOTHINGS_STD\stb_image_write.h" />

@@ -407,9 +407,9 @@ void ATEngine::ATENGINE_BindTextureID(unsigned int TARGET, unsigned int ID)
 	glBindTexture(TARGET, ID);
 }
 
-void ATEngine::ATENGINE_TexParameter(unsigned int TARGET, unsigned int NAME, float PARAM)
+void ATEngine::ATENGINE_TexParameter(unsigned int TARGET, unsigned int PNAME, float PARAM)
 {
-	glTexParameterf(TARGET, NAME, PARAM);
+	glTexParameterf(TARGET, PNAME, PARAM);
 }
 
 void ATEngine::ATENGINE_LoadTexture(unsigned int TARGET, int Level, int Internalformat, int Width, int Height, int Border, unsigned int Format, unsigned int Type, const void *Pixels)

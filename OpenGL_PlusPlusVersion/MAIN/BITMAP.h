@@ -2,6 +2,7 @@
 #include "OpenGL_AY_Engine.h"
 
 //放弃的
+//这些都是适用bmp格式的
 class Sprite
 {
 	LPPIXCOLOR **m_BitMapRGBData = NULL;

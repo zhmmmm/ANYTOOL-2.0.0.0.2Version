@@ -55,6 +55,9 @@
     <Filter Include="ATEngine\HeaderFile">
       <UniqueIdentifier>{3b67162b-956f-4f99-a671-fe610906eb12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ATEngine\ThirdPartyLibraries\FreeImage">
+      <UniqueIdentifier>{6b6ff3de-1d4c-4202-a0da-0403a5658e06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -114,6 +117,9 @@
     <ClCompile Include="MainScene.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ThirdPartyLibraries\FreeImage\TextureManager.cpp">
+      <Filter>ATEngine\ThirdPartyLibraries\FreeImage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MAIN\OpenGL_AY_Engine.h">
@@ -172,6 +178,12 @@
     </ClInclude>
     <ClInclude Include="MainScene.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdPartyLibraries\FreeImage\FreeImage.h">
+      <Filter>ATEngine\ThirdPartyLibraries\FreeImage</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdPartyLibraries\FreeImage\TextureManager.h">
+      <Filter>ATEngine\ThirdPartyLibraries\FreeImage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

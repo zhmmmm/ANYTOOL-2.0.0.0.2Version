@@ -52,13 +52,12 @@ class Scene:public Object
 	float Angle = 0;
 	float p = 0;
 
-	Sprite *S = NULL;
-
-	Model3D m_Model;
-
 	Texture2D m_Texture2D;
 	Texture2D *m_T1 = NULL;
 	Texture2D *m_T2 = NULL;
+	Texture3D *m_T3 = NULL;
+
+	TEXTUREMANAGER *m_T4 = NULL;
 public:
 	virtual void Start();
 	virtual void ATOpenGLInitData();

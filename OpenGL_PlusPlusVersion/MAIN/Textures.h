@@ -29,7 +29,7 @@ typedef struct TEXTURE
 	float Width = 0;
 	float Height = 0;
 
-}TextureV,*LPTextureV;
+}TextureV, TextureINFO, *LPTextureV;
 
 //class Texture2D
 //{
@@ -92,17 +92,60 @@ class Texture2D
 public:
 	Texture2D();
 	Texture2D(const char *FileName);
-	static Texture2D *create(const char *FileName);
+	/*
+		你可能要释放这个对象
+
+	*/
+	static Texture2D *Create(const char *FileName);
 	void DrawTexture2D();
 
 
 private:
 	void InitTexture(const char *FileName);
 	void LoadTexture(const char *FileName);
+public:
+	//拷贝构造
+	Texture2D(const Texture2D& that);
+	//同类赋值 重载 = 运算符
+	Texture2D& operator = (const Texture2D& that);
 };
+
+
 
 class Texture3D
 {
+	TextureV m_TextureV;
+	unsigned int TextureID = 0;
 public:
 	Texture3D();
+	Texture3D(const char *FileName);
+	static Texture3D *Create(const char *FileName);
+	void DrawTexture3D();
+
+
+private:
+	void InitTexture(const char *FileName);
+	void LoadTexture(const char *FileName);
+public:
+	//拷贝构造
+	Texture3D(const Texture3D& that) {}
+	//同类赋值 重载 = 运算符
+	Texture3D& operator = (const Texture3D& that) {}
+};
+
+
+
+
+class TEXTUREMANAGER
+{
+	string m_FileName;
+	TextureINFO m_TextureINFO;
+public:
+	TEXTUREMANAGER();
+	TEXTUREMANAGER(const char *FileName);
+	static TEXTUREMANAGER *Create(const char *FileName);
+	void DrawTexture();
+private:
+	//赋值信息
+	void AssignmentINFO();
 };
