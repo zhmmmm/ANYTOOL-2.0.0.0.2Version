@@ -208,7 +208,7 @@
     <ClInclude Include="ImplantOpenGL.h" />
     <ClInclude Include="MAIN_FUNCTION.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="Scene.h" />
+    <ClInclude Include="MainScene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TOOL.h" />
@@ -220,7 +220,7 @@
     <ClCompile Include="DDOS.cpp" />
     <ClCompile Include="ImplantOpenGL.cpp" />
     <ClCompile Include="MAIN_FUNCTION.cpp" />
-    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

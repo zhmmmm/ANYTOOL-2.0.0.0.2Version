@@ -2,7 +2,7 @@
 ³¡¾°ËµÃ÷:==>
 */
 #include "stdafx.h"
-#include "Scene.h"
+#include "MainScene.h"
 
 #pragma comment(lib,"ATENGINE.lib")
 

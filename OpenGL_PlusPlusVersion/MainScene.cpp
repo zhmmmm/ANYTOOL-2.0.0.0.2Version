@@ -3,19 +3,15 @@
 */
 #include "MainScene.h"
 
-void Scene::ATOpenGLInitData()
+
+
+
+void MainScene::ATOpenGLInitData()
 {
-
-	m_T1 = Texture2D::Create("1.bmp");
-	m_T2 = Texture2D::Create("psb.bmp");
-	m_T3 = Texture3D::Create("1.bmp");
-
-	TM->LoadTexture("1.png");
-
-	m_T4 = TEXTUREMANAGER::Create("1.bmp");
+	MainScene::Start();
 }
 
-void Scene::Start()
+void MainScene::Start()
 {
 	this->m_Windows_X = 10;
 	this->m_Windows_Y = 10;
@@ -30,6 +26,8 @@ void Scene::Start()
 	//ATA->LoadMusics3D("res\\Audio\\Musics\\dj - 预谋.mp3");
 	//ATA->PlayMusics("res\\Audio\\Musics\\dj - 预谋.mp3");
 
+	m_T1 = new TEXTUREMANAGER("1.png");
+	m_T2 = new TEXTUREMANAGER("1.bmp");
 }
 
 static int Angle = 0;
@@ -39,20 +37,23 @@ BASS_3DVECTOR Vel;
 
 int Volume = 0;
 
-void Scene::Update()
+
+
+
+
+void MainScene::Update()
 {
+	AT->ATENGINE_DisableCilentState();
 	Camera::CameraToWorld(this);
 
-	//m_T2->DrawTexture2D();
 
+	m_T1->DrawTexture();
 
-	//m_T3->DrawTexture3D();
-
-
-	m_T4->DrawTexture();
+	AT->Translate(ATATPOS2D(-100,0));
+	m_T2->DrawTexture();
 }
 
-void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
+void MainScene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 {
 	std::cout << "普通按下！" << Key << " X = " << X << " Y = " << Y << std::endl;
 	if (Key == 'w' || Key == 'W')
@@ -86,7 +87,7 @@ void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 		exit(0);
 	}
 }
-void Scene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
+void MainScene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
 {
 	std::cout << "功能按下！" << Key << " X = " << X << " Y = " << Y << std::endl;
 	if (Key == 101)//KEYUP
@@ -98,17 +99,15 @@ void Scene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
 
 	}
 }
-void Scene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)
+void MainScene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)
 {
 	//std::cout << "鼠标移动 " << "X = " << Mouse_X << " Y = " << Mouse_Y << std::endl;
 	//m_LookAt_X = Mouse_X - m_WindowsWidth / 2;
 	//m_LookAt_Y = -(Mouse_Y - m_WindowsHeight / 2);
 }
 
-void Scene::End()
+void MainScene::End()
 {
 	delete m_T1;
 	m_T1 = NULL;
-	delete m_T2;
-	m_T2 = NULL;
 }

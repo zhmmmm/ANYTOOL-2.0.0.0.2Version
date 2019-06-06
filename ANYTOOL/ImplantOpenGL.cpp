@@ -38,13 +38,15 @@ BOOL ImplantOpenGL::InitHDCTOMFC(CDialogEx *This)
 void ImplantOpenGL::OpenGL_TO_MFC__Init_ATENGINE(Object *object, int Width, int Height)
 {
 	ATENGINE->InitMode(GLUT_DOUBLE | GLUT_RGBA);
-	ATENGINE->ATENGINE_WindowsChangeMatrixModeAndOrtho3D(GL_PROJECTION,Width,Height, MATRIXMODE::CENTER);
+	ATENGINE->ATENGINE_WindowsChangeMatrixModeAndOrtho2D(GL_PROJECTION,Width,Height, MATRIXMODE::CENTER);
 	object->m_WindowsWidth = Width;
 	object->m_CurWindowsHeight = Height;
 
 
 	/*
-	事件的响应用MFC的事件
+		事件的响应用MFC的事件
+		会造成内存冲突
+		就用MFC的事件
 	*/
 
 

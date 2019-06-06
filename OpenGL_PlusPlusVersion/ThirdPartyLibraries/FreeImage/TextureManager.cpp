@@ -246,8 +246,8 @@ bool TextureManager::LoadTexture(const char *FileName)
 	{
 	case IMAGEBMP: {return TextureManager::Load_BMP(FileName); }; break;
 	case IMAGEPNG: {return TextureManager::Load_PNG(FileName); }; break;
-	case IMAGEJPG: {}break;
-	case IMAGEJPEG: {}break;
+	case IMAGEJPG: {return TextureManager::Load_JPG(FileName); }break;
+	case IMAGEJPEG: {return TextureManager::Load_JPEG(FileName); }break;
 	case IMAGEPSD: {}break;
 	case IMAGEJPE: {}break;
 	}
@@ -258,7 +258,7 @@ bool TextureManager::Load_BMP(const char *FileName)
 {
 	if (TextureManager::Load_FreeImage(FileName))
 	{
-		Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, m_Data, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
+		Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, m_ColorData, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
 		return true;
 	}
 	return false;
@@ -268,16 +268,36 @@ bool TextureManager::Load_PNG(const char *FileName)
 {
 	if (TextureManager::Load_FreeImage(FileName))
 	{
-		Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGBA, m_Width, m_Height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_Data, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
+		Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGBA, m_Width, m_Height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_ColorData, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
 		return true;
 	}
 	return false;
 }
 
+bool TextureManager::Load_JPG(const char *FileName)
+{
+	if (TextureManager::Load_FreeImage(FileName))
+	{
+		
+		Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, m_ColorData, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
+		return true;
+	}
+	return false;
+}
+
+bool TextureManager::Load_JPEG(const char *FileName)
+{
+	return TextureManager::Load_JPG(FileName);
+}
+
+
+
+
+
+//=====================================================================
 bool TextureManager::Load_FreeImage(const char *FileName)
 {
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-	BYTE* bits(0);
 
 	fif = FreeImage_GetFileType(FileName, 0);
 	if (fif == FIF_UNKNOWN)
@@ -299,23 +319,23 @@ bool TextureManager::Load_FreeImage(const char *FileName)
 		return false;
 	}
 
-	bits = FreeImage_GetBits(m_Data);
+	m_ColorData = FreeImage_GetBits(m_Data);
 	m_Width = FreeImage_GetWidth(m_Data);
 	m_Height = FreeImage_GetHeight(m_Data);
-	if (bits && m_Width && m_Height)
+	if (m_ColorData && m_Width && m_Height)
 	{
 		return true;
 	}
 	return false;
 }
 
-void TextureManager::Load_Texture(float PARAM, unsigned int TARGET, int Level, int Internalformat, int Width, int Height, int Border, unsigned int Format, unsigned int Type, FIBITMAP *Pixels, unsigned int PNAME_0, unsigned int PNAME_1)
+void TextureManager::Load_Texture(float PARAM, unsigned int TARGET, int Level, int Internalformat, int Width, int Height, int Border, unsigned int Format, unsigned int Type, BYTE *Pixels, unsigned int PNAME_0, unsigned int PNAME_1)
 {
 	glGenTextures(1, &m_TextureID);
 	glBindTexture(TARGET, m_TextureID);
 	glTexParameterf(TARGET, PNAME_0, PARAM);
 	glTexParameterf(TARGET, PNAME_1, PARAM);
 	glTexImage2D(TARGET, Level, Internalformat, Width, Height, Border, Format, Type, Pixels);
-	FreeImage_Unload(Pixels);
+	FreeImage_Unload(m_Data);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

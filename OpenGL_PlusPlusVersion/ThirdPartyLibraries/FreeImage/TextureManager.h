@@ -75,18 +75,21 @@ protected:
 
 private:
 
-
+	
 public:
-	FIBITMAP *m_Data = NULL;
+	BYTE *m_ColorData = NULL;//颜色数据
+	FIBITMAP *m_Data = NULL;//保留作者自定义的数据类型
 	unsigned int m_Width = 0;
 	unsigned int m_Height = 0;
-	unsigned int m_TextureID = 0;
+	unsigned int m_TextureID = 0;//纹理ID
 
 
 	bool LoadTexture(const char *FileName);
 
-	bool Load_PNG(const char *FileName);
 	bool Load_BMP(const char *FileName);
+	bool Load_PNG(const char *FileName);
+	bool Load_JPG(const char *FileName);
+	bool Load_JPEG(const char *FileName);
 private:
 
 	bool Load_FreeImage(const char *FileName);
@@ -114,8 +117,8 @@ private:
 	//GL_UNSIGNED_BYTE   表示纹理像素颜色分量的格式为unsigned char
 	//纹理像素颜色的起始地址
 
-	//BMP Load_Texture(GL_NEAREST,GL_TEXTURE_2D,0,GL_RGB,m_Width,m_Height,0,GL_BGR_EXT,GL_UNSIGNED_BYTE,m_Data,GL_TEXTURE_MIN_FILTER,GL_TEXTURE_MAG_FILTER);
-	//PNG Load_Texture(GL_NEAREST,GL_TEXTURE_2D,0,GL_RGBA,m_Width,m_Height,0,GL_BGRA_EXT,GL_UNSIGNED_BYTE,m_Data,GL_TEXTURE_MIN_FILTER,GL_TEXTURE_MAG_FILTER);
+	//BMP Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, m_ColorData, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
+	//PNG Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGBA, m_Width, m_Height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_ColorData, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
 	void Load_Texture(
 		float PARAM,
 		unsigned int TARGET,
@@ -125,9 +128,7 @@ private:
 		int Border,
 		unsigned int Format,
 		unsigned int Type,
-		FIBITMAP *Pixels,
+		BYTE *Pixels,
 		unsigned int PNAME_0,
 		unsigned int PNAME_1);
-
-
 };

@@ -90,7 +90,10 @@ public:
 	*/
 	//:::::::::::::::::::::::::不建议用:::::::::::::::::::::::::::::::需要手动释放
 	int LoadBitMapRGBData(const char *FileName, LPPIXCOLOR **BitMapRGBData);
-	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::不需要手动释放
+	/*
+		如果重复的使用,则之前的内存会被清除
+	*/
+	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::不需要手动释放 
 	LPPIXCOLOR **LoadBitMapRGBData(const char *FileName);
 	//释放的是外部的加载的位图数据
 	void DeleteBitMap(LPPIXCOLOR **BitMapData);
@@ -246,10 +249,17 @@ public:
 	//开启客户状态的支持
 	/*
 	GL_VERTEX_ARRAY //顶点数组支持
-	GL_COLOR_ARRAY //颜色数组支持
+	GL_COLOR_ARRAY //颜色数组支持 如果有绘制纹理请关闭它
 	GL_TEXTURE_COORD_ARRAY //开启纹理坐标(UV)数组功能
 	*/
 	static void ATENGINE_EnableCilentState(unsigned int FUNCTION = GL_VERTEX_ARRAY);
+	//关闭客户状态的支持
+	/*
+	GL_VERTEX_ARRAY //顶点数组支持
+	GL_COLOR_ARRAY //颜色数组支持 如果有绘制纹理请关闭它
+	GL_TEXTURE_COORD_ARRAY //开启纹理坐标(UV)数组功能
+	*/
+	static void ATENGINE_DisableCilentState(unsigned int FUNCTION = GL_COLOR_ARRAY);
 
 	//裁那一面
 	/*
@@ -426,6 +436,8 @@ public:
 	/*
 		如果设置了 请在绘制的地方 AT->ATENGINE_MatrixMode();
 		相机参数不建议设置
+
+		注意！注意！注意！如果更改了源点(0,0)的位置,请注意是第几象限  不然绘制不出来 
 	*/
 	void ATENGINE_WindowsChangeMatrixModeAndOrtho2D(unsigned int MatrixMode = GL_PROJECTION, double Width = 0, double Height = 0, MATRIXMODE SourcePoint = MATRIXMODE::CENTER);
 

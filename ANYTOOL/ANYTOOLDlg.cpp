@@ -423,6 +423,7 @@ void CANYTOOLDlg::OnBnClicked_Ended()
 
 void CANYTOOLDlg::OnBnClicked_Exit()
 {
+	//如果有计时器事件 必须杀死计时器在执行退出函数
 	if (MAIN_M_FUNCTION->IsPlayMusic() == 1)
 	{
 		MAIN_M_FUNCTION->PauseMusic();

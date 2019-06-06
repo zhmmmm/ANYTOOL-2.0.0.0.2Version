@@ -47,17 +47,14 @@
 
 
 
-class Scene:public Object
+class MainScene:public Object
 {
 	float Angle = 0;
 	float p = 0;
 
-	Texture2D m_Texture2D;
-	Texture2D *m_T1 = NULL;
-	Texture2D *m_T2 = NULL;
-	Texture3D *m_T3 = NULL;
 
-	TEXTUREMANAGER *m_T4 = NULL;
+	TEXTUREMANAGER *m_T1 = NULL;
+	TEXTUREMANAGER *m_T2 = NULL;
 public:
 	virtual void Start();
 	virtual void ATOpenGLInitData();

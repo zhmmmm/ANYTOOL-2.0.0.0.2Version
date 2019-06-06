@@ -406,7 +406,7 @@ void Texture3D::InitTexture(const char *FileName)
 
 void Texture3D::LoadTexture(const char *FileName)
 {
-	TextureManager::Inst()->LoadTexture(FileName, 3, GL_BGR, GL_RGB);
+
 }
 
 
@@ -425,8 +425,10 @@ TEXTUREMANAGER::TEXTUREMANAGER()
 }
 TEXTUREMANAGER::TEXTUREMANAGER(const char *FileName)
 {
-	TM->LoadTexture(FileName);
-	TEXTUREMANAGER::AssignmentINFO();
+	if (TM->LoadTexture(FileName))
+	{
+		TEXTUREMANAGER::AssignmentINFO();
+	}
 }
 TEXTUREMANAGER *TEXTUREMANAGER::Create(const char *FileName)
 {

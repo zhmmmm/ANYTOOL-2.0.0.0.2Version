@@ -8,8 +8,11 @@ ATROOT::ATROOT()
 }
 ATROOT::~ATROOT()
 {
-	delete[] m_BitMapRGBData;
-	m_BitMapRGBData = NULL;
+	if (m_BitMapRGBData)
+	{
+		delete m_BitMapRGBData;
+		m_BitMapRGBData = NULL;
+	}
 }
 int ATROOT::LoadBitMap(const char *FileName, LPPIXCOLOR **BitMapData)
 {
@@ -81,6 +84,12 @@ int ATROOT::LoadBitMapRGBData(const char *FileName, LPPIXCOLOR **BitMapRGBData)
 }
 LPPIXCOLOR **ATROOT::LoadBitMapRGBData(const char *FileName)
 {
+	if (m_BitMapRGBData)
+	{
+		delete m_BitMapRGBData;
+		m_BitMapRGBData = NULL;
+	}
+
 	FILE *pf = NULL;
 	fopen_s(&pf, FileName, "rb");
 	if (pf)
@@ -316,6 +325,11 @@ void ATEngine::ATENGINE_Disable(unsigned int FUNCTION)
 void ATEngine::ATENGINE_EnableCilentState(unsigned int FUNCTION)
 {
 	glEnableClientState(FUNCTION);
+}
+
+void ATEngine::ATENGINE_DisableCilentState(unsigned int FUNCTION)
+{
+	glDisableClientState(FUNCTION);
 }
 
 void ATEngine::ATENGINE_CULLFACE(unsigned int CULLFACE)

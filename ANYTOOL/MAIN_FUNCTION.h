@@ -5,7 +5,7 @@
 #include "DDOS.h"
 //«∂»ÎOpenGL
 #include "ImplantOpenGL.h"
-#include "Scene.h"
+#include "MainScene.h"
 
 #pragma comment(lib,"ATENGINE\\bin\\ATENGINE.lib")
 

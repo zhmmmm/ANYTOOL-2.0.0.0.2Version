@@ -1,9 +1,16 @@
 #pragma once
 #include "OpenGL_AY_Engine.h"
 
+/*
+	如果执意要用 
+	Sprite S;
+	S.Create("1.bmp");
+	S.DrawSprite();
+*/
+
 //放弃的
 //这些都是适用bmp格式的
-class Sprite
+class BITMAPS
 {
 	LPPIXCOLOR **m_BitMapRGBData = NULL;
 	BITMAPFILEHEADER *m_bf = NULL;
@@ -13,8 +20,8 @@ class Sprite
 
 	int m_SpriteState = 0;
 public:
-	Sprite();
-	Sprite(const char *FileName);
+	BITMAPS();
+	BITMAPS(const char *FileName);
 	void *Create(const char *FileName);
 
 	void SetSpriteScale(float X, float Y);
@@ -28,7 +35,7 @@ public:
 	//::::::::::::::::::::::::如果调用:::::::::::::::::::::::::::::::: void SetSpriteScale(float X, float Y); 函数是无效的
 	void DrawSprite(float Width,float Height);
 	//void DeleteSprite();
-	~Sprite();
+	~BITMAPS();
 private:
 	void InitSpriteInfoData();
 	void DeleteSpriteInfoData();

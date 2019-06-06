@@ -7,7 +7,7 @@
 
 // ATENGINE
 // ATVARIABLE
-Scene g_Object;
+MainScene g_Object;
 
 void MainDisplay();
 void MainInit();
@@ -73,7 +73,6 @@ void OnIdle()
 	ATENGINE->ATENGINE_FPSDRAW(1);
 }
 
-
 int Main(int argc, char **argv)
 {
 	MainInit();
@@ -99,7 +98,7 @@ int Main(int argc, char **argv)
 	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
 	ATENGINE->ATENGINE_EnableCilentState(GL_TEXTURE_COORD_ARRAY);
 	ATENGINE->ATENGINE_EnableCilentState(GL_VERTEX_ARRAY);
-	//ATENGINE->ATENGINE_EnableCilentState(GL_COLOR_ARRAY);
+	ATENGINE->ATENGINE_EnableCilentState(GL_COLOR_ARRAY);
 
 	g_Object.ATOpenGLInitData();
 
