@@ -361,6 +361,7 @@ Texture::Texture(const char *FileName)
 {
 	if (TM->LoadTexture(FileName))
 	{
+		m_FileName = FileName;
 		Texture::AssignmentINFO();
 	}
 }

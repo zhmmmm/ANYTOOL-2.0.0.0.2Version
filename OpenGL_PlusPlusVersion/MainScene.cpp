@@ -22,7 +22,6 @@ void MainScene::Start()
 	this->m_CameraPos_X = 0;
 
 	//ATA->Init3DAudioEngine();
-
 	//ATA->LoadMusics3D("res\\Audio\\Musics\\dj - Ԥı.mp3");
 	//ATA->PlayMusics("res\\Audio\\Musics\\dj - Ԥı.mp3");
 
@@ -86,13 +85,17 @@ void MainScene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 	if (Key == 'w' || Key == 'W')
 	{
 
-		Vel.x++;
+		Pos.z--;
+
 		ATA->SetMusics3DPos(Pos, Vel);
 
 		this->m_CameraPos_Z -= 5;
 	}
 	if (Key == 's' || Key == 'S')
 	{
+		Pos.z++;
+		ATA->SetMusics3DPos(Pos, Vel);
+
 		this->m_CameraPos_Z += 5;
 	}
 	if (Key == 'a' || Key == 'A')

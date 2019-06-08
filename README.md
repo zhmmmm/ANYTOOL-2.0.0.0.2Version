@@ -41,17 +41,22 @@ HOMEANYTOOL
 //==移除一些不必要的项目
 
 //==更新引擎版本为2.0.0.2.1 于2019.6.8 优化纹理的绘制 增加
+
 {
-	IMAGEBMP  
+
+IMAGEBMP  
 IMAGEPNG  
 IMAGEJPG     
 IMAGEJPEG  
 IMAGEPSD  
 IMAGEJPE    
 IMAGETIF     
-};支持
 
+};
 
+支持
+
+//==更新引擎版本为2.0.0.2.2 于2019.6.8 优化音频播放3D功能 增加Lua项目
 
 
 

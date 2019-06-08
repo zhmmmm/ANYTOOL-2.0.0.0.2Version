@@ -21,15 +21,16 @@ class ATBAE
 	//音乐Map
 	map<string, HSTREAM> m_MusicMap;
 	//音效Map
-	map<string, HSTREAM> m_SoundMap;
+	map<string, HSTREAM> m_EffectMap;
 
 	//音量
 	unsigned long m_Volume = 100;
 	BOOL m_IsPlayMusic = FALSE;
 	//当前播放的音乐
-	string m_CurPlayMusic;
+	string m_CurPlayMusics;
 	//当前播放的音效
-	string m_CurPlaySounds;
+	string m_CurPlayEffects;
+
 
 	BASS_3DVECTOR m_Pos;
 	BASS_3DVECTOR m_Vel;
@@ -40,11 +41,12 @@ public:
 
 	BOOL LoadMusics(string MusicFileName, DWORD Flags = BASS_SAMPLE_LOOP);
 	BOOL LoadMusicsAndPlay(string MusicFileName, DWORD Flags = BASS_SAMPLE_LOOP);
-	BOOL LoadSounds(string SoundFileName, DWORD Flags = BASS_SAMPLE_MONO);
-	BOOL LoadSoundsAndPlay(string SoundFileName, DWORD Flags = BASS_SAMPLE_MONO);
+	BOOL LoadEffects(string EffectFileName, DWORD Flags = BASS_SAMPLE_MONO);
+	BOOL LoadEffectsAndPlay(string EffectFileName, DWORD Flags = BASS_SAMPLE_MONO);
 	BOOL SetVolume(int Volume = 100);
 	DWORD GetVolume() { return m_Volume; }
-	string GetCurPlayMusic() { return m_CurPlayMusic; }
+	string GetCurPlayMusic() { return m_CurPlayMusics; }
+	string GetCurPlayEffect() { return m_CurPlayEffects; }
 	HSTREAM GetStream(string AudioFileName);
 	BOOL VolumeReduce();//--
 	BOOL VolumeAdd();//++
@@ -119,22 +121,22 @@ public:
 	*/
 	BOOL LoadMusics3D(string MusicFileName, DWORD Flags = BASS_SAMPLE_LOOP | BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
 	BOOL LoadMusics3DAndPlay(string MusicFileName, DWORD Flags = BASS_SAMPLE_LOOP | BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
-	BOOL LoadSounds3D(string SoundFileName, DWORD Flags = BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
-	BOOL LoadSounds3DAndPlay(string SoundFileName, DWORD Flags = BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
+	BOOL LoadEffects3D(string EffectFileName, DWORD Flags = BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
+	BOOL LoadEffects3DAndPlay(string EffectFileName, DWORD Flags = BASS_SAMPLE_3D | BASS_SAMPLE_MONO);
 
 	BOOL SetMusics3DPos(BASS_3DVECTOR Pos);
 	BOOL SetMusics3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
-	BOOL SetSounds3DPos(BASS_3DVECTOR Pos);
-	BOOL SetSounds3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
+	BOOL SetEffects3DPos(BASS_3DVECTOR Pos);
+	BOOL SetEffects3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
 
 	BOOL SetMusics3DPos(string MusicFileName, BASS_3DVECTOR Pos);
 	BOOL SetMusics3DPos(string MusicFileName, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
 	BOOL SetMusics3DPos(HSTREAM HStream, BASS_3DVECTOR Pos);
 	BOOL SetMusics3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
-	BOOL SetSounds3DPos(string SoundFileName, BASS_3DVECTOR Pos);
-	BOOL SetSounds3DPos(string SoundFileName, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
-	BOOL SetSounds3DPos(HSTREAM HStream, BASS_3DVECTOR Pos);
-	BOOL SetSounds3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
+	BOOL SetEffects3DPos(string EffectFileName, BASS_3DVECTOR Pos);
+	BOOL SetEffects3DPos(string EffectFileName, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
+	BOOL SetEffects3DPos(HSTREAM HStream, BASS_3DVECTOR Pos);
+	BOOL SetEffects3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel);
 
 
 
@@ -143,26 +145,26 @@ public:
 	//TRUE ,重新播放,FALSE 接着播放
 	BOOL PlayMusics(string MusicFileName, BOOL Restart = TRUE);
 	BOOL PlayMusics_s(string MusicFileName, BOOL Restart = TRUE);
-	BOOL PlaySounds(string SoundFileName);
+	BOOL PlayEffects(string EffectFileName);
 	BOOL PlayStream(HSTREAM HStream, BOOL Restart = TRUE);
 
 	BOOL PauseMusics(string MusicFileName);
-	BOOL PauseSounds(string SoundFileName);
+	BOOL PauseEffects(string EffectFileName);
 	BOOL PauseAllMusics();
-	BOOL PauseAllSounds();
-	BOOL PauseAllMusicAndSounds();
+	BOOL PauseAllEffects();
+	BOOL PauseAllMusicAndEffects();
 
 	BOOL StopMusics(string MusicFileName);
-	BOOL StopSounds(string SoundFileName);
+	BOOL StopEffects(string EffectFileName);
 	BOOL StopAllMusics();
-	BOOL StopAllSounds();
-	BOOL StopAllMusicAndSounds();
+	BOOL StopAllEffects();
+	BOOL StopAllMusicAndEffects();
 
 	void DeleteMusic(string MusicFileName);
-	void DeleteSound(string SoundFileName);
+	void DeleteEffect(string EffectFileName);
 	void DeleteAllMusic();
-	void DeleteAllSound();
-	void DeleteAllMusicAndSounds();
+	void DeleteAllEffect();
+	void DeleteAllMusicAndEffects();
 	//释放说明
 	/*
 		//BASS_SampleFree(HStream);

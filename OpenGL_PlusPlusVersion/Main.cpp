@@ -112,7 +112,7 @@ int Main(int argc, char **argv)
 
 void MainInit()
 {
-	g_Object.Start();
+	//g_Object.Start();
 }
 void MainDisplay()
 {

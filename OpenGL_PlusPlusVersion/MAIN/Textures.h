@@ -85,7 +85,7 @@ typedef struct TEXTURE
 //	void NewMemory();
 //};
 
-//这个列只能加载位图
+//这个类只能加载位图
 //我占时保留它
 class Texture2D
 {
@@ -131,7 +131,7 @@ public:
 
 
 	TextureINFO *GetTextureInfo() { return &m_TextureINFO; }
-	//请不要改 TextureINFO.TID;
+	//请不要改 TextureINFO.TID 除非你知道在做什么
 	void SetTextureInfo(TextureINFO *TextureINFO);
 	string *GetTextureName() { return &m_FileName; }
 

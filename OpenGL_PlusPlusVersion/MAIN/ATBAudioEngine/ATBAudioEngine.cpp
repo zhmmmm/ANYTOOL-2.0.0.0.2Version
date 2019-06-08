@@ -79,29 +79,29 @@ BOOL ATBAE::LoadMusicsAndPlay(string MusicFileName, DWORD Flags)
 	return FALSE;
 }
 
-BOOL ATBAE::LoadSounds(string SoundFileName, DWORD Flags)
+BOOL ATBAE::LoadEffects(string EffectFileName, DWORD Flags)
 {
-	map<string, HSTREAM>::iterator it = m_SoundMap.find(SoundFileName);
-	if (it != m_SoundMap.end())//存在
+	map<string, HSTREAM>::iterator it = m_EffectMap.find(EffectFileName);
+	if (it != m_EffectMap.end())//存在
 	{
 		return TRUE;
 	}
-	HSTREAM HStream = BASS_StreamCreateFile(FALSE, SoundFileName.c_str(), 0, 0, Flags);//从文件加载音乐
+	HSTREAM HStream = BASS_StreamCreateFile(FALSE, EffectFileName.c_str(), 0, 0, Flags);//从文件加载音乐
 	if (HStream == NULL)
 	{
 		//加载失败
 		return FALSE;
 	}
 	//make_pair
-	m_SoundMap.insert(pair<string, HSTREAM>(SoundFileName, HStream));
+	m_EffectMap.insert(pair<string, HSTREAM>(EffectFileName, HStream));
 	return TRUE;
 }
 
-BOOL ATBAE::LoadSoundsAndPlay(string SoundFileName, DWORD Flags)
+BOOL ATBAE::LoadEffectsAndPlay(string EffectFileName, DWORD Flags)
 {
-	if (ATBAE::LoadSounds(SoundFileName, Flags))
+	if (ATBAE::LoadEffects(EffectFileName, Flags))
 	{
-		return ATBAE::PlaySounds(SoundFileName);
+		return ATBAE::PlayEffects(EffectFileName);
 	}
 	return FALSE;
 }
@@ -133,8 +133,8 @@ HSTREAM ATBAE::GetStream(string AudioFileName)
 		{
 			return it->second;
 		}
-		it = m_SoundMap.find(AudioFileName);
-		if (it != m_SoundMap.end())
+		it = m_EffectMap.find(AudioFileName);
+		if (it != m_EffectMap.end())
 		{
 			return it->second;
 		}
@@ -174,8 +174,8 @@ DWORD ATBAE::GetAudioStreamData(string AudioFileName, void *Buffer)
 		{
 			return BASS_ChannelGetData(it->second, Buffer, 2147483648);
 		}
-		it = m_SoundMap.find(AudioFileName);
-		if (it != m_SoundMap.end())
+		it = m_EffectMap.find(AudioFileName);
+		if (it != m_EffectMap.end())
 		{
 			return BASS_ChannelGetData(it->second, Buffer, 2147483648);
 		}
@@ -219,14 +219,14 @@ BOOL ATBAE::LoadMusics3DAndPlay(string MusicFileName, DWORD Flags)
 	}
 	return FALSE;
 }
-BOOL ATBAE::LoadSounds3D(string SoundFileName, DWORD Flags)
+BOOL ATBAE::LoadEffects3D(string EffectFileName, DWORD Flags)
 {
-	map<string, HSTREAM>::iterator it = m_SoundMap.find(SoundFileName);
-	if (it != m_SoundMap.end())//存在
+	map<string, HSTREAM>::iterator it = m_EffectMap.find(EffectFileName);
+	if (it != m_EffectMap.end())//存在
 	{
 		return TRUE;
 	}
-	HSTREAM HStream = BASS_SampleLoad(FALSE, SoundFileName.c_str(), 0, 0, 1, Flags);//从文件加载音乐
+	HSTREAM HStream = BASS_SampleLoad(FALSE, EffectFileName.c_str(), 0, 0, 1, Flags);//从文件加载音乐
 	BASS_SampleGetChannel(HStream, FALSE);
 	if (HStream == NULL)
 	{
@@ -234,14 +234,14 @@ BOOL ATBAE::LoadSounds3D(string SoundFileName, DWORD Flags)
 		return FALSE;
 	}
 	//make_pair
-	m_MusicMap.insert(pair<string, HSTREAM>(SoundFileName, HStream));
+	m_EffectMap.insert(pair<string, HSTREAM>(EffectFileName, HStream));
 	return TRUE;
 }
-BOOL ATBAE::LoadSounds3DAndPlay(string SoundFileName, DWORD Flags)
+BOOL ATBAE::LoadEffects3DAndPlay(string EffectFileName, DWORD Flags)
 {
-	if (ATBAE::LoadSounds3D(SoundFileName, Flags))
+	if (ATBAE::LoadEffects3D(EffectFileName, Flags))
 	{
-		return ATBAE::PlaySounds(SoundFileName);
+		return ATBAE::PlayEffects(EffectFileName);
 	}
 	return FALSE;
 }
@@ -261,13 +261,13 @@ BOOL ATBAE::SetMusics3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
 	BASS_Apply3D();
 	return ISSeting;
 }
-BOOL ATBAE::SetSounds3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
+BOOL ATBAE::SetEffects3DPos(BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
 {
 	BOOL ISSeting = FALSE;
-	string CurPlaySounds = ATBAE::GetCurPlayMusic();
-	if (!CurPlaySounds.empty())
+	string CurPlayEffects = ATBAE::GetCurPlayEffect();
+	if (!CurPlayEffects.empty())
 	{
-		HSTREAM HStream = ATBAE::GetStream(CurPlaySounds);
+		HSTREAM HStream = ATBAE::GetStream(CurPlayEffects);
 		if (BASS_ChannelIsActive(HStream) == BASS_ACTIVE_PLAYING)
 		{
 			ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &Vel);
@@ -284,13 +284,13 @@ BOOL ATBAE::SetMusics3DPos(BASS_3DVECTOR Pos)
 	Vel.z = 0;
 	return ATBAE::SetMusics3DPos(Pos, Vel);
 }
-BOOL ATBAE::SetSounds3DPos(BASS_3DVECTOR Pos)
+BOOL ATBAE::SetEffects3DPos(BASS_3DVECTOR Pos)
 {
 	BASS_3DVECTOR Vel;
 	Vel.x = 0;
 	Vel.y = 0;
 	Vel.z = 0;
-	return ATBAE::SetSounds3DPos(Pos, Vel);
+	return ATBAE::SetEffects3DPos(Pos, Vel);
 }
 
 BOOL ATBAE::SetMusics3DPos(string MusicFileName, BASS_3DVECTOR Pos)
@@ -305,14 +305,12 @@ BOOL ATBAE::SetMusics3DPos(string MusicFileName, BASS_3DVECTOR Pos)
 	BASS_Apply3D();
 	return ISSeting;
 }
-BOOL ATBAE::SetSounds3DPos(string SoundFileName, BASS_3DVECTOR Pos)
+BOOL ATBAE::SetEffects3DPos(string EffectFileName, BASS_3DVECTOR Pos)
 {
-	//ATBAE::SetMusic3DPos();
-
 	BOOL ISSeting = FALSE;
-	if (!SoundFileName.empty())
+	if (!EffectFileName.empty())
 	{
-		HSTREAM HStream = ATBAE::GetStream(SoundFileName);
+		HSTREAM HStream = ATBAE::GetStream(EffectFileName);
 		BASS_ChannelIsActive(HStream);
 		ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &m_Vel);
 	}
@@ -331,14 +329,12 @@ BOOL ATBAE::SetMusics3DPos(string MusicFileName, BASS_3DVECTOR Pos, BASS_3DVECTO
 	BASS_Apply3D();
 	return ISSeting;
 }
-BOOL ATBAE::SetSounds3DPos(string SoundFileName, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
+BOOL ATBAE::SetEffects3DPos(string EffectFileName, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
 {
-	//ATBAE::SetMusic3DPos();
-
 	BOOL ISSeting = FALSE;
-	if (!SoundFileName.empty())
+	if (!EffectFileName.empty())
 	{
-		HSTREAM HStream = ATBAE::GetStream(SoundFileName);
+		HSTREAM HStream = ATBAE::GetStream(EffectFileName);
 		BASS_ChannelIsActive(HStream);
 		ISSeting = BASS_ChannelSet3DPosition(HStream, &Pos, NULL, &Vel);
 	}
@@ -353,7 +349,7 @@ BOOL ATBAE::SetMusics3DPos(HSTREAM HStream, BASS_3DVECTOR Pos)
 	BASS_Apply3D();
 	return ISSeting;
 }
-BOOL ATBAE::SetSounds3DPos(HSTREAM HStream, BASS_3DVECTOR Pos)
+BOOL ATBAE::SetEffects3DPos(HSTREAM HStream, BASS_3DVECTOR Pos)
 {
 	BOOL ISSeting = FALSE;
 	BASS_ChannelIsActive(HStream);
@@ -369,7 +365,7 @@ BOOL ATBAE::SetMusics3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel
 	BASS_Apply3D();
 	return ISSeting;
 }
-BOOL ATBAE::SetSounds3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
+BOOL ATBAE::SetEffects3DPos(HSTREAM HStream, BASS_3DVECTOR Pos, BASS_3DVECTOR Vel)
 {
 	BOOL ISSeting = FALSE;
 	BASS_ChannelIsActive(HStream);
@@ -394,7 +390,7 @@ BOOL ATBAE::PlayMusics(string MusicFileName, BOOL Restart)
 	if (it != m_MusicMap.end())//存在
 	{
 		BASS_ChannelPlay(it->second, Restart);
-		m_CurPlayMusic = MusicFileName;
+		m_CurPlayMusics = MusicFileName;
 		m_IsPlayMusic = TRUE;
 		return TRUE;
 	}
@@ -417,17 +413,18 @@ BOOL ATBAE::PlayMusics_s(string MusicFileName, BOOL Restart)
 	}
 	return FALSE;
 }
-BOOL ATBAE::PlaySounds(string SoundFileName)
+BOOL ATBAE::PlayEffects(string EffectFileName)
 {
-	map<string, HSTREAM>::iterator it = m_SoundMap.find(SoundFileName);
-	if (it != m_SoundMap.end())//存在
+	map<string, HSTREAM>::iterator it = m_EffectMap.find(EffectFileName);
+	if (it != m_EffectMap.end())//存在
 	{
 		BASS_ChannelPlay(it->second, TRUE);
+		m_CurPlayEffects = EffectFileName;
 		return TRUE;
 	}
-	if (ATBAE::LoadSounds(SoundFileName))
+	if (ATBAE::LoadEffects(EffectFileName))
 	{
-		ATBAE::PlaySounds(SoundFileName);
+		ATBAE::PlayEffects(EffectFileName);
 	}
 	else
 	{
@@ -457,12 +454,12 @@ BOOL ATBAE::PauseMusics(string MusicFileName)
 	}
 	return FALSE;
 }
-BOOL ATBAE::PauseSounds(string SoundFileName)
+BOOL ATBAE::PauseEffects(string EffectFileName)
 {
 	if (m_IsInit)
 	{
-		map<string, HSTREAM>::iterator it = m_SoundMap.find(SoundFileName);
-		if (it != m_SoundMap.end())
+		map<string, HSTREAM>::iterator it = m_EffectMap.find(EffectFileName);
+		if (it != m_EffectMap.end())
 		{
 			return BASS_ChannelPause(it->second);
 		}
@@ -484,13 +481,13 @@ BOOL ATBAE::PauseAllMusics()
 	}
 	return FALSE;
 }
-BOOL ATBAE::PauseAllSounds()
+BOOL ATBAE::PauseAllEffects()
 {
 	if (m_IsInit)
 	{
-		if (!m_SoundMap.empty())
+		if (!m_EffectMap.empty())
 		{
-			for (map<string, HSTREAM>::iterator it = m_SoundMap.begin(); it != m_SoundMap.end(); it++)
+			for (map<string, HSTREAM>::iterator it = m_EffectMap.begin(); it != m_EffectMap.end(); it++)
 			{
 				BASS_ChannelPause(it->second);
 			}
@@ -499,10 +496,10 @@ BOOL ATBAE::PauseAllSounds()
 	}
 	return FALSE;
 }
-BOOL ATBAE::PauseAllMusicAndSounds()
+BOOL ATBAE::PauseAllMusicAndEffects()
 {
 	BOOL Music = ATBAE::PauseAllMusics();
-	BOOL Sound = ATBAE::PauseAllSounds();
+	BOOL Sound = ATBAE::PauseAllEffects();
 	if (Music && Sound)
 	{
 		return TRUE;
@@ -522,12 +519,12 @@ BOOL ATBAE::StopMusics(string MusicFileName)
 	}
 	return FALSE;
 }
-BOOL ATBAE::StopSounds(string SoundFileName)
+BOOL ATBAE::StopEffects(string EffectFileName)
 {
 	if (m_IsInit)
 	{
-		map<string, HSTREAM>::iterator it = m_SoundMap.find(SoundFileName);
-		if (it != m_SoundMap.end())
+		map<string, HSTREAM>::iterator it = m_EffectMap.find(EffectFileName);
+		if (it != m_EffectMap.end())
 		{
 			return BASS_ChannelStop(it->second);
 		}
@@ -549,13 +546,13 @@ BOOL ATBAE::StopAllMusics()
 	}
 	return FALSE;
 }
-BOOL ATBAE::StopAllSounds()
+BOOL ATBAE::StopAllEffects()
 {
 	if (m_IsInit)
 	{
-		if (!m_SoundMap.empty())
+		if (!m_EffectMap.empty())
 		{
-			for (map<string, HSTREAM>::iterator it = m_SoundMap.begin(); it != m_SoundMap.end(); it++)
+			for (map<string, HSTREAM>::iterator it = m_EffectMap.begin(); it != m_EffectMap.end(); it++)
 			{
 				BASS_ChannelStop(it->second);
 			}
@@ -564,10 +561,10 @@ BOOL ATBAE::StopAllSounds()
 	}
 	return FALSE;
 }
-BOOL ATBAE::StopAllMusicAndSounds()
+BOOL ATBAE::StopAllMusicAndEffects()
 {
 	BOOL Music = ATBAE::StopAllMusics();
-	BOOL Sound = ATBAE::StopAllSounds();
+	BOOL Sound = ATBAE::StopAllEffects();
 	if (Music && Sound)
 	{
 		return TRUE;
@@ -586,13 +583,13 @@ void ATBAE::DeleteMusic(string MusicFileName)
 		m_MusicMap.erase(it);
 	}
 }
-void ATBAE::DeleteSound(string SoundFileName)
+void ATBAE::DeleteEffect(string EffectFileName)
 {
-	map<string, HSTREAM>::iterator it = m_SoundMap.find(SoundFileName);
-	if (it != m_SoundMap.end())
+	map<string, HSTREAM>::iterator it = m_EffectMap.find(EffectFileName);
+	if (it != m_EffectMap.end())
 	{
 		BOOL Free = BASS_StreamFree(it->second);
-		m_SoundMap.erase(it);
+		m_EffectMap.erase(it);
 	}
 }
 void ATBAE::DeleteAllMusic()
@@ -606,30 +603,30 @@ void ATBAE::DeleteAllMusic()
 		m_MusicMap.clear();
 	}
 }
-void ATBAE::DeleteAllSound()
+void ATBAE::DeleteAllEffect()
 {
-	if (!m_SoundMap.empty())
+	if (!m_EffectMap.empty())
 	{
-		for (map<string, HSTREAM>::iterator it = m_SoundMap.begin(); it != m_SoundMap.end(); it++)
+		for (map<string, HSTREAM>::iterator it = m_EffectMap.begin(); it != m_EffectMap.end(); it++)
 		{
 			BASS_StreamFree(it->second);
 		}
-		m_SoundMap.clear();
+		m_EffectMap.clear();
 	}
 }
-void ATBAE::DeleteAllMusicAndSounds()
+void ATBAE::DeleteAllMusicAndEffects()
 {
 	ATBAE::DeleteAllMusic();
-	ATBAE::DeleteAllSound();
+	ATBAE::DeleteAllEffect();
 }
 BOOL ATBAE::FreeATA()
 {
 	if (m_IsInit)
 	{
-		ATBAE::StopAllMusicAndSounds();
+		ATBAE::StopAllMusicAndEffects();
 
 		ATBAE::DeleteAllMusic();
-		ATBAE::DeleteAllSound();
+		ATBAE::DeleteAllEffect();
 		BASS_Free();
 		m_IsInit = FALSE;
 		return TRUE;
