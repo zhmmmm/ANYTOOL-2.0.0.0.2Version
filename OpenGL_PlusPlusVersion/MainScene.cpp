@@ -26,8 +26,8 @@ void MainScene::Start()
 	//ATA->LoadMusics3D("res\\Audio\\Musics\\dj - Ԥı.mp3");
 	//ATA->PlayMusics("res\\Audio\\Musics\\dj - Ԥı.mp3");
 
-	m_T1 = new TEXTUREMANAGER("1.png");
-	m_T2 = new TEXTUREMANAGER("1.bmp");
+	m_T1 = new Texture("1.png");
+	m_T2 = new Texture("1.tif");
 }
 
 static int Angle = 0;
@@ -35,23 +35,50 @@ static int Angle = 0;
 BASS_3DVECTOR Pos;
 BASS_3DVECTOR Vel;
 
-int Volume = 0;
-
-
-
-
+float w = 0;
+bool s = 0;
 
 void MainScene::Update()
 {
 	AT->ATENGINE_DisableCilentState();
 	Camera::CameraToWorld(this);
 
+	if (s == false)
+	{
+		m_T1->SetTextureWidth(w++);
+		if (w == 175)
+		{
+			s = true;
+		}
+	}
+	if (s)
+	{
+		m_T1->SetTextureWidth(w--);
+		if (w == 1)
+		{
+			s = false;
+		}
+	}
+	
+
 
 	m_T1->DrawTexture();
 
-	AT->Translate(ATATPOS2D(-100,0));
+
+	AT->Translate(ATATPOS2D(-175,0));
 	m_T2->DrawTexture();
 }
+
+
+
+void MainScene::End()
+{
+	delete m_T1;
+	m_T1 = NULL;
+	delete m_T2;
+	m_T2 = NULL;
+}
+
 
 void MainScene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 {
@@ -106,8 +133,3 @@ void MainScene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)
 	//m_LookAt_Y = -(Mouse_Y - m_WindowsHeight / 2);
 }
 
-void MainScene::End()
-{
-	delete m_T1;
-	m_T1 = NULL;
-}

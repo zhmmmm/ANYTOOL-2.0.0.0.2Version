@@ -215,22 +215,25 @@ bool TextureManager::LoadTexture(const char *FileName)
 		".jpg",
 		".jpeg",
 		".psd",
-		".jpe"
+		".jpe",
+		".tif"
 	};
 	int Index = -1;
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < sizeof(ImageType) / 16; i++)
 	{
 		int Len = strlen(FileName);
 		int TypeLen = strlen(ImageType[i]);
 
 		for (int j = Len - 1; j >= 0; j--)
 		{
-			if (FileName[j] == '.' || ImageType[i][TypeLen - (Len - j)] == '.')
+			char Tmp = ImageType[i][TypeLen - (Len - j)];
+
+			if (FileName[j] == '.' || Tmp == '.')
 			{
 				Index = i;
 				break;
 			}
-			if (FileName[j] != ImageType[i][TypeLen - (Len - j)])
+			if (FileName[j] != Tmp)
 			{
 				break;
 			}
@@ -239,7 +242,6 @@ bool TextureManager::LoadTexture(const char *FileName)
 		{
 			break;
 		}
-		Len--;
 	}
 
 	switch (Index)
@@ -248,8 +250,9 @@ bool TextureManager::LoadTexture(const char *FileName)
 	case IMAGEPNG: {return TextureManager::Load_PNG(FileName); }; break;
 	case IMAGEJPG: {return TextureManager::Load_JPG(FileName); }break;
 	case IMAGEJPEG: {return TextureManager::Load_JPEG(FileName); }break;
-	case IMAGEPSD: {}break;
-	case IMAGEJPE: {}break;
+	case IMAGEPSD: {return TextureManager::Load_PSD(FileName); }break;
+	case IMAGEJPE: {return TextureManager::Load_JPE(FileName); }break;
+	case IMAGETIF: {return TextureManager::Load_TIF(FileName); }; break;
 	}
 	return false;
 }
@@ -278,7 +281,7 @@ bool TextureManager::Load_JPG(const char *FileName)
 {
 	if (TextureManager::Load_FreeImage(FileName))
 	{
-		
+
 		Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, m_ColorData, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
 		return true;
 	}
@@ -288,6 +291,21 @@ bool TextureManager::Load_JPG(const char *FileName)
 bool TextureManager::Load_JPEG(const char *FileName)
 {
 	return TextureManager::Load_JPG(FileName);
+}
+
+bool TextureManager::Load_PSD(const char *FileName)
+{
+	return TextureManager::Load_JPG(FileName);
+}
+
+bool TextureManager::Load_JPE(const char *FileName)
+{
+	return TextureManager::Load_JPG(FileName);
+}
+
+bool TextureManager::Load_TIF(const char *FileName)
+{
+	return TextureManager::Load_PNG(FileName);
 }
 
 

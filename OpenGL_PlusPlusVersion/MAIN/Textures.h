@@ -85,6 +85,8 @@ typedef struct TEXTURE
 //	void NewMemory();
 //};
 
+//这个列只能加载位图
+//我占时保留它
 class Texture2D
 {
 	TextureV m_TextureV;
@@ -103,48 +105,39 @@ public:
 private:
 	void InitTexture(const char *FileName);
 	void LoadTexture(const char *FileName);
-public:
-	//拷贝构造
-	Texture2D(const Texture2D& that);
-	//同类赋值 重载 = 运算符
-	Texture2D& operator = (const Texture2D& that);
 };
 
-
-
-class Texture3D
-{
-	TextureV m_TextureV;
-	unsigned int TextureID = 0;
-public:
-	Texture3D();
-	Texture3D(const char *FileName);
-	static Texture3D *Create(const char *FileName);
-	void DrawTexture3D();
-
-
-private:
-	void InitTexture(const char *FileName);
-	void LoadTexture(const char *FileName);
-public:
-	//拷贝构造
-	Texture3D(const Texture3D& that) {}
-	//同类赋值 重载 = 运算符
-	Texture3D& operator = (const Texture3D& that) {}
-};
-
-
-
-
-class TEXTUREMANAGER
+//支持常用图片
+/*
+IMAGEBMP   0
+IMAGEPNG   1
+IMAGEJPG     2
+IMAGEJPEG   3
+IMAGEPSD    4
+IMAGEJPE     5
+IMAGETIF      6
+*/
+class Texture
 {
 	string m_FileName;
 	TextureINFO m_TextureINFO;
 public:
-	TEXTUREMANAGER();
-	TEXTUREMANAGER(const char *FileName);
-	static TEXTUREMANAGER *Create(const char *FileName);
+	Texture();
+	Texture(const char *FileName);
+
+	static Texture *Create(const char *FileName);
+
 	void DrawTexture();
+
+
+	TextureINFO *GetTextureInfo() { return &m_TextureINFO; }
+	//请不要改 TextureINFO.TID;
+	void SetTextureInfo(TextureINFO *TextureINFO);
+	string *GetTextureName() { return &m_FileName; }
+
+	void SetTextureWidth(float Width);
+	void SetTextureHeight(float Height);
+	void SetTextureSize(ATATCONTENTSIZE Size);
 private:
 	//赋值信息
 	void AssignmentINFO();

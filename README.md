@@ -40,7 +40,16 @@ HOMEANYTOOL
 
 //==移除一些不必要的项目
 
-
+//==更新引擎版本为2.0.0.2.1 于2019.6.8 优化纹理的绘制 增加
+{
+	IMAGEBMP  
+IMAGEPNG  
+IMAGEJPG     
+IMAGEJPEG  
+IMAGEPSD  
+IMAGEJPE    
+IMAGETIF     
+};支持
 
 
 

@@ -21,6 +21,7 @@
 #define IMAGEJPEG   3
 #define IMAGEPSD    4
 #define IMAGEJPE     5
+#define IMAGETIF      6
 
 
 
@@ -90,6 +91,9 @@ public:
 	bool Load_PNG(const char *FileName);
 	bool Load_JPG(const char *FileName);
 	bool Load_JPEG(const char *FileName);
+	bool Load_PSD(const char *FileName);
+	bool Load_JPE(const char *FileName);
+	bool Load_TIF(const char *FileName);
 private:
 
 	bool Load_FreeImage(const char *FileName);
@@ -119,6 +123,7 @@ private:
 
 	//BMP Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, m_ColorData, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
 	//PNG Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGBA, m_Width, m_Height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_ColorData, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
+	//JPG  Load_Texture(GL_NEAREST, GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, m_ColorData, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER);
 	void Load_Texture(
 		float PARAM,
 		unsigned int TARGET,

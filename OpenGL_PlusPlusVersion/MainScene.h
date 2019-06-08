@@ -53,8 +53,9 @@ class MainScene:public Object
 	float p = 0;
 
 
-	TEXTUREMANAGER *m_T1 = NULL;
-	TEXTUREMANAGER *m_T2 = NULL;
+	Texture *m_T1 = NULL;
+	Texture *m_T2 = NULL;
+
 public:
 	virtual void Start();
 	virtual void ATOpenGLInitData();
