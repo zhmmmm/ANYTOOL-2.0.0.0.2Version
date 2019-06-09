@@ -1,10 +1,17 @@
 #include <iostream>
 #include <map>
 #include <Vector>
-#include <winsock.h>
-#pragma comment(lib,"wsock32.lib")
+
+#include <WinSock2.h>
+
+#include <WS2tcpip.h>
+
+#include <WSPiApi.h>
+
+
+#pragma comment(lib,"Ws2_32.lib")
 #include <Windows.h>
-#include "ATBAudioEngine.h"
+
 
 #define Main main
 
@@ -189,49 +196,102 @@ BOOL BASS_Init(const char *ProjectPath_Debug)
 void ComputerName_Ip(char *ch0, char *ch1)
 {
 	char buf[256] = "";
-	hostent *ph = NULL;//struct hostent *ph = NULL;
-	WSADATA w;
-	WSAStartup(0x0101, &w);//这一行必须在使用任何SOCKET函数前写！
+	//hostent *ph = NULL;//struct hostent *ph = NULL;
+	//WSADATA w;
+	//WSAStartup(0x0101, &w);//这一行必须在使用任何SOCKET函数前写！
 
 
+
+	//memcpy_s(ch0, 256, buf, 256);
+	//std::string hostName = buf;//此处获得本机名称
+
+	//ph = gethostbyname(buf);
+	//const char *IP = inet_ntoa(*((struct in_addr *)ph->h_addr_list[0]));//此处获得本机IP
+	//memcpy_s(ch1, 256, IP, 256);
+
+	//ph = gethostbyname("www.baidu.com");
+	//const char *IP2 = inet_ntoa(*((struct in_addr *)ph->h_addr_list[0]));//此处获得本机IP
+
+	//std::cout << "计算机名：" << hostName.c_str() << std::endl;
+	//std::cout << "计算机IP：" << IP << std::endl;
+
+	//WSACleanup();
+
+
+
+	WORD wVersion;
+	WSADATA WSAData;
+	wVersion = MAKEWORD(2, 2);
+	WSAStartup(wVersion, &WSAData);
 	gethostname(buf, 256);
-	memcpy_s(ch0, 256, buf, 256);
-	std::string hostName = buf;//此处获得本机名称
+	addrinfo hints;
+	struct addrinfo *res, *cur;
+	int ret;
+	struct sockaddr_in *addr;
+	char m_ipaddr[16];
 
-	ph = gethostbyname(buf);
-	const char *IP = inet_ntoa(*((struct in_addr *)ph->h_addr_list[0]));//此处获得本机IP
-	memcpy_s(ch1, 256, IP, 256);
+	memset(&hints, 0, sizeof(struct addrinfo));
+	hints.ai_family = AF_INET;     /* Allow IPv4 */
+	hints.ai_flags = AI_PASSIVE;/* For wildcard IP address */
+	hints.ai_protocol = 0;         /* Any protocol */
+	hints.ai_socktype = SOCK_STREAM;
 
-	std::cout << "计算机名：" << hostName.c_str() << std::endl;
-	std::cout << "计算机IP：" << IP << std::endl;
+	ret = getaddrinfo(buf, NULL, &hints, &res);
 
-	WSACleanup();
+	if (ret == -1) {
+		perror("getaddrinfo");
+		exit(1);
+	}
+	for (cur = res; cur != NULL; cur = cur->ai_next) {
+		addr = (struct sockaddr_in *)cur->ai_addr;
+		sprintf(m_ipaddr, "%d.%d.%d.%d",
+			(*addr).sin_addr.S_un.S_un_b.s_b1,
+			(*addr).sin_addr.S_un.S_un_b.s_b2,
+			(*addr).sin_addr.S_un.S_un_b.s_b3,
+			(*addr).sin_addr.S_un.S_un_b.s_b4);
+		printf("%s\n", m_ipaddr);
+	}
+	freeaddrinfo(res);
+
+	wchar_t b[256] =L"www.baidu.com";
+	ADDRINFOW h;
+	memset(&h, 0, sizeof(struct addrinfo));
+	h.ai_family = AF_INET;     /* Allow IPv4 */
+	h.ai_flags = AI_PASSIVE;/* For wildcard IP address */
+	h.ai_protocol = 0;         /* Any protocol */
+	h.ai_socktype = SOCK_STREAM;
+	PADDRINFOW r;
+	PADDRINFOW c;
+	if (GetAddrInfoW(b, NULL, &h, &r) == -1)
+	{
+		int var = 0;
+	}
+	else
+	{
+		int var = 0;
+
+		for (c = r; c != NULL; c = c->ai_next)
+		{
+			addr = (struct sockaddr_in *)c->ai_addr;
+
+			sprintf(m_ipaddr, "%d.%d.%d.%d",
+				(*addr).sin_addr.S_un.S_un_b.s_b1,
+				(*addr).sin_addr.S_un.S_un_b.s_b2,
+				(*addr).sin_addr.S_un.S_un_b.s_b3,
+				(*addr).sin_addr.S_un.S_un_b.s_b4);
+
+			printf("%s\n", m_ipaddr);
+		}
+	}
+
+	FreeAddrInfoW(r);
 }
 
 int Main()
 {
-
-
-
-	//ATA->InitAudioEngine();
-	ATA->InitAudioEngine();
-	ATA->Init3DAudioEngine();
-	ATA->LoadMusics3D("ByMySide.mp3");
-	ATA->PlayMusics("ByMySide.mp3");
-	BASS_3DVECTOR Pos;
-	Pos.x = 20;
-	Pos.y = 0;
-	Pos.z = 0;
-	while (true)
-	{
-		Pos.x++;
-		if (Pos.x == 50)
-		{
-			Pos.x = 0;
-		}
-		ATA->SetMusics3DPos(Pos);
-		Sleep(150);
-	}
+	char buf1[256] = { 0 };
+	char buf2[256] = { 0 };
+	ComputerName_Ip(buf1, buf2);
 
 
 	//wchar_t SelfName[] = L"C:\\Users\\Administrator\\Desktop\\Experiment\\Debug\\Experiment.exe";

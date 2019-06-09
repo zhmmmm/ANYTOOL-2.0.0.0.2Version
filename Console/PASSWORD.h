@@ -15,7 +15,11 @@ typedef struct PASS_WORD
 	unsigned long AccoundLenght = 0;//账号长度
 	unsigned long PasswordLenght = 0;//密码长度
 	long long UserInfoLenght = 0;//信息长度
-	//四个字节的换行
+	//后面则是
+	//账号长 账号数据
+	//密码长 密码数据 
+	//信息长 信息数据
+	//整个为数据块
 }Pass_word, *LPPassword;
 
 typedef struct USERINFO
