@@ -432,3 +432,41 @@ void Texture::SetTextureSize(ATATCONTENTSIZE Size)
 	Texture::SetTextureWidth(Size.Get_Width());
 	Texture::SetTextureHeight(Size.Get_Height());
 }
+void Texture::SetTexturePositionX(float &X)
+{
+	if (X != 0)
+	{
+		m_TextureINFO.CooryArr[0] += X;
+		m_TextureINFO.CooryArr[3] += X;
+		m_TextureINFO.CooryArr[6] += X;
+		m_TextureINFO.CooryArr[9] += X;
+	}
+	X = 0;
+}
+void Texture::SetTexturePositionY(float &Y)
+{
+	if (Y != 0)
+	{
+		m_TextureINFO.CooryArr[1] += Y;
+		m_TextureINFO.CooryArr[4] += Y;
+		m_TextureINFO.CooryArr[7] += Y;
+		m_TextureINFO.CooryArr[10] += Y;
+	}
+	Y = 0;
+}
+void Texture::SetTexturePosition(float &X, float &Y)
+{
+	Texture::SetTexturePositionX(X);
+	Texture::SetTexturePositionY(Y);
+}
+void Texture::SetTexturePosition(ATATPOS2D &Position)
+{
+	Texture::SetTexturePosition(Position.X, Position.Y);
+}
+void Texture::SetTexturePosition(ATATPOS2D *Position)
+{
+	Texture::SetTexturePosition(*Position);
+
+	Position->Set_X(0);
+	Position->Set_Y(0);
+}

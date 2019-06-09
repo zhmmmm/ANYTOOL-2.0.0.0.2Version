@@ -26,6 +26,7 @@ void MainScene::Start()
 	//ATA->PlayMusics("res\\Audio\\Musics\\dj - 预谋.mp3");
 
 	m_T1 = new Texture("1.png");
+
 	m_T2 = new Texture("1.tif");
 }
 
@@ -36,7 +37,8 @@ BASS_3DVECTOR Vel;
 
 float w = 0;
 bool s = 0;
-
+ATATPOS2D T1Pos;
+float M[16] = { 0 };
 void MainScene::Update()
 {
 	AT->ATENGINE_DisableCilentState();
@@ -44,7 +46,7 @@ void MainScene::Update()
 
 	if (s == false)
 	{
-		m_T1->SetTextureWidth(w++);
+		m_T2->SetTextureWidth(w++);
 		if (w == 175)
 		{
 			s = true;
@@ -52,20 +54,30 @@ void MainScene::Update()
 	}
 	if (s)
 	{
-		m_T1->SetTextureWidth(w--);
+		m_T2->SetTextureWidth(w--);
 		if (w == 1)
 		{
 			s = false;
 		}
 	}
-	
 
-
+	m_T1->SetTexturePosition(T1Pos);
+	//AT->Rotate(Angle++, ATATPOS3D(0, 0, 1));
 	m_T1->DrawTexture();
 
+	glGetFloatv(GL_MODELVIEW_MATRIX, M);
+	CLS;
+	for (int i = 0; i < 4; i++)
+	{
+		std::cout << M[i] << " " << M[i + 4] << " " << M[i + 8] << " " << M[i + 12] << std::endl;
+	}
 
-	AT->Translate(ATATPOS2D(-175,0));
+	AT->ATENGINE_MatrixMode();
+	Camera::CameraToWorld(this);
+	AT->Translate(ATATPOS2D(-175, 0));
 	m_T2->DrawTexture();
+
+	
 }
 
 
@@ -119,14 +131,22 @@ void MainScene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 }
 void MainScene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
 {
-	std::cout << "功能按下！" << Key << " X = " << X << " Y = " << Y << std::endl;
+	//std::cout << "功能按下！" << Key << " X = " << X << " Y = " << Y << std::endl;
 	if (Key == 101)//KEYUP
 	{
-
+		T1Pos.Y++;
 	}
 	if (Key == 103)//KEYDOWN
 	{
-
+		T1Pos.Y--;
+	}
+	if (Key == 100)//KEYLEFT
+	{
+		T1Pos.X--;
+	}
+	if (Key == 102)//KEYRIGHT
+	{
+		T1Pos.X++;
 	}
 }
 void MainScene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)

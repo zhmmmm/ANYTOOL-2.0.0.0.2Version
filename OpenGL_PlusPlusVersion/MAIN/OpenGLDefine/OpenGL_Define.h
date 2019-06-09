@@ -33,6 +33,14 @@
 #include "../Vector3D_Matrix4D/CVector3D.h"
 
 
+//¶şÎ¬¾ØÕóÏòÁ¿ 
+/*
+
+*/
+#include "../MatrixPackage/CMatrix3.h"
+#include "../MatrixPackage/CVictor2D.h"
+
+
 #define AT_INITOPENGL 0
 
 

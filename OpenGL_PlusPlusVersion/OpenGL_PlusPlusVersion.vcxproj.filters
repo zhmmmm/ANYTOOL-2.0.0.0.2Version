@@ -58,6 +58,27 @@
     <Filter Include="ATEngine\ThirdPartyLibraries\FreeImage">
       <UniqueIdentifier>{6b6ff3de-1d4c-4202-a0da-0403a5658e06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ATEngine\Math\2D">
+      <UniqueIdentifier>{d73d3667-5a8e-411e-a251-cdf4e592925d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATEngine\Math\2D\Matrix2D">
+      <UniqueIdentifier>{093dedef-e91f-46f8-8a7a-63cb080efc77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATEngine\Math\2D\Vector2D">
+      <UniqueIdentifier>{d3b6fdf7-63d1-4956-ba50-8c1c2ec893c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATEngine\Math\3D">
+      <UniqueIdentifier>{49a17811-f032-4e40-b636-888042376e68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATEngine\Math\3D\Vector3D">
+      <UniqueIdentifier>{a5f9be86-2e83-423d-8ac1-2836e5f1b158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATEngine\Math\3D\Matrix3D">
+      <UniqueIdentifier>{6260b8a9-f033-49af-88df-6ad73b7e9ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATEngine\Color">
+      <UniqueIdentifier>{8eef2979-9659-4d05-8fd1-0eb4cca70635}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -119,6 +140,21 @@
     </ClCompile>
     <ClCompile Include="ThirdPartyLibraries\FreeImage\TextureManager.cpp">
       <Filter>ATEngine\ThirdPartyLibraries\FreeImage</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN\Math\2D\Matrix2D\ATMatrix3.cpp">
+      <Filter>ATEngine\Math\2D\Matrix2D</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN\Math\2D\Vector2D\ATVector2D.cpp">
+      <Filter>ATEngine\Math\2D\Vector2D</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN\Math\3D\Matrix3D\ATMatrix4.cpp">
+      <Filter>ATEngine\Math\3D\Matrix3D</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN\Math\3D\Vector3D\ATVector3D.cpp">
+      <Filter>ATEngine\Math\3D\Vector3D</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN\ATColor\ATColor.cpp">
+      <Filter>ATEngine\Color</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +220,21 @@
     </ClInclude>
     <ClInclude Include="ThirdPartyLibraries\FreeImage\TextureManager.h">
       <Filter>ATEngine\ThirdPartyLibraries\FreeImage</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN\Math\2D\Matrix2D\ATMatrix3.h">
+      <Filter>ATEngine\Math\2D\Matrix2D</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN\Math\2D\Vector2D\ATVector2D.h">
+      <Filter>ATEngine\Math\2D\Vector2D</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN\Math\3D\Matrix3D\ATMatrix4.h">
+      <Filter>ATEngine\Math\3D\Matrix3D</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN\Math\3D\Vector3D\ATVector3D.h">
+      <Filter>ATEngine\Math\3D\Vector3D</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN\ATColor\ATColor.h">
+      <Filter>ATEngine\Color</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

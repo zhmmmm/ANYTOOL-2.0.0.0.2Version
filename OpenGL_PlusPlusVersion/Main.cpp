@@ -3,8 +3,6 @@
 
 #define Main main
 
-
-
 // ATENGINE
 // ATVARIABLE
 MainScene g_Object;

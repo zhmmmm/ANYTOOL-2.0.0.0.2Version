@@ -454,7 +454,21 @@ public:
 	//设置摄像机参数
 	void SetCamer(double Fovy = 90.0, double Aspect = 1.0, double ZNear = 0.3, double ZFar = 1000.0);
 
-	//::::::::::::::::旋转:平移:::::::::::::::::::::::::::::::::::::::需要手动设置矩阵模式
+
+	/*
+		不同对象的矩阵不同 好比一个物体顺时针旋转 另一个物体逆时针旋转
+		这样就需要不同的矩阵 + 摄像机
+
+		：：：：：
+		//AT->Rotate(Angle++, ATATPOS3D(0, 0, 1));
+		//m_T1->DrawTexture();
+		//AT->ATENGINE_MatrixMode();//<=====================
+		//Camera::CameraToWorld(this);//<=====================
+		//AT->Translate(ATATPOS2D(-175, 0));
+		//m_T2->DrawTexture();
+		：：：： 第一个物体是第一个矩阵 不用管 但后面的物体就需要不同的矩阵和摄像机 从而实现不同的旋转、平移、缩放
+	*/
+	//::::::::::::::::旋转、平移、缩放:::::::::::::::::::::::::::::::::::::::需要手动设置矩阵模式 内部有带有矩阵单位化
 	void ATENGINE_MatrixMode(unsigned int MatrixMode = GL_MODELVIEW);
 	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::矩阵单位化
 	void ATENGINE_MatrixLoadIdentity();

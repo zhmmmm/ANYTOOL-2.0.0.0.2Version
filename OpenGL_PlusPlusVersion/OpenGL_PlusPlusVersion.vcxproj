@@ -147,9 +147,14 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MAIN\ATBAudioEngine\ATBAudioEngine.cpp" />
+    <ClCompile Include="MAIN\ATColor\ATColor.cpp" />
     <ClCompile Include="MAIN\BITMAP.cpp" />
     <ClCompile Include="MAIN\Camera.cpp" />
     <ClCompile Include="MAIN\Gadget\Gadget.cpp" />
+    <ClCompile Include="MAIN\Math\2D\Matrix2D\ATMatrix3.cpp" />
+    <ClCompile Include="MAIN\Math\2D\Vector2D\ATVector2D.cpp" />
+    <ClCompile Include="MAIN\Math\3D\Matrix3D\ATMatrix4.cpp" />
+    <ClCompile Include="MAIN\Math\3D\Vector3D\ATVector3D.cpp" />
     <ClCompile Include="MAIN\MatrixPackage\CMatrix3.cpp" />
     <ClCompile Include="MAIN\MatrixPackage\CMatrix4.cpp" />
     <ClCompile Include="MAIN\MatrixPackage\CVictor2D.cpp" />
@@ -168,10 +173,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MAIN\ATBAudioEngine\ATBAudioEngine.h" />
+    <ClInclude Include="MAIN\ATColor\ATColor.h" />
     <ClInclude Include="MAIN\BITMAP.h" />
     <ClInclude Include="MAIN\Camera.h" />
     <ClInclude Include="MAIN\Gadget\Gadget.h" />
     <ClInclude Include="MAIN\HeaderFile\HeaderFile.h" />
+    <ClInclude Include="MAIN\Math\2D\Matrix2D\ATMatrix3.h" />
+    <ClInclude Include="MAIN\Math\2D\Vector2D\ATVector2D.h" />
+    <ClInclude Include="MAIN\Math\3D\Matrix3D\ATMatrix4.h" />
+    <ClInclude Include="MAIN\Math\3D\Vector3D\ATVector3D.h" />
     <ClInclude Include="MAIN\MatrixPackage\CMatrix3.h" />
     <ClInclude Include="MAIN\MatrixPackage\CMatrix4.h" />
     <ClInclude Include="MAIN\MatrixPackage\CVictor2D.h" />

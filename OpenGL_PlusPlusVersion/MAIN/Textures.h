@@ -29,6 +29,8 @@ typedef struct TEXTURE
 	float Width = 0;
 	float Height = 0;
 
+	ATATPOS2D Position;
+
 }TextureV, TextureINFO, *LPTextureV;
 
 //class Texture2D
@@ -138,6 +140,11 @@ public:
 	void SetTextureWidth(float Width);
 	void SetTextureHeight(float Height);
 	void SetTextureSize(ATATCONTENTSIZE Size);
+	void SetTexturePositionX(float &X);
+	void SetTexturePositionY(float &Y);
+	void SetTexturePosition(float &X, float &Y);
+	void SetTexturePosition(ATATPOS2D &Position);
+	void SetTexturePosition(ATATPOS2D *Position);
 private:
 	//∏≥÷µ–≈œ¢
 	void AssignmentINFO();
