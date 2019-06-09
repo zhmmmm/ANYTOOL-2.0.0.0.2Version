@@ -136,6 +136,8 @@ public:
 	int PasswordManager();
 	// 获取当前计算机IP
 	void Get_ComputerIP();
+	//2019版本注释上面这句
+	void Get_ComputerIP_s();
 	// 获取当前计算机名字
 	void Get_ComputerName();
 	//打开电脑录音程序

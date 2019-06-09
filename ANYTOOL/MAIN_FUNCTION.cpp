@@ -262,6 +262,84 @@ void FUNCTION::Get_ComputerIP()
 	WSACleanup();
 }
 
+void FUNCTION::Get_ComputerIP_s()
+{
+	char buf[256] = "";
+	WORD wVersion;
+	WSADATA WSAData;
+	wVersion = MAKEWORD(2, 2);
+	WSAStartup(wVersion, &WSAData);
+	gethostname(buf, 256);
+	addrinfo hints;
+	struct addrinfo *res, *cur;
+	int ret;
+	struct sockaddr_in *addr;
+	char m_ipaddr[16];
+
+	memset(&hints, 0, sizeof(struct addrinfo));
+	hints.ai_family = AF_INET;     /* Allow IPv4 */
+	hints.ai_flags = AI_PASSIVE;/* For wildcard IP address */
+	hints.ai_protocol = 0;         /* Any protocol */
+	hints.ai_socktype = SOCK_STREAM;
+
+	ret = getaddrinfo(buf, NULL, &hints, &res);
+
+	if (ret == -1) 
+	{
+		perror("getaddrinfo");
+	}
+	for (cur = res; cur != NULL; cur = cur->ai_next)
+	{
+		addr = (struct sockaddr_in *)cur->ai_addr;
+
+		sprintf(m_ipaddr, "%d.%d.%d.%d",
+			(*addr).sin_addr.S_un.S_un_b.s_b1,
+			(*addr).sin_addr.S_un.S_un_b.s_b2,
+			(*addr).sin_addr.S_un.S_un_b.s_b3,
+			(*addr).sin_addr.S_un.S_un_b.s_b4);
+
+		printf("%s\n", m_ipaddr);
+	}
+
+	freeaddrinfo(res);
+	res = NULL;
+
+	/*
+		wchar_t b[256] =L"www.baidu.com";
+	ADDRINFOW h;
+	memset(&h, 0, sizeof(struct addrinfo));
+	h.ai_family = AF_INET;     // Allow IPv4
+	h.ai_flags = AI_PASSIVE;// For wildcard IP address
+	h.ai_protocol = 0;         // Any protocol 
+	h.ai_socktype = SOCK_STREAM;
+	PADDRINFOW r;
+	PADDRINFOW c;
+	if (GetAddrInfoW(b, NULL, &h, &r) == -1)
+	{
+		int var = 0;
+	}
+	else
+	{
+		int var = 0;
+
+		for (c = r; c != NULL; c = c->ai_next)
+		{
+			addr = (struct sockaddr_in *)c->ai_addr;
+
+			sprintf(m_ipaddr, "%d.%d.%d.%d",
+				(*addr).sin_addr.S_un.S_un_b.s_b1,
+				(*addr).sin_addr.S_un.S_un_b.s_b2,
+				(*addr).sin_addr.S_un.S_un_b.s_b3,
+				(*addr).sin_addr.S_un.S_un_b.s_b4);
+
+			printf("%s\n", m_ipaddr);
+		}
+	}
+
+	FreeAddrInfoW(r);
+	**/
+}
+
 void FUNCTION::Get_ComputerName()
 {
 	char buf[256] = "";
