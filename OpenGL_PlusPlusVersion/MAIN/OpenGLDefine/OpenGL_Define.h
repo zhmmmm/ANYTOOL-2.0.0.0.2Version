@@ -26,19 +26,19 @@
 */
 #include "../Model3D.h"
 
-//向量
+//二维矩阵向量 矩阵
 /*
 
 */
-#include "../Vector3D_Matrix4D/CVector3D.h"
+#include "../Math/2D/Matrix2D/ATMatrix3.h"
+#include "../Math/2D/Vector2D/ATVector2D.h"
 
-
-//二维矩阵向量 
+//三维矩阵向量 矩阵
 /*
 
 */
-#include "../MatrixPackage/CMatrix3.h"
-#include "../MatrixPackage/CVictor2D.h"
+#include "../Math/3D/Matrix3D/ATMatrix4.h"
+#include "../Math/3D/Vector3D/ATVector3D.h"
 
 
 #define AT_INITOPENGL 0
