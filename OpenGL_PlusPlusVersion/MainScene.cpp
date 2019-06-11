@@ -25,59 +25,47 @@ void MainScene::Start()
 	//ATA->LoadMusics3D("res\\Audio\\Musics\\dj - Ô¤Ä±.mp3");
 	//ATA->PlayMusics("res\\Audio\\Musics\\dj - Ô¤Ä±.mp3");
 
-	m_T1 = new Texture("1.png");
-
-	m_T2 = new Texture("1.tif");
+	m_Background = new Texture("res/Image/Card/Background/BG800.png");
+	m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
+	m_T1 = new Texture("res/Image/Card/Croupier/ÆåÅÆÈËÎï (84).png");
+	m_T1->SetTextureSize(ATATCONTENTSIZE(300, 400));
+	m_T2 = new Texture("res/Image/UI/21GZ_bg.png");
+	m_T2->SetTextureSize(ATATCONTENTSIZE(100, 100));
 }
 
 static int Angle = 0;
 
 BASS_3DVECTOR Pos;
 BASS_3DVECTOR Vel;
-
-float w = 0;
-bool s = 0;
-ATATPOS2D T1Pos;
+ATATPOS2D T1Pos = { 0,200 };
+ATATPOS2D T2Pos = { -100,-50 };
 float M[16] = { 0 };
+ATPOS2D t1(T1Pos.X, T1Pos.Y);
+ATPOS2D t2(T2Pos.X, T2Pos.Y);
+
 void MainScene::Update()
 {
 	AT->ATENGINE_DisableCilentState();
 	Camera::CameraToWorld(this);
 
-	if (s == false)
-	{
-		m_T2->SetTextureWidth(w++);
-		if (w == 175)
-		{
-			s = true;
-		}
-	}
-	if (s)
-	{
-		m_T2->SetTextureWidth(w--);
-		if (w == 1)
-		{
-			s = false;
-		}
-	}
 
-	m_T1->SetTexturePosition(T1Pos);
-	//AT->Rotate(Angle++, ATATPOS3D(0, 0, 1));
+	ATVector2D t = (t2 - t1).Normalize();
+	t1 += t;
+	m_T1->SetTexturePosition(t1);
 	m_T1->DrawTexture();
 
-	glGetFloatv(GL_MODELVIEW_MATRIX, M);
-	CLS;
-	for (int i = 0; i < 4; i++)
-	{
-		std::cout << M[i] << " " << M[i + 4] << " " << M[i + 8] << " " << M[i + 12] << std::endl;
-	}
 
 	AT->ATENGINE_MatrixMode();
 	Camera::CameraToWorld(this);
-	AT->Translate(ATATPOS2D(-175, 0));
+
+	m_T2->SetTexturePosition(t2);
 	m_T2->DrawTexture();
 
-	
+
+	AT->ATENGINE_MatrixMode();
+	Camera::CameraToWorld(this);
+	m_Background->DrawTexture();
+
 }
 
 
@@ -88,6 +76,8 @@ void MainScene::End()
 	m_T1 = NULL;
 	delete m_T2;
 	m_T2 = NULL;
+	delete m_Background;
+	m_Background = NULL;
 }
 
 

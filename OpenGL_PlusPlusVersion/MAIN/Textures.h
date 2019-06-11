@@ -123,6 +123,7 @@ class Texture
 {
 	string m_FileName;
 	TextureINFO m_TextureINFO;
+	
 public:
 	Texture();
 	Texture(const char *FileName);
@@ -140,12 +141,16 @@ public:
 	void SetTextureWidth(float Width);
 	void SetTextureHeight(float Height);
 	void SetTextureSize(ATATCONTENTSIZE Size);
-	void SetTexturePositionX(float &X);
-	void SetTexturePositionY(float &Y);
-	void SetTexturePosition(float &X, float &Y);
-	void SetTexturePosition(ATATPOS2D &Position);
+	void SetTexturePositionX(float X);
+	void SetTexturePositionY(float Y);
+	void SetTexturePosition(float X, float Y);
+	void SetTexturePosition(ATATPOS2D Position);
 	void SetTexturePosition(ATATPOS2D *Position);
+	void SetTexturePosition(ATVector2D Position);
+	void SetTexturePosition(ATVector2D *Position);
 private:
 	//∏≥÷µ–≈œ¢
 	void AssignmentINFO();
+protected:
+	ATVector2D _Position;
 };

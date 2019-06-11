@@ -419,6 +419,8 @@ void Texture::SetTextureWidth(float Width)
 	m_TextureINFO.CooryArr[3] = -Width / 2.0f;
 	m_TextureINFO.CooryArr[6] = +Width / 2.0f;
 	m_TextureINFO.CooryArr[9] = +Width / 2.0f;
+
+	m_TextureINFO.Width = Width;
 }
 void Texture::SetTextureHeight(float Height)
 {
@@ -426,47 +428,54 @@ void Texture::SetTextureHeight(float Height)
 	m_TextureINFO.CooryArr[4] = -Height / 2.0f;
 	m_TextureINFO.CooryArr[7] = -Height / 2.0f;
 	m_TextureINFO.CooryArr[10] = +Height / 2.0f;
+
+	m_TextureINFO.Height = Height;
 }
 void Texture::SetTextureSize(ATATCONTENTSIZE Size)
 {
 	Texture::SetTextureWidth(Size.Get_Width());
 	Texture::SetTextureHeight(Size.Get_Height());
 }
-void Texture::SetTexturePositionX(float &X)
+void Texture::SetTexturePositionX(float X)
 {
-	if (X != 0)
-	{
-		m_TextureINFO.CooryArr[0] += X;
-		m_TextureINFO.CooryArr[3] += X;
-		m_TextureINFO.CooryArr[6] += X;
-		m_TextureINFO.CooryArr[9] += X;
-	}
-	X = 0;
+	if (X == _Position.x) { return; }
+
+	m_TextureINFO.CooryArr[0] = -m_TextureINFO.Width / 2.0f + X;
+	m_TextureINFO.CooryArr[3] = -m_TextureINFO.Width / 2.0f + X;
+	m_TextureINFO.CooryArr[6] = +m_TextureINFO.Width / 2.0f + X;
+	m_TextureINFO.CooryArr[9] = +m_TextureINFO.Width / 2.0f + X;
+
+	_Position.x = X;
 }
-void Texture::SetTexturePositionY(float &Y)
+void Texture::SetTexturePositionY(float Y)
 {
-	if (Y != 0)
-	{
-		m_TextureINFO.CooryArr[1] += Y;
-		m_TextureINFO.CooryArr[4] += Y;
-		m_TextureINFO.CooryArr[7] += Y;
-		m_TextureINFO.CooryArr[10] += Y;
-	}
-	Y = 0;
+	if (Y == _Position.y) { return; }
+
+	m_TextureINFO.CooryArr[1] = m_TextureINFO.Height / 2.0f + Y;
+	m_TextureINFO.CooryArr[4] = -m_TextureINFO.Height / 2.0f + Y;
+	m_TextureINFO.CooryArr[7] = -m_TextureINFO.Height / 2.0f + Y;
+	m_TextureINFO.CooryArr[10] = m_TextureINFO.Height / 2.0f + Y;
+
+	_Position.y = Y;
 }
-void Texture::SetTexturePosition(float &X, float &Y)
+void Texture::SetTexturePosition(float X, float Y)
 {
 	Texture::SetTexturePositionX(X);
 	Texture::SetTexturePositionY(Y);
 }
-void Texture::SetTexturePosition(ATATPOS2D &Position)
+void Texture::SetTexturePosition(ATATPOS2D Position)
 {
 	Texture::SetTexturePosition(Position.X, Position.Y);
 }
 void Texture::SetTexturePosition(ATATPOS2D *Position)
 {
 	Texture::SetTexturePosition(*Position);
-
-	Position->Set_X(0);
-	Position->Set_Y(0);
+}
+void Texture::SetTexturePosition(ATVector2D Position)
+{
+	Texture::SetTexturePosition(Position.x, Position.y);
+}
+void Texture::SetTexturePosition(ATVector2D *Position)
+{
+	Texture::SetTexturePosition(*Position);
 }

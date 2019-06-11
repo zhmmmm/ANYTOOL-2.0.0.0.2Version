@@ -14,7 +14,8 @@
 
 #define ATVARIABLE       ATEngine_Variable::Interface()
 
-#define CLS system("cls");
+#define CLS                     system("cls");
+#define CLEAR                system("cls");
 
 #define ATENGINE_MAINDRAW(MAINDRAW) \
                ATENGINE->ATENGINE_OnRuning(MAINDRAW);

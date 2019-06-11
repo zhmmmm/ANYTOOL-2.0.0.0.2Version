@@ -6,6 +6,7 @@
 //1e-5//科学计数法 1*10^(-5) 0.00001
 #define ISZERO(x)	(abs(x)<(1e-5))
 
+#define ATPOS2D ATVector2D
 
 class ATVector2D
 {
@@ -52,4 +53,8 @@ public:
 	ATVector2D&  operator = (double Var);
 	bool  operator == (const ATVector2D& Vector2D);
 	bool  operator != (const ATVector2D& Vector2D);
+	ATVector2D operator -- ();//前置--
+	ATVector2D operator -- (int);//后置--
+	ATVector2D operator ++ ();//前置++
+	ATVector2D operator ++ (int);//后置++
 };

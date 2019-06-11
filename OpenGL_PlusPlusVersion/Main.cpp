@@ -98,6 +98,15 @@ int Main(int argc, char **argv)
 	ATENGINE->ATENGINE_EnableCilentState(GL_VERTEX_ARRAY);
 	ATENGINE->ATENGINE_EnableCilentState(GL_COLOR_ARRAY);
 
+	glewInit();
+
+	ATENGINE->ATENGINE_Enable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.3f);
+
+	ATENGINE->ATENGINE_Enable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
 	g_Object.ATOpenGLInitData();
 
 	ATENGINE->ATENGINEMAIN_Loop();

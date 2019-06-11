@@ -212,9 +212,35 @@ bool  ATVector3D::operator == (const ATVector3D& Vector3D)
 }
 bool  ATVector3D::operator != (const ATVector3D& Vector3D)
 {
-	if (this->x != Vector3D.x && this->y != Vector3D.y && this->z != Vector3D.z)
+	if (this->x != Vector3D.x || this->y != Vector3D.y || this->z != Vector3D.z)
 	{
 		return true;
 	}
 	return false;
+}
+ATVector3D ATVector3D::operator -- ()
+{
+	(this->x)--;
+	(this->y)--;
+	(this->z)--;
+	return *this;
+}
+ATVector3D ATVector3D::operator -- (int)
+{
+	ATVector3D Temp = *this;
+	--(*this);
+	return Temp;
+}
+ATVector3D ATVector3D::operator ++ ()
+{
+	(this->x)++;
+	(this->y)++;
+	(this->z)++;
+	return *this;
+}
+ATVector3D ATVector3D::operator ++ (int)
+{
+	ATVector3D Temp = *this;
+	++(*this);
+	return Temp;
 }

@@ -52,7 +52,7 @@ class MainScene:public Object
 	float Angle = 0;
 	float p = 0;
 
-
+	Texture *m_Background = NULL;
 	Texture *m_T1 = NULL;
 	Texture *m_T2 = NULL;
 

@@ -180,9 +180,33 @@ bool  ATVector2D::operator == (const ATVector2D& Vector2D)
 }
 bool  ATVector2D::operator != (const ATVector2D& Vector2D)
 {
-	if (this->x != Vector2D.x && this->y != Vector2D.y)
+	if (this->x != Vector2D.x || this->y != Vector2D.y)
 	{
 		return true;
 	}
 	return false;
+}
+ATVector2D ATVector2D::operator -- ()
+{
+	(this->x)--;
+	(this->y)--;
+	return *this;
+}
+ATVector2D ATVector2D::operator -- (int)
+{
+	ATVector2D Temp = *this;
+	--(*this);
+	return Temp;
+}
+ATVector2D ATVector2D::operator ++ ()
+{
+	(this->x)++;
+	(this->y)++;
+	return *this;
+}
+ATVector2D ATVector2D::operator ++ (int)
+{
+	ATVector2D Temp = *this;
+	++(*this);
+	return Temp;
 }
