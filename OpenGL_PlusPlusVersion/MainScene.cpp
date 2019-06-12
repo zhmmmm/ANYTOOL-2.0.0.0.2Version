@@ -29,11 +29,9 @@ void MainScene::Start()
 	m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
 	m_T1 = new Texture("res/Image/Card/Croupier/ÆåÅÆÈËÎï (84).png");
 	m_T1->SetTextureSize(ATATCONTENTSIZE(300, 400));
-	m_T2 = new Texture("res/Image/UI/21GZ_bg.png");
-	m_T2->SetTextureSize(ATATCONTENTSIZE(100, 100));
+	m_T2 = new Texture("res/Image/Card/Croupier/character_bg.png");
+	m_T2->SetTextureSize(ATATCONTENTSIZE(200, 300));
 }
-
-static int Angle = 0;
 
 BASS_3DVECTOR Pos;
 BASS_3DVECTOR Vel;
@@ -47,22 +45,14 @@ void MainScene::Update()
 {
 	AT->ATENGINE_DisableCilentState();
 	Camera::CameraToWorld(this);
-
-
-	ATVector2D t = (t2 - t1).Normalize();
-	t1 += t;
 	m_T1->SetTexturePosition(t1);
 	m_T1->DrawTexture();
 
-
-	AT->ATENGINE_MatrixMode();
 	Camera::CameraToWorld(this);
-
 	m_T2->SetTexturePosition(t2);
 	m_T2->DrawTexture();
 
 
-	AT->ATENGINE_MatrixMode();
 	Camera::CameraToWorld(this);
 	m_Background->DrawTexture();
 

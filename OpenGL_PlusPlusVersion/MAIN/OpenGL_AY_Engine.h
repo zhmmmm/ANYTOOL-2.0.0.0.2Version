@@ -435,7 +435,8 @@ public:
 	//矩阵视口相机
 	//2D正交投影
 	/*
-		如果设置了 请在绘制的地方 AT->ATENGINE_MatrixMode();
+		如果设置了 请在每个物体绘制的地方 AT->ATENGINE_MatrixMode();
+		不然会旋转 平移 缩放 这个矩阵中的所有物体
 		相机参数不建议设置
 
 		注意！注意！注意！如果更改了源点(0,0)的位置,请注意是第几象限  不然绘制不出来 
@@ -463,7 +464,7 @@ public:
 		：：：：：
 		//AT->Rotate(Angle++, ATATPOS3D(0, 0, 1));
 		//m_T1->DrawTexture();
-		//AT->ATENGINE_MatrixMode();//<=====================
+		//摄像机中带有矩阵
 		//Camera::CameraToWorld(this);//<=====================
 		//AT->Translate(ATATPOS2D(-175, 0));
 		//m_T2->DrawTexture();
