@@ -6,24 +6,18 @@
 
 #pragma comment(lib,"ATENGINE.lib")
 
-void Scene::Start()
+void MainScene::Start()
 {
-
-
-	this->m_Windows_X = 10;
-	this->m_Windows_Y = 10;
-	this->m_WindowsWidth = 800;
-	this->m_WindowsHeight = 600;
 
 }
 
 
-static int W = 2;
-static int WSpace = 1;
-static int Y = 190;
+static int W = 6;
+static int WSpace = 2;
+static int Y = 0;
 static int Angle = 1;
 
-void Scene::Update()
+void MainScene::Update()
 {
 
 	Camera::CameraToWorld(this);
@@ -35,7 +29,7 @@ void Scene::Update()
 	Camera::CameraToWorld(this);
 
 	string Music = ATA->GetCurPlayMusic();
-	int X = -200;
+	int X = -435;
 	static float Buf[128] = { 0 };
 	if (!Music.empty())
 	{
@@ -44,17 +38,15 @@ void Scene::Update()
 	for (int i = 0; i < 128; i++)
 	{
 
-		Y = Buf[i] * 1000 - 198;
+		Y = ((int)(Buf[i] * 1000) - 300) % 400;
 
 		AT->CreateQuadrangle(
-			ATATRGB::RED, ATATPOS3D(X, Y, 0),
-			ATATRGB::WHITE, ATATPOS3D(X, -198, 0),
-			ATATRGB::WHITE, ATATPOS3D(X + W, -198, 0),
-			ATATRGB::RED, ATATPOS3D(X + W, Y, 0));
+			ATATRGB::GREEN, ATATPOS3D(X, Y, 0),
+			ATATRGB::WHITE, ATATPOS3D(X, -300, 0),
+			ATATRGB::WHITE, ATATPOS3D(X + W, -300, 0),
+			ATATRGB::GREEN, ATATPOS3D(X + W, Y, 0));
 
 		X = X + W + WSpace;
-		Y = 190;
-
 	}
 	AT->DrawEnd();
 	ZeroMemory(Buf, 128);
@@ -62,7 +54,7 @@ void Scene::Update()
 
 }
 
-void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
+void MainScene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 {
 	CVector3D T(m_LookAt_X,m_LookAt_Y,m_LookAt_Z);
 	CVector3D C(m_CameraPos_X,m_CameraPos_Y,m_CameraPos_Z);
@@ -98,14 +90,14 @@ void Scene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 		//exit(0);
 	}
 }
-void Scene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)
+void MainScene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)
 {
 	//std::cout << "Êó±êÒÆ¶¯ " << "X = " << Mouse_X << " Y = " << Mouse_Y << std::endl;
 	//m_LookAt_X = Mouse_X - m_WindowsWidth / 2;
 	//m_LookAt_Y = -(Mouse_Y - m_WindowsHeight / 2);
 }
 
-void Scene::End()
+void MainScene::End()
 {
 	delete S;
 	S = NULL;

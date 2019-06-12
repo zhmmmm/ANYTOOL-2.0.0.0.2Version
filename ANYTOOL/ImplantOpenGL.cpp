@@ -40,6 +40,8 @@ void ImplantOpenGL::OpenGL_TO_MFC__Init_ATENGINE(Object *object, int Width, int 
 	ATENGINE->InitMode(GLUT_DOUBLE | GLUT_RGBA);
 	ATENGINE->ATENGINE_WindowsChangeMatrixModeAndOrtho2D(GL_PROJECTION,Width,Height, MATRIXMODE::CENTER);
 	object->m_WindowsWidth = Width;
+	object->m_WindowsHeight = Height;
+	object->m_CurWindowsWidth = Width;
 	object->m_CurWindowsHeight = Height;
 
 
@@ -50,6 +52,7 @@ void ImplantOpenGL::OpenGL_TO_MFC__Init_ATENGINE(Object *object, int Width, int 
 	*/
 
 
+	object->Start();
 	ATENGINE->ATENGINE_Enable();
 	ATENGINE->ATENGINE_CULLFACE();
 }

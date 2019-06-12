@@ -47,7 +47,7 @@
 
 
 
-class Scene:public Object
+class MainScene:public Object
 {
 	float Angle = 0;
 	float p = 0;

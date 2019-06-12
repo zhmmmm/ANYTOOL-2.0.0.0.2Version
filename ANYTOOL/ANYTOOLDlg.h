@@ -13,7 +13,7 @@ class CANYTOOLDlg : public CDialogEx
 
 	MAIN m_Function;
 	IOGL m_ImplantOpenGL;
-	Scene m_Object;
+	MainScene m_Object;
 	BOOL m_IsAlreadyPlayMusic = FALSE;
 
 // 构造
