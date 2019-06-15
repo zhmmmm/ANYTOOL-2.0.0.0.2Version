@@ -150,38 +150,43 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ATENGINE\MAIN\ATBAudioEngine\ATBAudioEngine.cpp" />
+    <ClCompile Include="ATENGINE\MAIN\ATColor\ATColor.cpp" />
     <ClCompile Include="ATENGINE\MAIN\BITMAP.cpp" />
     <ClCompile Include="ATENGINE\MAIN\Camera.cpp" />
     <ClCompile Include="ATENGINE\MAIN\Gadget\Gadget.cpp" />
-    <ClCompile Include="ATENGINE\MAIN\MatrixPackage\CMatrix3.cpp" />
-    <ClCompile Include="ATENGINE\MAIN\MatrixPackage\CMatrix4.cpp" />
-    <ClCompile Include="ATENGINE\MAIN\MatrixPackage\CVictor2D.cpp" />
+    <ClCompile Include="ATENGINE\MAIN\Math\2D\Matrix2D\ATMatrix3.cpp" />
+    <ClCompile Include="ATENGINE\MAIN\Math\2D\Vector2D\ATVector2D.cpp" />
+    <ClCompile Include="ATENGINE\MAIN\Math\3D\Matrix3D\ATMatrix4.cpp" />
+    <ClCompile Include="ATENGINE\MAIN\Math\3D\Vector3D\ATVector3D.cpp" />
+    <ClCompile Include="ATENGINE\MAIN\Model3D.cpp" />
     <ClCompile Include="ATENGINE\MAIN\Object.cpp" />
     <ClCompile Include="ATENGINE\MAIN\OpenGLDefine\OpenGL_Define.cpp" />
     <ClCompile Include="ATENGINE\MAIN\OpenGL_AY_Engine.cpp" />
     <ClCompile Include="ATENGINE\MAIN\Textures.cpp" />
-    <ClCompile Include="ATENGINE\MAIN\Vector3D_Matrix4D\CMatrix_4.cpp" />
-    <ClCompile Include="ATENGINE\MAIN\Vector3D_Matrix4D\CVector3D.cpp" />
     <ClCompile Include="ATENGINE\ThirdPartyLibraries\CPLUSPLUS_SRC\stb_image_resize.cpp" />
     <ClCompile Include="ATENGINE\ThirdPartyLibraries\CPLUSPLUS_SRC\stb_image_write.cpp" />
     <ClCompile Include="ATENGINE\ThirdPartyLibraries\CPLUSPLUS_SRC\std_image.cpp" />
+    <ClCompile Include="ATENGINE\ThirdPartyLibraries\FreeImage\TextureManager.cpp" />
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ATENGINE\MAIN\ATBAudioEngine\ATBAudioEngine.h" />
+    <ClInclude Include="ATENGINE\MAIN\ATColor\ATColor.h" />
     <ClInclude Include="ATENGINE\MAIN\BITMAP.h" />
     <ClInclude Include="ATENGINE\MAIN\Camera.h" />
     <ClInclude Include="ATENGINE\MAIN\Gadget\Gadget.h" />
     <ClInclude Include="ATENGINE\MAIN\HeaderFile\HeaderFile.h" />
-    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CMatrix3.h" />
-    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CMatrix4.h" />
-    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CVictor2D.h" />
+    <ClInclude Include="ATENGINE\MAIN\Math\2D\Matrix2D\ATMatrix3.h" />
+    <ClInclude Include="ATENGINE\MAIN\Math\2D\Vector2D\ATVector2D.h" />
+    <ClInclude Include="ATENGINE\MAIN\Math\3D\Matrix3D\ATMatrix4.h" />
+    <ClInclude Include="ATENGINE\MAIN\Math\3D\Vector3D\ATVector3D.h" />
+    <ClInclude Include="ATENGINE\MAIN\Model3D.h" />
     <ClInclude Include="ATENGINE\MAIN\Object.h" />
     <ClInclude Include="ATENGINE\MAIN\OpenGLDefine\OpenGL_Define.h" />
     <ClInclude Include="ATENGINE\MAIN\OpenGL_AY_Engine.h" />
     <ClInclude Include="ATENGINE\MAIN\Textures.h" />
-    <ClInclude Include="ATENGINE\MAIN\Vector3D_Matrix4D\CMatrix_4.h" />
-    <ClInclude Include="ATENGINE\MAIN\Vector3D_Matrix4D\CVector3D.h" />
+    <ClInclude Include="ATENGINE\ThirdPartyLibraries\FreeImage\FreeImage.h" />
+    <ClInclude Include="ATENGINE\ThirdPartyLibraries\FreeImage\TextureManager.h" />
     <ClInclude Include="ATENGINE\ThirdPartyLibraries\NOTHINGS_STD\stb_image.h" />
     <ClInclude Include="ATENGINE\ThirdPartyLibraries\NOTHINGS_STD\stb_image_resize.h" />
     <ClInclude Include="ATENGINE\ThirdPartyLibraries\NOTHINGS_STD\stb_image_write.h" />

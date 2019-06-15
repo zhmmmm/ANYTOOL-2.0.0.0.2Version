@@ -39,6 +39,7 @@ void ImplantOpenGL::OpenGL_TO_MFC__Init_ATENGINE(Object *object, int Width, int 
 {
 	ATENGINE->InitMode(GLUT_DOUBLE | GLUT_RGBA);
 	ATENGINE->ATENGINE_WindowsChangeMatrixModeAndOrtho2D(GL_PROJECTION,Width,Height, MATRIXMODE::CENTER);
+	ATVARIABLE->SetglClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	object->m_WindowsWidth = Width;
 	object->m_WindowsHeight = Height;
 	object->m_CurWindowsWidth = Width;
@@ -51,10 +52,19 @@ void ImplantOpenGL::OpenGL_TO_MFC__Init_ATENGINE(Object *object, int Width, int 
 		就用MFC的事件
 	*/
 
-
-	object->Start();
 	ATENGINE->ATENGINE_Enable();
+	ATENGINE->ATENGINE_Enable(GL_DEPTH_TEST);
 	ATENGINE->ATENGINE_CULLFACE();
+	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
+	ATENGINE->ATENGINE_Enable(GL_BLEND);
+	ATENGINE->ATENGINE_EnableCilentState(GL_TEXTURE_COORD_ARRAY);
+	ATENGINE->ATENGINE_EnableCilentState(GL_VERTEX_ARRAY);
+	ATENGINE->ATENGINE_EnableCilentState(GL_COLOR_ARRAY);
+	ATENGINE->ATENGINE_Enable(GL_ALPHA_TEST);
+	ATENGINE->ATENGINE_GLAlphaFunc();
+	ATENGINE->ATENGINE_GLBlendFunc();
+
+	object->ATOpenGLInitData();
 }
 void ImplantOpenGL::OpenGL_TO_MFC__Update_ATENGINE(Object *object)
 {

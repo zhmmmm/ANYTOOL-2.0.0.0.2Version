@@ -3,7 +3,7 @@
 
 
 
-class EXPORTDLL Camera
+class _declspec(dllexport) Camera
 {
 	//摄像机看向的位置
 	float m_LookAt_X = 0;

@@ -5,6 +5,7 @@ typedef unsigned int T_2D;
 
 typedef struct TEXTURE
 {
+	//Œ∆¿ÌID
 	unsigned int TID = 0;
 
 	float CooryArr[12] =
@@ -127,10 +128,12 @@ class Texture
 public:
 	Texture();
 	Texture(const char *FileName);
+	~Texture();
 
 	static Texture *Create(const char *FileName);
 
 	void DrawTexture();
+	void DeleteTexture();
 
 
 	TextureINFO *GetTextureInfo() { return &m_TextureINFO; }

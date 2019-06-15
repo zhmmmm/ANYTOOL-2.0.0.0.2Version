@@ -6,9 +6,11 @@
 #include "../../ThirdPartyLibraries/NOTHINGS_STD/stb_image.h"
 #include "../../ThirdPartyLibraries/NOTHINGS_STD/stb_image_resize.h"
 #include "../../ThirdPartyLibraries/NOTHINGS_STD/stb_image_write.h"
+#include "../../ThirdPartyLibraries/FreeImage/TextureManager.h"
 
-
-
+/*
+	一个重要的对象
+*/
 #include "../Object.h"
 
 
@@ -17,6 +19,26 @@
 采取的是流播放,还有更多的功能
 */
 #include "../ATBAudioEngine/ATBAudioEngine.h"
+
+//几何体
+/*
+
+*/
+#include "../Model3D.h"
+
+//二维矩阵向量 矩阵
+/*
+
+*/
+#include "../Math/2D/Matrix2D/ATMatrix3.h"
+#include "../Math/2D/Vector2D/ATVector2D.h"
+
+//三维矩阵向量 矩阵
+/*
+
+*/
+#include "../Math/3D/Matrix3D/ATMatrix4.h"
+#include "../Math/3D/Vector3D/ATVector3D.h"
 
 
 #define AT_INITOPENGL 0
@@ -61,7 +83,7 @@ enum MATRIXMODE
 	ZERO
 };
 
-class EXPORTDLL ATATRGB
+class _declspec(dllexport) ATATRGB
 {
 public:
 	float R = 0;
@@ -122,7 +144,7 @@ public:
 	static const ATATRGB ORANGE;
 };
 
-class EXPORTDLL ATATRGBA :public ATATRGB
+class _declspec(dllexport) ATATRGBA :public ATATRGB
 {
 public:
 	float A = 1;
@@ -171,7 +193,7 @@ public:
 	static const ATATRGBA ORANGE;
 };
 
-class EXPORTDLL ATATPOS2D
+class _declspec(dllexport) ATATPOS2D
 {
 public:
 	float X = 0;
@@ -184,6 +206,11 @@ public:
 		this->Y = Y;
 	}
 	ATATPOS2D(int X, int Y)
+	{
+		this->X = X * 1.0f;
+		this->Y = Y * 1.0f;
+	}
+	ATATPOS2D(double X, double Y)
 	{
 		this->X = X * 1.0f;
 		this->Y = Y * 1.0f;
@@ -208,7 +235,7 @@ public:
 	static const ATATPOS2D ZERO;
 };
 
-class EXPORTDLL ATATPOS3D :public ATATPOS2D
+class _declspec(dllexport) ATATPOS3D :public ATATPOS2D
 {
 public:
 	float Z = 0;
@@ -226,6 +253,12 @@ public:
 		ATATPOS2D::Set_Y(Y * 1.0f);
 		this->Z = Z * 1.0f;
 	}
+	ATATPOS3D(double X, double Y, double Z)
+	{
+		ATATPOS2D::Set_X(X * 1.0f);
+		ATATPOS2D::Set_Y(Y * 1.0f);
+		this->Z = Z * 1.0f;
+	}
 	float Get_Z()
 	{
 		return this->Z;
@@ -238,7 +271,7 @@ public:
 	static const ATATPOS3D ZERO;
 };
 
-class EXPORTDLL ATATSCALE2D
+class _declspec(dllexport) ATATSCALE2D
 {
 public:
 	float X = 0;
@@ -275,7 +308,7 @@ public:
 	static const ATATSCALE2D ZERO;
 };
 
-class EXPORTDLL ATATSCALE3D
+class _declspec(dllexport) ATATSCALE3D
 {
 public:
 	float X = 0;
@@ -323,7 +356,7 @@ public:
 	static const ATATSCALE3D ZERO;
 };
 
-class EXPORTDLL ATATCONTENTSIZE
+class _declspec(dllexport) ATATCONTENTSIZE
 {
 
 public:

@@ -60,7 +60,11 @@ public:
 protected:
 	TextureManager();//构造
 	TextureManager(const TextureManager& tm) {}//拷贝构造
-	TextureManager& operator=(const TextureManager& tm) {}//等号赋值
+	TextureManager& operator=(const TextureManager& tm)
+	{
+		TextureManager Tm;
+		return Tm;
+	}//等号赋值
 
 	static TextureManager* m_inst;//单利对象指针
 	std::map<unsigned int, GLuint> m_texID;//存储图像ID的map表

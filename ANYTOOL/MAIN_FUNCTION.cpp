@@ -661,7 +661,7 @@ void FUNCTION::PlayerMusic()
 
 	if (CFileDialog.DoModal() == IDOK)
 	{
-		ATA->StopAllMusicAndSounds();
+		ATA->StopAllMusicAndEffects();
 		m_CurPlayerMusic = CFileDialog.GetPathName();
 		string Temp = MAIN::CString_To_String(CFileDialog.GetPathName());
 		ATA->LoadMusicsAndPlay(Temp);

@@ -17,7 +17,7 @@ void OnWindowsChange(int width, int height)
 	std::cout << width << " " << height << std::endl;
 	g_Object.m_CurWindowsWidth = width;
 	g_Object.m_CurWindowsHeight = height;
-	ATENGINE->ATENGINE_WindowsChangeMatrixModeAndOrtho3D(GL_PROJECTION,
+	ATENGINE->ATENGINE_WindowsChangeMatrixModeAndOrtho2D(GL_PROJECTION,
 		width, height,
 		MATRIXMODE::CENTER);
 }
@@ -94,17 +94,13 @@ int Main(int argc, char **argv)
 	ATENGINE->ATENGINE_Enable(GL_DEPTH_TEST);
 	ATENGINE->ATENGINE_CULLFACE();
 	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
+	ATENGINE->ATENGINE_Enable(GL_BLEND);
 	ATENGINE->ATENGINE_EnableCilentState(GL_TEXTURE_COORD_ARRAY);
 	ATENGINE->ATENGINE_EnableCilentState(GL_VERTEX_ARRAY);
 	ATENGINE->ATENGINE_EnableCilentState(GL_COLOR_ARRAY);
-
-	glewInit();
-
 	ATENGINE->ATENGINE_Enable(GL_ALPHA_TEST);
-	glAlphaFunc(GL_GREATER, 0.3f);
-
-	ATENGINE->ATENGINE_Enable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	ATENGINE->ATENGINE_GLAlphaFunc();
+	ATENGINE->ATENGINE_GLBlendFunc();
 
 
 	g_Object.ATOpenGLInitData();

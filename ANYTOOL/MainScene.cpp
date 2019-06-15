@@ -6,88 +6,111 @@
 
 #pragma comment(lib,"ATENGINE.lib")
 
-void MainScene::Start()
+void MainScene::ATOpenGLInitData()
 {
-
+	MainScene::Start();
 }
 
+void MainScene::Start()
+{
+	srand(GetTickCount());
 
-static int W = 6;
-static int WSpace = 2;
-static int Y = 0;
+	this->m_CameraPos_Y = 0;
+	this->m_CameraPos_Z = 370;
+	this->m_CameraPos_X = 0;
+
+	m_Background = new Texture("res/Image/Background.jpg");
+	m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
+}
+
 static int Angle = 1;
+BASS_3DVECTOR Pos;
+BASS_3DVECTOR Vel;
 
 void MainScene::Update()
 {
+	ATENGINE->ATENGINE_Disable(GL_TEXTURE_2D);
 
 	Camera::CameraToWorld(this);
-	this->m_CameraPos_Y = 0;
+	float buf[128] = { 0 };
+	ATA->GetAudioStreamData(ATA->GetCurPlayMusic(), buf);
+	Gadget::CreateMusicMapCircular2D(buf, 80, 0, 300);
 
-	ATENGINE->Rotate(Angle++, ATATPOS3D(0, 0, 1));
+	Camera::CameraToWorld(this);
+	ATENGINE->Rotate(m_Angle++, ATATPOS3D(0, 0, 1));
+	Gadget::CreateCircular2D(360, 100);
+
+	Camera::CameraToWorld(this);
+	ATENGINE->Rotate(m_Angle, ATATPOS3D(0, 0, 1));
 	Gadget::CreateQuadrangle2D();
 
+
+	ATENGINE->ATENGINE_DisableCilentState(GL_COLOR_ARRAY);
+	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
 	Camera::CameraToWorld(this);
+	m_Background->DrawTexture();
+}
 
-	string Music = ATA->GetCurPlayMusic();
-	int X = -435;
-	static float Buf[128] = { 0 };
-	if (!Music.empty())
-	{
-		ATA->GetAudioStreamData(Music, Buf);
-	}
-	for (int i = 0; i < 128; i++)
-	{
-
-		Y = ((int)(Buf[i] * 1000) - 300) % 400;
-
-		AT->CreateQuadrangle(
-			ATATRGB::GREEN, ATATPOS3D(X, Y, 0),
-			ATATRGB::WHITE, ATATPOS3D(X, -300, 0),
-			ATATRGB::WHITE, ATATPOS3D(X + W, -300, 0),
-			ATATRGB::GREEN, ATATPOS3D(X + W, Y, 0));
-
-		X = X + W + WSpace;
-	}
-	AT->DrawEnd();
-	ZeroMemory(Buf, 128);
-
-
+void MainScene::End()
+{
+	delete m_Background;
+	m_Background = NULL;
 }
 
 void MainScene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 {
-	CVector3D T(m_LookAt_X,m_LookAt_Y,m_LookAt_Z);
-	CVector3D C(m_CameraPos_X,m_CameraPos_Y,m_CameraPos_Z);
-
-	CVector3D n = (T - C).normalized();
-
-	//std::cout << "普通按下！" << Key << " X = " << X << " Y = " << Y << std::endl;
-	//if (Key == 'w' || Key == 'W')
-	if (Key == 0x57)
+	if (Key == 'w' || Key == 'W')
 	{
-		//m_CameraPos_Z -= m_MoveSpeed_Z;
-		CVector3D t(m_CameraPos_X, m_CameraPos_Y, m_CameraPos_Z);
-		t += n * m_MoveSpeed_Z;
-		m_CameraPos_Z = t.z;
+
+		Pos.z--;
+
+		ATA->SetMusics3DPos(Pos, Vel);
+
+		this->m_CameraPos_Z -= 5;
 	}
-	if (Key == 0x53)
+	if (Key == 's' || Key == 'S')
 	{
-		//m_CameraPos_Z += m_MoveSpeed_Z;
-		CVector3D t(m_CameraPos_X, m_CameraPos_Y, m_CameraPos_Z);
-		t -= n * m_MoveSpeed_Z;
-		m_CameraPos_Z = t.z;
+		Pos.z++;
+		ATA->SetMusics3DPos(Pos, Vel);
+
+		this->m_CameraPos_Z += 5;
 	}
-	if (Key == 0x41)
+	if (Key == 'a' || Key == 'A')
 	{
 		m_CameraPos_X -= m_MoveSpeed_X;
+
+		Pos.x--;
+		ATA->SetMusics3DPos(Pos);
 	}
-	if (Key == 0x44)
+	if (Key == 'd' || Key == 'D')
 	{
 		m_CameraPos_X += m_MoveSpeed_X;
+
+		Pos.x++;
+		ATA->SetMusics3DPos(Pos);
 	}
-	if (Key == VK_RETURN)
+	if (Key == '\r')
 	{
 		//exit(0);
+	}
+}
+void MainScene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
+{
+	if (Key == 101)//KEYUP
+	{
+
+	}
+	if (Key == 103)//KEYDOWN
+	{
+
+	}
+	if (Key == 100)//KEYLEFT
+	{
+
+	}
+	if (Key == 102)//KEYRIGHT
+	{
+
 	}
 }
 void MainScene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)
@@ -95,10 +118,4 @@ void MainScene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)
 	//std::cout << "鼠标移动 " << "X = " << Mouse_X << " Y = " << Mouse_Y << std::endl;
 	//m_LookAt_X = Mouse_X - m_WindowsWidth / 2;
 	//m_LookAt_Y = -(Mouse_Y - m_WindowsHeight / 2);
-}
-
-void MainScene::End()
-{
-	delete S;
-	S = NULL;
 }

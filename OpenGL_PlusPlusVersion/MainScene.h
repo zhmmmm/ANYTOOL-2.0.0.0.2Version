@@ -47,14 +47,12 @@
 
 
 
-class MainScene:public Object
+class MainScene :public Object
 {
 	float m_Angle = 0;
 
 
 	Texture *m_Background = NULL;
-	Texture *m_T1 = NULL;
-	Texture *m_T2 = NULL;
 
 public:
 	virtual void Start();

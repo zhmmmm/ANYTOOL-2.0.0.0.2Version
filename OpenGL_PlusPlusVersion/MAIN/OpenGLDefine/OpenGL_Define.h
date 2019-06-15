@@ -210,6 +210,11 @@ public:
 		this->X = X * 1.0f;
 		this->Y = Y * 1.0f;
 	}
+	ATATPOS2D(double X, double Y)
+	{
+		this->X = X * 1.0f;
+		this->Y = Y * 1.0f;
+	}
 	float Get_X()
 	{
 		return this->X;
@@ -243,6 +248,12 @@ public:
 		this->Z = Z;
 	}
 	ATATPOS3D(int X, int Y, int Z)
+	{
+		ATATPOS2D::Set_X(X * 1.0f);
+		ATATPOS2D::Set_Y(Y * 1.0f);
+		this->Z = Z * 1.0f;
+	}
+	ATATPOS3D(double X, double Y, double Z)
 	{
 		ATATPOS2D::Set_X(X * 1.0f);
 		ATATPOS2D::Set_Y(Y * 1.0f);

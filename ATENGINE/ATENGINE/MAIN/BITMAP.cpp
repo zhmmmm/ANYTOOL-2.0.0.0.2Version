@@ -1,39 +1,39 @@
 #include "BITMAP.h"
 
-Sprite::Sprite()
+BITMAPS::BITMAPS()
 {
-	Sprite::InitSpriteInfoData();
+	BITMAPS::InitSpriteInfoData();
 }
 
-Sprite::Sprite(const char *FileName)
+BITMAPS::BITMAPS(const char *FileName)
 {
-	Sprite::InitSpriteInfoData();
+	BITMAPS::InitSpriteInfoData();
 
 	this->Create(FileName);
 }
 
-void *Sprite::Create(const char *FileName)
+void *BITMAPS::Create(const char *FileName)
 {
 	m_BitMapRGBData = ATENGINE->LoadBitMapRGBData(FileName);
 	memcpy_s(m_bf, sizeof(BITMAPFILEHEADER), &ATENGINE->m_bf, sizeof(ATENGINE->m_bf));
 	memcpy_s(m_bi, sizeof(BITMAPINFOHEADER), &ATENGINE->m_bi, sizeof(ATENGINE->m_bi));
 	return m_BitMapRGBData;
 }
-void Sprite::SetSpriteScale(float X, float Y)
+void BITMAPS::SetSpriteScale(float X, float Y)
 {
 	m_Scale->Set_X(X);
 	m_Scale->Set_Y(Y);
 }
-void Sprite::SetSpritePosition(float X, float Y)
+void BITMAPS::SetSpritePosition(float X, float Y)
 {
 	m_Position->Set_X(X);
 	m_Position->Set_Y(Y);
 }
-LPPIXCOLOR *Sprite::GetBitMapRGBData()
+LPPIXCOLOR *BITMAPS::GetBitMapRGBData()
 {
 	return *m_BitMapRGBData;
 }
-void Sprite::DrawSprite()
+void BITMAPS::DrawSprite()
 {
 	if (m_SpriteState == 0)
 	{
@@ -48,22 +48,22 @@ void Sprite::DrawSprite()
 		ATENGINE->DrawRGB_DATA(*m_Position, *m_Scale,ATATCONTENTSIZE(m_bi->biWidth, m_bi->biHeight), GL_BGR_EXT, GL_UNSIGNED_BYTE, *m_BitMapRGBData);
 	}
 }
-void Sprite::DrawSprite(float Width, float Height)
+void BITMAPS::DrawSprite(float Width, float Height)
 {
 	m_Scale->Set_X(Width / m_bi->biWidth);
 	m_Scale->Set_Y(Height / m_bi->biHeight);
-	Sprite::DrawSprite();
+	BITMAPS::DrawSprite();
 }
 //void Sprite::DeleteSprite()
 //{
 //	m_SpriteState = -1;
 //}
 
-Sprite::~Sprite()
+BITMAPS::~BITMAPS()
 {
-	Sprite::DeleteSpriteInfoData();
+	BITMAPS::DeleteSpriteInfoData();
 }
-void Sprite::InitSpriteInfoData()
+void BITMAPS::InitSpriteInfoData()
 {
 	m_Position = new ATATPOS2D();
 	m_Scale = new ATATSCALE2D();
@@ -74,8 +74,9 @@ void Sprite::InitSpriteInfoData()
 	m_Scale->Set_X(1.0f);
 	m_Scale->Set_Y(1.0f);
 	m_SpriteState = 0;
+	m_BitMapRGBData = NULL;
 }
-void Sprite::DeleteSpriteInfoData()
+void BITMAPS::DeleteSpriteInfoData()
 {
 	delete m_Position;
 	delete m_Scale;
@@ -86,4 +87,5 @@ void Sprite::DeleteSpriteInfoData()
 	m_bf = NULL;
 	m_bi = NULL;
 	m_SpriteState = 0;
+	m_BitMapRGBData = NULL;
 }

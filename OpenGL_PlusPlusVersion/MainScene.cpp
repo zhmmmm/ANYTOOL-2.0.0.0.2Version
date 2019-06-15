@@ -13,6 +13,8 @@ void MainScene::ATOpenGLInitData()
 
 void MainScene::Start()
 {
+	srand(GetTickCount());
+
 	this->m_Windows_X = 10;
 	this->m_Windows_Y = 10;
 	this->m_WindowsWidth = 800;
@@ -21,51 +23,49 @@ void MainScene::Start()
 	this->m_CameraPos_Z = 270;
 	this->m_CameraPos_X = 0;
 
-	//ATA->Init3DAudioEngine();
-	//ATA->LoadMusics3D("res\\Audio\\Musics\\dj - Ô¤Ä±.mp3");
-	//ATA->PlayMusics("res\\Audio\\Musics\\dj - Ô¤Ä±.mp3");
+	ATA->LoadMusics("res\\Audio\\Musics\\dj - Ô¤Ä±.mp3");
+	ATA->PlayMusics("res\\Audio\\Musics\\dj - Ô¤Ä±.mp3");
 
-	m_Background = new Texture("res/Image/Card/Background/BG800.png");
+	m_Background = new Texture("res/Image/Background.jpg");
 	m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
-	m_T1 = new Texture("res/Image/Card/Croupier/ÆåÅÆÈËÎï (84).png");
-	m_T1->SetTextureSize(ATATCONTENTSIZE(300, 400));
-	m_T2 = new Texture("res/Image/Card/Croupier/character_bg.png");
-	m_T2->SetTextureSize(ATATCONTENTSIZE(200, 300));
 }
 
 BASS_3DVECTOR Pos;
 BASS_3DVECTOR Vel;
-ATATPOS2D T1Pos = { 0,200 };
-ATATPOS2D T2Pos = { -100,-50 };
-float M[16] = { 0 };
-ATPOS2D t1(T1Pos.X, T1Pos.Y);
-ATPOS2D t2(T2Pos.X, T2Pos.Y);
+
+
+
+int n = 10;  //Ô²»æÖÆ´ÎÊý
+float R = 100.0f;  //°ë¾¶
+ATVector2D A[10];
+ATVector2D S[10];
 
 void MainScene::Update()
 {
-	AT->ATENGINE_DisableCilentState();
 	Camera::CameraToWorld(this);
-	m_T1->SetTexturePosition(t1);
-	m_T1->DrawTexture();
+	ATENGINE->ATENGINE_Disable(GL_TEXTURE_2D);
+
+	ATENGINE->Rotate(m_Angle++,ATATPOS3D(0,0,1));
+	float Buf[128] = { 0 };
+	ATA->GetAudioStreamData("res\\Audio\\Musics\\dj - Ô¤Ä±.mp3",Buf);
+	Gadget::CreateMusicMapCircular2D(Buf, 80,0, 300);
+
 
 	Camera::CameraToWorld(this);
-	m_T2->SetTexturePosition(t2);
-	m_T2->DrawTexture();
+	Gadget::CreateCircular2D(360,100);
 
+	Gadget::CreateQuadrangle3D();
 
+	ATENGINE->ATENGINE_DisableCilentState(GL_COLOR_ARRAY);
+	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
 	Camera::CameraToWorld(this);
 	m_Background->DrawTexture();
-
 }
 
 
 
 void MainScene::End()
 {
-	delete m_T1;
-	m_T1 = NULL;
-	delete m_T2;
-	m_T2 = NULL;
 	delete m_Background;
 	m_Background = NULL;
 }
@@ -114,19 +114,19 @@ void MainScene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
 	//std::cout << "¹¦ÄÜ°´ÏÂ£¡" << Key << " X = " << X << " Y = " << Y << std::endl;
 	if (Key == 101)//KEYUP
 	{
-		T1Pos.Y++;
+
 	}
 	if (Key == 103)//KEYDOWN
 	{
-		T1Pos.Y--;
+
 	}
 	if (Key == 100)//KEYLEFT
 	{
-		T1Pos.X--;
+
 	}
 	if (Key == 102)//KEYRIGHT
 	{
-		T1Pos.X++;
+
 	}
 }
 void MainScene::OnMouseMoveEvent(int Mouse_X, int Mouse_Y)

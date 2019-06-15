@@ -151,7 +151,7 @@ void CANYTOOLDlg::OnSysCommand(UINT nID, LPARAM lParam)
 
 void CANYTOOLDlg::OnPaint()
 {
-	std::cout << "开始绘制" << std::endl;
+	//std::cout << "开始绘制" << std::endl;
 	CPaintDC MAIN_CDC(this); // 用于绘制的设备上下文
 	SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(MAIN_CDC.GetSafeHdc()), 0);
 
@@ -461,9 +461,10 @@ void CANYTOOLDlg::OnTimer(UINT_PTR nIDEvent)
 	//========================================================================
 	case ATENGINE__ATUPDATEDATA__DRAW:
 	{
-		CPaintDC dc(this);
-		MAIN_M_IOGL->OpenGL_TO_MFC__Update_ATENGINE(SCENE);
-		SwapBuffers(dc.GetSafeHdc());
+		//CPaintDC dc(this);
+		//MAIN_M_IOGL->OpenGL_TO_MFC__Update_ATENGINE(SCENE);
+		//SwapBuffers(dc.GetSafeHdc());
+		CANYTOOLDlg::OnPaint();
 	}; break;
 	}
 }

@@ -8,8 +8,11 @@ ATROOT::ATROOT()
 }
 ATROOT::~ATROOT()
 {
-	delete[] m_BitMapRGBData;
-	m_BitMapRGBData = NULL;
+	if (m_BitMapRGBData)
+	{
+		delete m_BitMapRGBData;
+		m_BitMapRGBData = NULL;
+	}
 }
 int ATROOT::LoadBitMap(const char *FileName, LPPIXCOLOR **BitMapData)
 {
@@ -81,6 +84,12 @@ int ATROOT::LoadBitMapRGBData(const char *FileName, LPPIXCOLOR **BitMapRGBData)
 }
 LPPIXCOLOR **ATROOT::LoadBitMapRGBData(const char *FileName)
 {
+	if (m_BitMapRGBData)
+	{
+		delete m_BitMapRGBData;
+		m_BitMapRGBData = NULL;
+	}
+
 	FILE *pf = NULL;
 	fopen_s(&pf, FileName, "rb");
 	if (pf)
@@ -164,6 +173,7 @@ ATEngine *ATEngine::Interface()
 void ATEngine::Init(DWORD Init, int *Argc, char **Argv)
 {
 	glutInit(Argc, Argv);
+	glewInit();
 }
 
 void ATEngine::InitMode(unsigned int Define)
@@ -225,8 +235,6 @@ ATEngine_Variable::ATEngine_Variable()
 	m_ClearColor.Alpha = 1.0f;
 
 	m_glClear = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT;
-
-	m_EnablePoint = FALSE;
 
 	m_Fovy = 90.0;
 	m_Aspect = 1.0;
@@ -320,6 +328,11 @@ void ATEngine::ATENGINE_EnableCilentState(unsigned int FUNCTION)
 	glEnableClientState(FUNCTION);
 }
 
+void ATEngine::ATENGINE_DisableCilentState(unsigned int FUNCTION)
+{
+	glDisableClientState(FUNCTION);
+}
+
 void ATEngine::ATENGINE_CULLFACE(unsigned int CULLFACE)
 {
 	glCullFace(CULLFACE);
@@ -378,6 +391,87 @@ void ATEngine::ATENGINE_RefreshDraw()
 {
 	glutPostRedisplay();
 }
+
+void ATEngine::ATENGINE_VertexPointer(int Dimension, unsigned int ArrType, int Space, const void *Arr)
+{
+	glVertexPointer(Dimension, ArrType, Space, Arr);
+}
+
+void ATEngine::ATENGINE_ColorPointer(int Dimension, unsigned int ArrType, int Space, const void *Arr)
+{
+	glColorPointer(Dimension, ArrType, Space, Arr);
+}
+
+void ATEngine::ATENGINE_DrawArrays(unsigned int DrawModeType, int DrawOffset, int VertexCount)
+{
+	glDrawArrays(DrawModeType, DrawOffset, VertexCount);
+}
+
+void ATEngine::ATENGINE_DrawElements(unsigned int DrawModeType, int IndexCount, unsigned int DataType, const void *Arr)
+{
+	glDrawElements(DrawModeType, IndexCount, DataType, Arr);
+}
+
+void ATEngine::ATENGINE_CreateTextureID(unsigned int TextureNum, unsigned int *Arr)
+{
+	glGenTextures(TextureNum, Arr);
+}
+
+void ATEngine::ATENGINE_BindTextureID(unsigned int TARGET, unsigned int ID)
+{
+	glBindTexture(TARGET, ID);
+}
+
+void ATEngine::ATENGINE_TexParameter(unsigned int TARGET, unsigned int PNAME, float PARAM)
+{
+	glTexParameterf(TARGET, PNAME, PARAM);
+}
+
+void ATEngine::ATENGINE_LoadTexture(unsigned int TARGET, int Level, int Internalformat, int Width, int Height, int Border, unsigned int Format, unsigned int Type, const void *Pixels)
+{
+	glTexImage2D(TARGET, Level, Internalformat, Width, Height, Border, Format, Type, Pixels);
+}
+
+void ATEngine::ATENGINE_BindTextureEnd()
+{
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void ATEngine::ATENGIEN_DrawTexturePointer(int Dimension, unsigned int Type, int DrawOffset, const void *Arr)
+{
+	glTexCoordPointer(Dimension, Type, DrawOffset, Arr);
+}
+
+void ATEngine::ATENGINE_DeleteTexture(int Num, unsigned int *Arr)
+{
+	glDeleteTextures(Num, Arr);
+}
+
+void ATEngine::ATENGINE_GLAlphaFunc(unsigned int Func, float Ref)
+{
+	glAlphaFunc(Func, Ref);
+}
+
+void ATEngine::ATENGINE_GLBlendFunc(unsigned int Sfactor, unsigned int Dfactor)
+{
+	glBlendFunc(Sfactor, Dfactor);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //»Øµ÷º¯Êý
 //=================================================
@@ -549,7 +643,7 @@ void ATEngine::Color3UChar(unsigned char R, unsigned char G, unsigned char B)
 
 void ATEngine::Color3(unsigned char R, unsigned char G, unsigned char B)
 {
-	ATEngine::Color3UChar(R,G,B);
+	ATEngine::Color3UChar(R, G, B);
 }
 
 void ATEngine::Color4F(float R, float G, float B, float A)
@@ -569,12 +663,12 @@ void ATEngine::Color4F(ATATRGBA ATAT_RGBA)
 
 void ATEngine::Color4UChar(unsigned char R, unsigned char G, unsigned char B, unsigned char A)
 {
-	glColor4ub(R,G,B,A);
+	glColor4ub(R, G, B, A);
 }
 
 void ATEngine::Color4(unsigned char R, unsigned char G, unsigned char B, unsigned char A)
 {
-	ATEngine::Color4UChar(R,G,B,A);
+	ATEngine::Color4UChar(R, G, B, A);
 }
 
 void ATEngine::Draw_Points(float X, float Y)
@@ -993,6 +1087,10 @@ void ATEngine::Translate(float X, float Y, float Z)
 void ATEngine::Translate(ATATPOS3D ATATPos3D)
 {
 	glTranslatef(ATATPos3D.Get_X(), ATATPos3D.Get_Y(), ATATPos3D.Get_Z());
+}
+void ATEngine::Translate(ATATPOS2D ATATPos2D)
+{
+	glTranslatef(ATATPos2D.Get_X(), ATATPos2D.Get_Y(), 0.0f);
 }
 void ATEngine::Rotate(float Angle, float X, float Y, float Z)
 {

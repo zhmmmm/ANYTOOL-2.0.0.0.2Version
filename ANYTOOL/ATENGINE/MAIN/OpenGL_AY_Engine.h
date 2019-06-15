@@ -8,15 +8,14 @@
 
 #include "HeaderFile/HeaderFile.h"
 
-#define EXPORTDLL        _declspec(dllexport)
-
 #define ATENGINE           ATEngine::Interface()
 
 #define AT ATENGINE
 
 #define ATVARIABLE       ATEngine_Variable::Interface()
 
-#define CLS system("cls");
+#define CLS                     system("cls");
+#define CLEAR                system("cls");
 
 #define ATENGINE_MAINDRAW(MAINDRAW) \
                ATENGINE->ATENGINE_OnRuning(MAINDRAW);
@@ -52,8 +51,10 @@
 #define ATENGINE_ONTIMEREND(MILLISECOND,ONTIMEREND,TIMERID) \
                ATENGINE->ATENGINE_OnSetTimerEnd((MILLISECOND), (ONTIMEREND), (TIMERID));
 
-
-class EXPORTDLL ATROOT
+/*
+	这些都是适用bmp格式的
+*/
+class ATROOT
 {
 public:
 	BITMAPFILEHEADER m_bf;
@@ -90,7 +91,10 @@ public:
 	*/
 	//:::::::::::::::::::::::::不建议用:::::::::::::::::::::::::::::::需要手动释放
 	int LoadBitMapRGBData(const char *FileName, LPPIXCOLOR **BitMapRGBData);
-	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::不需要手动释放
+	/*
+		如果重复的使用,则之前的内存会被清除
+	*/
+	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::不需要手动释放 
 	LPPIXCOLOR **LoadBitMapRGBData(const char *FileName);
 	//释放的是外部的加载的位图数据
 	void DeleteBitMap(LPPIXCOLOR **BitMapData);
@@ -107,13 +111,11 @@ public:
 };
 
 
-class EXPORTDLL ATEngine_Variable
+class ATEngine_Variable
 {
 	AT_RGBA m_ClearColor;
 
 	unsigned int m_glClear;
-
-	BOOL m_EnablePoint;
 
 	double m_Fovy;
 	double m_Aspect;
@@ -155,7 +157,7 @@ private:
 
 //ATEngine_Variable 的初始化窗口时的变量要改变一定要在初始化前设置
 
-class EXPORTDLL ATEngine :public ATROOT
+class ATEngine :public ATROOT
 {
 
 public:
@@ -163,6 +165,10 @@ public:
 	static ATEngine *Interface();
 
 	//初始化窗口
+	/*
+	glutInit(Argc, Argv);
+	glewInit();
+	*///
 	void Init(DWORD Init, int *Argc, char **Argv);
 
 	//初始化_OpenGL的显示模式
@@ -230,25 +236,42 @@ public:
 	//控制台
 	static void Console();
 
-	//开启功能
+	//开启功能 关闭同理
 	/*
-	GL_CULL_FACE //允许面裁剪
+	GL_CULL_FACE //开启面裁剪
 	GL_DEPTH_TEST //开启深度测试
+	GL_TEXTURE_2D //开启纹理2D贴图
+	GL_ALPHA_TEST //阿尔法测试
+	GL_BLEND //颜色混合
 	*/
 	static void ATENGINE_Enable(unsigned int FUNCTION = GL_CULL_FACE);
 
-	//关闭功能
+	//关闭功能 开启同理
 	/*
 	GL_DEPTH_TEST //关闭深度测试
+	GL_CULL_FACE //关闭面裁剪
+	GL_TEXTURE_2D //关闭纹理2D绘制
+	GL_ALPHA_TEST //阿尔法测试
+	GL_BLEND //颜色混合
+
+	在绘制图元是要关闭纹理功能 不然颜色有冲突
 	*/
 	static void ATENGINE_Disable(unsigned int FUNCTION = GL_DEPTH_TEST);
 
 	//开启客户状态的支持
 	/*
 	GL_VERTEX_ARRAY //顶点数组支持
-	GL_COLOR_ARRAY //颜色数组支持
+	GL_COLOR_ARRAY //颜色数组支持 如果有绘制纹理请关闭它
+	GL_TEXTURE_COORD_ARRAY //开启纹理坐标(UV)数组功能
 	*/
 	static void ATENGINE_EnableCilentState(unsigned int FUNCTION = GL_VERTEX_ARRAY);
+	//关闭客户状态的支持
+	/*
+	GL_VERTEX_ARRAY //顶点数组支持
+	GL_COLOR_ARRAY //颜色数组支持 如果有绘制纹理请关闭它
+	GL_TEXTURE_COORD_ARRAY //开启纹理坐标(UV)数组功能
+	*/
+	static void ATENGINE_DisableCilentState(unsigned int FUNCTION = GL_COLOR_ARRAY);
 
 	//裁那一面
 	/*
@@ -256,8 +279,137 @@ public:
 	*/
 	static void ATENGINE_CULLFACE(unsigned int CULLFACE = GL_BACK);
 
+	//顶点数组绘制
+	/*
+	顶点数组的维度 三维填3
+	顶点数据的存储类型 GL_FLOAT...
+	顶点与顶点之间的字节间隔数
+	顶点数据的起始位置
+	*/
+	static void ATENGINE_VertexPointer(int Dimension, unsigned int ArrType, int Space, const void *Arr);
 
-	//回调函数
+	//颜色数组绘制
+	/*
+	颜色数组的维度 三维填3
+	颜色数据的存储类型 GL_FLOAT...
+	颜色与颜色之间的字节间隔数
+	颜色数据的起始位置
+	*/
+	static void ATENGINE_ColorPointer(int Dimension, unsigned int ArrType, int Space, const void *Arr);
+
+	//数组绘制
+	/*
+	绘制的图元类型
+	GL_POINTS				点(一个顶点)
+	GL_LINES				线段(2个顶点)
+	GL_LINE_LOOP			封闭线段//会首尾相连
+	GL_LINE_STRIP			连接线段
+	GL_TRIANGLES			三角形（3个顶点）
+	GL_TRIANGLE_STRIP		连接三角形
+	GL_TRIANGLE_FAN		三角形扇？
+	GL_QUADS				凸四边形
+	GL_QUAD_STRIP			连接凸四边形
+	GL_POLYGON			多边形（ >= 3个顶点）
+	绘制偏移
+	顶点总数
+	*/
+	static void ATENGINE_DrawArrays(unsigned int DrawModeType, int DrawOffset = 0, int VertexCount = 0);
+
+	//通过索引方式绘制
+	/*
+	绘制的图元类型
+	索引的顶点数量
+	索引的数据类型 必须是无符号的类型
+	索引的数据的起始位置
+	*/
+	static void ATENGINE_DrawElements(unsigned int DrawModeType, int IndexCount, unsigned int DataType, const void *Arr);
+
+	//创建纹理ID
+	/*
+	要创建多少个纹理的id
+	用于接收纹理id的unsigned int数组
+	*/
+	static void ATENGINE_CreateTextureID(unsigned int TextureNum, unsigned int *Arr);
+
+	//绑定纹理ID
+	/*
+	GL_TEXTURE_2D //绑定2D纹理
+	*/
+	static void ATENGINE_BindTextureID(unsigned int TARGET, unsigned int ID);
+
+	//纹理采样
+	/*
+	//设置纹理的采样方式
+	//GL_NEAREST：最近点采样，效果差效率高
+	//GL_LINEAR：线性插值采样，效果好效率低
+	//GL_TEXTURE_MIN_FILTER表示这种采样方式
+	//作用在缩小纹理采样上面，所谓缩小就是指
+	//的模型三角形的绘制面积小于纹理三角形面
+	//积的时候，GL_TEXTURE_MAG_FILTER就表示
+	//这种采样作用在放大纹理采样上面，即模型
+	//三角形的绘制面积大于纹理三角形面积的时
+	//候，一般来说缩小、放大采样都需要设置
+	*/
+	static void ATENGINE_TexParameter(unsigned int TARGET = GL_TEXTURE_2D, unsigned int PNAME = GL_TEXTURE_MIN_FILTER, float PARAM = GL_NEAREST);
+
+	//加载纹理
+	/*
+	//GL_TEXTURE_2D表示加载二维纹理
+	//0表示不创建多级渐进纹理
+	//GL_RGB表示纹理是RGB颜色模式
+	//纹理像素宽
+	//纹理像素高
+	//0表示不设置纹理边界
+	//GL_BGR_EXT     表示纹理像素的格式为B、G、R的排列
+	//GL_UNSIGNED_BYTE   表示纹理像素颜色分量的格式为unsigned char
+	//纹理像素颜色的起始地址
+	*ATENGINE->LoadBitMapRGBData("psb.bmp")
+	*/
+	static void ATENGINE_LoadTexture(unsigned int TARGET, int Level, int Internalformat, int Width, int Height, int Border, unsigned int Format, unsigned int Type, const void *Pixels);
+
+	//绑定纹理结束
+	static void ATENGINE_BindTextureEnd();
+
+	//纹理绘制坐标(UV)
+	/*
+	//纹理数组中每个纹理坐标的维度
+	//纹理数组类型
+	//每个纹理坐标之间的字节间隔数
+	//纹理数组首地址
+	*/
+	static void ATENGIEN_DrawTexturePointer(int Dimension, unsigned int Type, int DrawOffset, const void *Arr);
+
+	//释放纹理
+	static void ATENGINE_DeleteTexture(int Num, unsigned int*Arr);
+
+	//	阿尔法功能 设置
+	//glAlphaFunc(GL_GREATER, 0.3f);
+	static void ATENGINE_GLAlphaFunc(unsigned int Func = GL_GREATER, float Ref = 0.3f);
+
+	//颜色混合绘制 设置
+	/*
+
+	*/
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	static void ATENGINE_GLBlendFunc(unsigned int Sfactor = GL_SRC_ALPHA, unsigned int Dfactor = GL_ONE_MINUS_SRC_ALPHA);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//=============================================================回调函数
 	//窗口大小和激活状态改变是会调用
 	void ATENGINE_OnWindowsChange(void(*OnWindowsChange)(int Width, int Height));
 
@@ -305,7 +457,7 @@ public:
 	void ATENGINE_OnSetTimerEnd(unsigned int Millisecond, void(*OnTimerEnd)(int Timer_ID), int TimerID);
 	//投递重新绘制消息
 	void ATENGINE_PostRedisplayOnTimerBegin();
-
+	//===========上下函数功能一样
 	//刷新绘制
 	void ATENGINE_RefreshDraw();
 
@@ -318,6 +470,13 @@ private:
 public:
 	//矩阵视口相机
 	//2D正交投影
+	/*
+		如果设置了 请在每个物体绘制的地方 AT->ATENGINE_MatrixMode();
+		不然会旋转 平移 缩放 这个矩阵中的所有物体
+		相机参数不建议设置
+
+		注意！注意！注意！如果更改了源点(0,0)的位置,请注意是第几象限  不然绘制不出来
+	*/
 	void ATENGINE_WindowsChangeMatrixModeAndOrtho2D(unsigned int MatrixMode = GL_PROJECTION, double Width = 0, double Height = 0, MATRIXMODE SourcePoint = MATRIXMODE::CENTER);
 
 	//3D透视投影 开始的第一波不会架摄像机
@@ -333,7 +492,21 @@ public:
 	//设置摄像机参数
 	void SetCamer(double Fovy = 90.0, double Aspect = 1.0, double ZNear = 0.3, double ZFar = 1000.0);
 
-	//::::::::::::::::旋转:平移:::::::::::::::::::::::::::::::::::::::需要手动设置矩阵模式
+
+	/*
+		不同对象的矩阵不同 好比一个物体顺时针旋转 另一个物体逆时针旋转
+		这样就需要不同的矩阵 + 摄像机
+
+		：：：：：
+		//AT->Rotate(Angle++, ATATPOS3D(0, 0, 1));
+		//m_T1->DrawTexture();
+		//摄像机中带有矩阵
+		//Camera::CameraToWorld(this);//<=====================
+		//AT->Translate(ATATPOS2D(-175, 0));
+		//m_T2->DrawTexture();
+		：：：： 第一个物体是第一个矩阵 不用管 但后面的物体就需要不同的矩阵和摄像机 从而实现不同的旋转、平移、缩放
+	*/
+	//::::::::::::::::旋转、平移、缩放:::::::::::::::::::::::::::::::::::::::需要手动设置矩阵模式 内部有带有矩阵单位化
 	void ATENGINE_MatrixMode(unsigned int MatrixMode = GL_MODELVIEW);
 	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::矩阵单位化
 	void ATENGINE_MatrixLoadIdentity();
@@ -543,6 +716,7 @@ public:
 	*/
 	void Translate(float X, float Y, float Z);
 	void Translate(ATATPOS3D ATATPos3D);
+	void Translate(ATATPOS2D ATATPos2D);
 	void Rotate(float Angle, float X, float Y, float Z);
 	void Rotate(float Angle, ATATPOS3D ATATPos3D);
 	void SetScaleX(float X);

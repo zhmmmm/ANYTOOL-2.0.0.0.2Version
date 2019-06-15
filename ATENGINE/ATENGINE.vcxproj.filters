@@ -28,14 +28,8 @@
     <Filter Include="ATENGINE\MAIN\HeaderFile">
       <UniqueIdentifier>{3f739e70-fdf7-4de3-bd01-f953621e631e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ATENGINE\MAIN\MatrixPackage">
-      <UniqueIdentifier>{9a80b04e-b750-429c-865c-7680cd38ab44}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ATENGINE\MAIN\OpenGLDefine">
       <UniqueIdentifier>{9ac2dcda-7d0a-4d7f-8149-cc46d9898573}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ATENGINE\MAIN\Vector3D_Matrix4D">
-      <UniqueIdentifier>{e6861edf-9a63-484f-8a8e-f6d5f1529cfb}</UniqueIdentifier>
     </Filter>
     <Filter Include="ATENGINE\ThirdPartyLibraries">
       <UniqueIdentifier>{6c31c3a2-0641-4d96-a151-e38e451abde0}</UniqueIdentifier>
@@ -45,6 +39,24 @@
     </Filter>
     <Filter Include="ATENGINE\ThirdPartyLibraries\NOTHINGS_STD">
       <UniqueIdentifier>{025933f3-274e-4164-9099-ec93665858cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATENGINE\ThirdPartyLibraries\FreeImage">
+      <UniqueIdentifier>{1fc4a004-5355-4a75-9e3e-21c0b1931787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATENGINE\MAIN\Color">
+      <UniqueIdentifier>{ddaaa127-e226-4328-97a8-3f933c2dd46c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATENGINE\MAIN\Math">
+      <UniqueIdentifier>{b92eb1a5-6727-4acb-8d1f-ff7bfb9bd4d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATENGINE\MAIN\Math\2D">
+      <UniqueIdentifier>{72c52dfa-8a88-4f2f-afbb-3448d47ed6b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATENGINE\MAIN\Math\3D">
+      <UniqueIdentifier>{68ab5ee2-6e2d-4420-9710-978ca0d4a2f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ATENGINE\MAIN\Geometry">
+      <UniqueIdentifier>{b05eb329-f8ae-40d7-82fb-7216a80779f8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,21 +84,6 @@
     <ClCompile Include="ATENGINE\MAIN\Gadget\Gadget.cpp">
       <Filter>ATENGINE\MAIN\Gadget</Filter>
     </ClCompile>
-    <ClCompile Include="ATENGINE\MAIN\MatrixPackage\CMatrix3.cpp">
-      <Filter>ATENGINE\MAIN\MatrixPackage</Filter>
-    </ClCompile>
-    <ClCompile Include="ATENGINE\MAIN\MatrixPackage\CMatrix4.cpp">
-      <Filter>ATENGINE\MAIN\MatrixPackage</Filter>
-    </ClCompile>
-    <ClCompile Include="ATENGINE\MAIN\MatrixPackage\CVictor2D.cpp">
-      <Filter>ATENGINE\MAIN\MatrixPackage</Filter>
-    </ClCompile>
-    <ClCompile Include="ATENGINE\MAIN\Vector3D_Matrix4D\CMatrix_4.cpp">
-      <Filter>ATENGINE\MAIN\Vector3D_Matrix4D</Filter>
-    </ClCompile>
-    <ClCompile Include="ATENGINE\MAIN\Vector3D_Matrix4D\CVector3D.cpp">
-      <Filter>ATENGINE\MAIN\Vector3D_Matrix4D</Filter>
-    </ClCompile>
     <ClCompile Include="ATENGINE\MAIN\OpenGLDefine\OpenGL_Define.cpp">
       <Filter>ATENGINE\MAIN\OpenGLDefine</Filter>
     </ClCompile>
@@ -98,6 +95,27 @@
     </ClCompile>
     <ClCompile Include="ATENGINE\ThirdPartyLibraries\CPLUSPLUS_SRC\std_image.cpp">
       <Filter>ATENGINE\ThirdPartyLibraries\CPLUSPLUS_SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="ATENGINE\ThirdPartyLibraries\FreeImage\TextureManager.cpp">
+      <Filter>ATENGINE\ThirdPartyLibraries\FreeImage</Filter>
+    </ClCompile>
+    <ClCompile Include="ATENGINE\MAIN\ATColor\ATColor.cpp">
+      <Filter>ATENGINE\MAIN\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="ATENGINE\MAIN\Math\2D\Matrix2D\ATMatrix3.cpp">
+      <Filter>ATENGINE\MAIN\Math\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ATENGINE\MAIN\Math\2D\Vector2D\ATVector2D.cpp">
+      <Filter>ATENGINE\MAIN\Math\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ATENGINE\MAIN\Math\3D\Matrix3D\ATMatrix4.cpp">
+      <Filter>ATENGINE\MAIN\Math\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="ATENGINE\MAIN\Math\3D\Vector3D\ATVector3D.cpp">
+      <Filter>ATENGINE\MAIN\Math\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="ATENGINE\MAIN\Model3D.cpp">
+      <Filter>ATENGINE\MAIN\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,21 +143,6 @@
     <ClInclude Include="ATENGINE\MAIN\HeaderFile\HeaderFile.h">
       <Filter>ATENGINE\MAIN\HeaderFile</Filter>
     </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CMatrix3.h">
-      <Filter>ATENGINE\MAIN\MatrixPackage</Filter>
-    </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CMatrix4.h">
-      <Filter>ATENGINE\MAIN\MatrixPackage</Filter>
-    </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CVictor2D.h">
-      <Filter>ATENGINE\MAIN\MatrixPackage</Filter>
-    </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\Vector3D_Matrix4D\CMatrix_4.h">
-      <Filter>ATENGINE\MAIN\Vector3D_Matrix4D</Filter>
-    </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\Vector3D_Matrix4D\CVector3D.h">
-      <Filter>ATENGINE\MAIN\Vector3D_Matrix4D</Filter>
-    </ClInclude>
     <ClInclude Include="ATENGINE\MAIN\OpenGLDefine\OpenGL_Define.h">
       <Filter>ATENGINE\MAIN\OpenGLDefine</Filter>
     </ClInclude>
@@ -151,6 +154,30 @@
     </ClInclude>
     <ClInclude Include="ATENGINE\ThirdPartyLibraries\NOTHINGS_STD\stb_image_write.h">
       <Filter>ATENGINE\ThirdPartyLibraries\NOTHINGS_STD</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\ThirdPartyLibraries\FreeImage\TextureManager.h">
+      <Filter>ATENGINE\ThirdPartyLibraries\FreeImage</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\ThirdPartyLibraries\FreeImage\FreeImage.h">
+      <Filter>ATENGINE\ThirdPartyLibraries\FreeImage</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\ATColor\ATColor.h">
+      <Filter>ATENGINE\MAIN\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Math\2D\Matrix2D\ATMatrix3.h">
+      <Filter>ATENGINE\MAIN\Math\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Math\2D\Vector2D\ATVector2D.h">
+      <Filter>ATENGINE\MAIN\Math\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Math\3D\Matrix3D\ATMatrix4.h">
+      <Filter>ATENGINE\MAIN\Math\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Math\3D\Vector3D\ATVector3D.h">
+      <Filter>ATENGINE\MAIN\Math\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Model3D.h">
+      <Filter>ATENGINE\MAIN\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

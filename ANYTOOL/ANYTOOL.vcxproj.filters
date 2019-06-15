@@ -22,6 +22,9 @@
     <Filter Include="ATENGINE\ThirdPartyLibraries">
       <UniqueIdentifier>{cbd7490d-48a2-4bf0-90ea-a049e114032d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ATENGINE\Math">
+      <UniqueIdentifier>{eb383f35-be6c-47ae-a93c-6b35d75a9466}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ANYTOOL.h">
@@ -60,22 +63,7 @@
     <ClInclude Include="ATENGINE\MAIN\HeaderFile\HeaderFile.h">
       <Filter>ATENGINE\MAIN</Filter>
     </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CMatrix3.h">
-      <Filter>ATENGINE\MAIN</Filter>
-    </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CMatrix4.h">
-      <Filter>ATENGINE\MAIN</Filter>
-    </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\MatrixPackage\CVictor2D.h">
-      <Filter>ATENGINE\MAIN</Filter>
-    </ClInclude>
     <ClInclude Include="ATENGINE\MAIN\OpenGLDefine\OpenGL_Define.h">
-      <Filter>ATENGINE\MAIN</Filter>
-    </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\Vector3D_Matrix4D\CMatrix_4.h">
-      <Filter>ATENGINE\MAIN</Filter>
-    </ClInclude>
-    <ClInclude Include="ATENGINE\MAIN\Vector3D_Matrix4D\CVector3D.h">
       <Filter>ATENGINE\MAIN</Filter>
     </ClInclude>
     <ClInclude Include="ATENGINE\MAIN\BITMAP.h">
@@ -104,6 +92,30 @@
     </ClInclude>
     <ClInclude Include="MainScene.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Model3D.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Math\2D\Matrix2D\ATMatrix3.h">
+      <Filter>ATENGINE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Math\2D\Vector2D\ATVector2D.h">
+      <Filter>ATENGINE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Math\3D\Matrix3D\ATMatrix4.h">
+      <Filter>ATENGINE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\Math\3D\Vector3D\ATVector3D.h">
+      <Filter>ATENGINE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\MAIN\ATColor\ATColor.h">
+      <Filter>ATENGINE\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\ThirdPartyLibraries\FreeImage\FreeImage.h">
+      <Filter>ATENGINE\ThirdPartyLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="ATENGINE\ThirdPartyLibraries\FreeImage\TextureManager.h">
+      <Filter>ATENGINE\ThirdPartyLibraries</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -95,7 +95,7 @@ public:
 			printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", Buf[0], Buf[1], Buf[2], Buf[3], Buf[4], Buf[5], Buf[6], Buf[7], Buf[8], Buf[9]);
 			int end = 0;
 		}
-	*/
+	*///需要用流加载方式,否则无效
 	DWORD GetAudioStreamData(string AudioFileName, void *Buffer);
 	//=================================================================
 	//3D

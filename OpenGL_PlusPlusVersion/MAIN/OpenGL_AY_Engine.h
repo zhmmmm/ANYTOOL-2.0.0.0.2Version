@@ -165,6 +165,10 @@ public:
 	static ATEngine *Interface();
 
 	//初始化窗口
+	/*
+	glutInit(Argc, Argv);
+	glewInit();
+	*///
 	void Init(DWORD Init, int *Argc, char **Argv);
 
 	//初始化_OpenGL的显示模式
@@ -232,18 +236,25 @@ public:
 	//控制台
 	static void Console();
 
-	//开启功能
+	//开启功能 关闭同理
 	/*
 	GL_CULL_FACE //开启面裁剪
 	GL_DEPTH_TEST //开启深度测试
 	GL_TEXTURE_2D //开启纹理2D贴图
+	GL_ALPHA_TEST //阿尔法测试
+	GL_BLEND //颜色混合
 	*/
 	static void ATENGINE_Enable(unsigned int FUNCTION = GL_CULL_FACE);
 
-	//关闭功能
+	//关闭功能 开启同理
 	/*
 	GL_DEPTH_TEST //关闭深度测试
 	GL_CULL_FACE //关闭面裁剪
+	GL_TEXTURE_2D //关闭纹理2D绘制
+	GL_ALPHA_TEST //阿尔法测试
+	GL_BLEND //颜色混合
+
+	在绘制图元是要关闭纹理功能 不然颜色有冲突
 	*/
 	static void ATENGINE_Disable(unsigned int FUNCTION = GL_DEPTH_TEST);
 
@@ -273,10 +284,10 @@ public:
 	顶点数组的维度 三维填3
 	顶点数据的存储类型 GL_FLOAT...
 	顶点与顶点之间的字节间隔数
-	顶点数据的起始位置 
+	顶点数据的起始位置
 	*/
-	static void ATENGINE_VertexPointer(int Dimension, unsigned int ArrType,int Space,const void *Arr);
-	
+	static void ATENGINE_VertexPointer(int Dimension, unsigned int ArrType, int Space, const void *Arr);
+
 	//颜色数组绘制
 	/*
 	颜色数组的维度 三维填3
@@ -288,7 +299,7 @@ public:
 
 	//数组绘制
 	/*
-	绘制的图元类型 
+	绘制的图元类型
 	GL_POINTS				点(一个顶点)
 	GL_LINES				线段(2个顶点)
 	GL_LINE_LOOP			封闭线段//会首尾相连
@@ -339,7 +350,7 @@ public:
 	//三角形的绘制面积大于纹理三角形面积的时
 	//候，一般来说缩小、放大采样都需要设置
 	*/
-	static void ATENGINE_TexParameter(unsigned int TARGET = GL_TEXTURE_2D, unsigned int PNAME = GL_TEXTURE_MIN_FILTER,float PARAM = GL_NEAREST);
+	static void ATENGINE_TexParameter(unsigned int TARGET = GL_TEXTURE_2D, unsigned int PNAME = GL_TEXTURE_MIN_FILTER, float PARAM = GL_NEAREST);
 
 	//加载纹理
 	/*
@@ -370,6 +381,31 @@ public:
 
 	//释放纹理
 	static void ATENGINE_DeleteTexture(int Num, unsigned int*Arr);
+
+	//	阿尔法功能 设置
+	//glAlphaFunc(GL_GREATER, 0.3f);
+	static void ATENGINE_GLAlphaFunc(unsigned int Func = GL_GREATER, float Ref = 0.3f);
+
+	//颜色混合绘制 设置
+	/*
+
+	*/
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	static void ATENGINE_GLBlendFunc(unsigned int Sfactor = GL_SRC_ALPHA, unsigned int Dfactor = GL_ONE_MINUS_SRC_ALPHA);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -439,7 +475,7 @@ public:
 		不然会旋转 平移 缩放 这个矩阵中的所有物体
 		相机参数不建议设置
 
-		注意！注意！注意！如果更改了源点(0,0)的位置,请注意是第几象限  不然绘制不出来 
+		注意！注意！注意！如果更改了源点(0,0)的位置,请注意是第几象限  不然绘制不出来
 	*/
 	void ATENGINE_WindowsChangeMatrixModeAndOrtho2D(unsigned int MatrixMode = GL_PROJECTION, double Width = 0, double Height = 0, MATRIXMODE SourcePoint = MATRIXMODE::CENTER);
 

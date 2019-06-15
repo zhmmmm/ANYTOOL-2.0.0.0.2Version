@@ -365,17 +365,27 @@ Texture::Texture(const char *FileName)
 		Texture::AssignmentINFO();
 	}
 }
+Texture::~Texture()
+{
+	Texture::DeleteTexture();
+}
 Texture *Texture::Create(const char *FileName)
 {
 	Texture *Textures = new Texture(FileName);
 	return Textures;
 }
+
 void Texture::DrawTexture()
 {
 	ATENGINE->ATENGINE_VertexPointer(3, GL_FLOAT, 12, m_TextureINFO.CooryArr);
 	ATENGINE->ATENGIEN_DrawTexturePointer(2, GL_FLOAT, 8, m_TextureINFO.UV);
 	ATENGINE->ATENGINE_BindTextureID(GL_TEXTURE_2D, m_TextureINFO.TID);
 	ATENGINE->ATENGINE_DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, m_TextureINFO.Index);
+}
+
+void Texture::DeleteTexture()
+{
+	ATENGINE->ATENGINE_DeleteTexture(1, &m_TextureINFO.TID);
 }
 
 void Texture::SetTextureInfo(TextureINFO *TextureINFO)

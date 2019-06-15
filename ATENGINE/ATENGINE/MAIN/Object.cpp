@@ -5,6 +5,10 @@ void Object::Start()
 {
 
 }
+void Object::ATOpenGLInitData()
+{
+
+}
 void Object::Update()
 {
 
