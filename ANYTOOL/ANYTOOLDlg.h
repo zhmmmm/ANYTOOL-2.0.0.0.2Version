@@ -6,7 +6,6 @@
 #define MAIN_M_IOGL                        (&(m_ImplantOpenGL))
 #define SCENE                                       (&(m_Object))
 
-
 // CANYTOOLDlg 对话框
 class CANYTOOLDlg : public CDialogEx
 {
@@ -41,7 +40,9 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnSize(UINT nType,int cx,int cy);
 	afx_msg void OnMouseMove(UINT nType, CPoint Pos);
-	void ControlAdaptive(int X, int Y);
+	//控件适配
+	//cx 改变后的宽 cy 改变后的高
+	void _ControlAdaptive(UINT cx,UINT xy);
 
 	DECLARE_MESSAGE_MAP()//消息映射宏
 

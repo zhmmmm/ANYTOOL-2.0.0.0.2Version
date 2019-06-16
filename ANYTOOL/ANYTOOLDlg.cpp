@@ -198,34 +198,26 @@ HCURSOR CANYTOOLDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-void CANYTOOLDlg::ControlAdaptive(int X, int Y)
+void CANYTOOLDlg::_ControlAdaptive(UINT X, UINT Y)
 {
-	HWND hwndChild = ::GetWindow(m_hWnd, GW_CHILD);
-	while (hwndChild)
-	{
-		UINT ID = ::GetDlgCtrlID(hwndChild);
-		if (ID == IDC_MFCBUTTON1)
-		{
-			//CRect rec;
-			//GetDlgItem(ID)->GetWindowRect(&rec);
-			//int W = rec.Width();
-			//int H = rec.Height();
+	//HWND hwndChild = ::GetWindow(m_hWnd, GW_CHILD);
+	//while (hwndChild)
+	//{
+	//	UINT ID = ::GetDlgCtrlID(hwndChild);
+	//	if (ID == IDC_MFCBUTTON1)
+	//	{
+	//		CRect rec;
+	//		GetDlgItem(ID)->GetWindowRect(&rec);
+	//		int W = rec.Width();
+	//		int H = rec.Height();
 
-
-			//int Left = X - W;
-			//int Top = Y - H;
-			//int RIght = X - W + W;
-			//int Buttom = Y - (Y - H);
-
-
-			//GetDlgItem(ID)->MoveWindow(CRect(Left, Top, RIght, Buttom), TRUE);
-		}
+	//		GetDlgItem(ID)->MoveWindow(CRect(X - 18, 1, X, Y), TRUE);
+	//	}
 
 
 
-		hwndChild = ::GetWindow(hwndChild, GW_HWNDNEXT);
-	}
-
+	//	hwndChild = ::GetWindow(hwndChild, GW_HWNDNEXT);
+	//}
 }
 
 void CANYTOOLDlg::OnSize(UINT nType, int cx, int cy)
@@ -236,9 +228,7 @@ void CANYTOOLDlg::OnSize(UINT nType, int cx, int cy)
 		printf("窗口大小改变! nType = %d cx = %d cy = %d\n",nType,cx,cy);
 		GetClientRect(&m_Rect);
 
-
-		CANYTOOLDlg::ControlAdaptive(cx, cy);
-
+		CANYTOOLDlg::_ControlAdaptive(cx, cy);
 
 		//OpenGL To MFC EX
 		//========================================================================

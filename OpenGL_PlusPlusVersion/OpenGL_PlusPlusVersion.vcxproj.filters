@@ -73,6 +73,9 @@
     <Filter Include="ATEngine\Color">
       <UniqueIdentifier>{8eef2979-9659-4d05-8fd1-0eb4cca70635}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ATEngine\Math\OfficialWebsite">
+      <UniqueIdentifier>{0b716347-2c09-4617-85d4-7ff398c264b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -134,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="MAIN\ATColor\ATColor.cpp">
       <Filter>ATEngine\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN\Math\OfficialWebsite\Matrices.cpp">
+      <Filter>ATEngine\Math\OfficialWebsite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +205,12 @@
     </ClInclude>
     <ClInclude Include="MAIN\ATColor\ATColor.h">
       <Filter>ATEngine\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN\Math\OfficialWebsite\Matrices.h">
+      <Filter>ATEngine\Math\OfficialWebsite</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN\Math\OfficialWebsite\Vectors.h">
+      <Filter>ATEngine\Math\OfficialWebsite</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

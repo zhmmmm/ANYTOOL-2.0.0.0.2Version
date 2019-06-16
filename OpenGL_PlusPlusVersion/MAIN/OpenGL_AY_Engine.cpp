@@ -615,6 +615,16 @@ void ATEngine::ATENGINE_MatrixLoadIdentity()
 	//加载单位化
 	glLoadIdentity();
 }
+
+void ATEngine::ATENGINE_LoadCustomMatrix(const float *Matrix)
+{
+	glLoadMatrixf(Matrix);
+}
+void ATEngine::ATENGINE_LoadCustomMatrix(const double *Matrix)
+{
+	glLoadMatrixd(Matrix);
+}
+
 //=====================================================
 void ATEngine::EnableBase(unsigned int Base)
 {

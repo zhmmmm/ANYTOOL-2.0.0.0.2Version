@@ -155,6 +155,7 @@
     <ClCompile Include="MAIN\Math\2D\Vector2D\ATVector2D.cpp" />
     <ClCompile Include="MAIN\Math\3D\Matrix3D\ATMatrix4.cpp" />
     <ClCompile Include="MAIN\Math\3D\Vector3D\ATVector3D.cpp" />
+    <ClCompile Include="MAIN\Math\OfficialWebsite\Matrices.cpp" />
     <ClCompile Include="MAIN\Model3D.cpp" />
     <ClCompile Include="MAIN\Object.cpp" />
     <ClCompile Include="MAIN\OpenGLDefine\OpenGL_Define.cpp" />
@@ -177,6 +178,8 @@
     <ClInclude Include="MAIN\Math\2D\Vector2D\ATVector2D.h" />
     <ClInclude Include="MAIN\Math\3D\Matrix3D\ATMatrix4.h" />
     <ClInclude Include="MAIN\Math\3D\Vector3D\ATVector3D.h" />
+    <ClInclude Include="MAIN\Math\OfficialWebsite\Matrices.h" />
+    <ClInclude Include="MAIN\Math\OfficialWebsite\Vectors.h" />
     <ClInclude Include="MAIN\Model3D.h" />
     <ClInclude Include="MAIN\Object.h" />
     <ClInclude Include="MAIN\OpenGLDefine\OpenGL_Define.h" />

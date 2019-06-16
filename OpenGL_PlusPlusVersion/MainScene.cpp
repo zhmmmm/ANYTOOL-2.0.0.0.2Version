@@ -23,8 +23,6 @@ void MainScene::Start()
 	this->m_CameraPos_Z = 270;
 	this->m_CameraPos_X = 0;
 
-	ATA->LoadMusics("res\\Audio\\Musics\\dj - Ԥı.mp3");
-	ATA->PlayMusics("res\\Audio\\Musics\\dj - Ԥı.mp3");
 
 	m_Background = new Texture("res/Image/Background.jpg");
 	m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
@@ -40,25 +38,26 @@ float R = 100.0f;  //�뾶
 ATVector2D A[10];
 ATVector2D S[10];
 
+ATMatrix4 m;
+
+Matrix4 M;
+
 void MainScene::Update()
 {
 	Camera::CameraToWorld(this);
 	ATENGINE->ATENGINE_Disable(GL_TEXTURE_2D);
 
-	ATENGINE->Rotate(m_Angle++,ATATPOS3D(0,0,1));
-	float Buf[128] = { 0 };
-	ATA->GetAudioStreamData("res\\Audio\\Musics\\dj - Ԥı.mp3",Buf);
-	Gadget::CreateMusicMapCircular2D(Buf, 80,0, 300);
 
-
-	Camera::CameraToWorld(this);
-	Gadget::CreateCircular2D(360,100);
-
-	Gadget::CreateQuadrangle3D();
+	M.identity();
+	M.rotateZ(m_Angle--);
+	M.translate(Vector3(100, 0, 0));
+	ATENGINE->ATENGINE_LoadCustomMatrix(M.get());
+	Gadget::CreateQuadrangle2D();
 
 	ATENGINE->ATENGINE_DisableCilentState(GL_COLOR_ARRAY);
 	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
 	Camera::CameraToWorld(this);
+
 	m_Background->DrawTexture();
 }
 

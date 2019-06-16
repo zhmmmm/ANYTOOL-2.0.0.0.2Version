@@ -508,8 +508,14 @@ public:
 	*/
 	//::::::::::::::::旋转、平移、缩放:::::::::::::::::::::::::::::::::::::::需要手动设置矩阵模式 内部有带有矩阵单位化
 	void ATENGINE_MatrixMode(unsigned int MatrixMode = GL_MODELVIEW);
+
 	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::矩阵单位化
 	void ATENGINE_MatrixLoadIdentity();
+
+	//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::加载自定义的矩阵
+	void ATENGINE_LoadCustomMatrix(const float *Matrix);
+	void ATENGINE_LoadCustomMatrix(const double *Matrix);
+
 public:
 	//OpenGL的一些基本图元类型
 	//GL_POINTS				点(一个顶点)
