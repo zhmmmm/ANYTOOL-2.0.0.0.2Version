@@ -1,6 +1,9 @@
 # HOMEANYTOOL
 HOMEANYTOOL
 
+QQ 1979304986 Email zhm520bn@gmail.com
+
+
 欢迎下载 ====》》https://github.com/zhmmmm/HOMEANYTOOL.git
 
 
@@ -70,6 +73,43 @@ IMAGETIF
 //==更新引擎版本为2.0.0.2.4 于2019.6.12 优化ANYTOOL AT引擎暂未嵌入
 
 //==更新引擎版本为2.0.0.2.5 于2019.6.15 嵌入AT引擎 增加绘制图元
+
+
+
+//==2019.6.17 停止了对ATTOOL ATENGINE 的更新 后续会加以维护再更新 这可能需要更久的时间
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
