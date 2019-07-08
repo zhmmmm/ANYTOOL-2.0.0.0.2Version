@@ -19,7 +19,7 @@ void OnWindowsChange(int width, int height)
 	g_Object.m_CurWindowsHeight = height;
 	ATENGINE->ATENGINE_WindowsChangeMatrixModeAndOrtho2D(GL_PROJECTION,
 		width, height,
-		MATRIXMODE::CENTER);
+		MATRIXMODE::LEFTDOWN);
 }
 //¼üÅÌ
 void OnOrdinaryKeyboardDown(unsigned char Key, int X, int Y)

@@ -375,12 +375,31 @@ Texture *Texture::Create(const char *FileName)
 	return Textures;
 }
 
+void Texture::SetVisible(bool Visible)
+{
+	m_Visible = Visible;
+}
+
+void Texture::SetTag(int Tag)
+{
+	m_Tag = Tag;
+}
+
 void Texture::DrawTexture()
 {
-	ATENGINE->ATENGINE_VertexPointer(3, GL_FLOAT, 12, m_TextureINFO.CooryArr);
-	ATENGINE->ATENGIEN_DrawTexturePointer(2, GL_FLOAT, 8, m_TextureINFO.UV);
-	ATENGINE->ATENGINE_BindTextureID(GL_TEXTURE_2D, m_TextureINFO.TID);
-	ATENGINE->ATENGINE_DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, m_TextureINFO.Index);
+	if (m_Visible)
+	{
+		ATENGINE->ATENGINE_DisableCilentState(GL_COLOR_ARRAY);
+		ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
+
+		ATENGINE->ATENGINE_VertexPointer(3, GL_FLOAT, 12, m_TextureINFO.CooryArr);
+		ATENGINE->ATENGIEN_DrawTexturePointer(2, GL_FLOAT, 8, m_TextureINFO.UV);
+		ATENGINE->ATENGINE_BindTextureID(GL_TEXTURE_2D, m_TextureINFO.TID);
+		ATENGINE->ATENGINE_DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, m_TextureINFO.Index);
+
+		ATENGINE->ATENGINE_EnableCilentState(GL_COLOR_ARRAY);
+		ATENGINE->ATENGINE_Disable(GL_TEXTURE_2D);
+	}
 }
 
 void Texture::DeleteTexture()
@@ -488,4 +507,26 @@ void Texture::SetTexturePosition(ATVector2D Position)
 void Texture::SetTexturePosition(ATVector2D *Position)
 {
 	Texture::SetTexturePosition(*Position);
+}
+
+
+//拷贝构造
+Texture::Texture(const Texture& that)
+{
+	this->m_FileName = that.m_FileName;
+	this->m_Tag = that.m_Tag;
+	
+	memcpy_s(&(this->m_TextureINFO),sizeof(this->m_TextureINFO),&(that.m_TextureINFO),sizeof(this->m_TextureINFO));
+	this->m_Visible = that.m_Visible;
+}
+
+//同类赋值 重载 = 运算符
+Texture& Texture::operator = (const Texture& that)
+{
+	this->m_FileName = that.m_FileName;
+	this->m_Tag = that.m_Tag;
+
+	memcpy_s(&(this->m_TextureINFO), sizeof(this->m_TextureINFO), &(that.m_TextureINFO), sizeof(this->m_TextureINFO));
+	this->m_Visible = that.m_Visible;
+	return *this;
 }

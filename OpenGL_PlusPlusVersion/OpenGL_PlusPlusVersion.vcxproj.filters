@@ -141,6 +141,9 @@
     <ClCompile Include="MAIN\Math\OfficialWebsite\Matrices.cpp">
       <Filter>ATEngine\Math\OfficialWebsite</Filter>
     </ClCompile>
+    <ClCompile Include="RetroSnaker.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MAIN\OpenGL_AY_Engine.h">
@@ -211,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="MAIN\Math\OfficialWebsite\Vectors.h">
       <Filter>ATEngine\Math\OfficialWebsite</Filter>
+    </ClInclude>
+    <ClInclude Include="RetroSnaker.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

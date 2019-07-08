@@ -1,4 +1,7 @@
 #pragma once
+#include <Windows.h>
+
+
 
 class Object
 {
@@ -50,4 +53,11 @@ public:
 	virtual void OnMouseMoveEvent(int Mouse_X, int Mouse_Y);
 	//鼠标拖拽
 	virtual void OnMousePassiveEvent(int Mouse_X, int Mouse_Y);
+
+
+public:
+	//注册每几秒钟调用
+	virtual void registerUpdateTime(float Time);
+	//每几秒钟调用
+	virtual void updateTime(int Time);
 };

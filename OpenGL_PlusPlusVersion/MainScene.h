@@ -2,6 +2,8 @@
 #define MAINATENGINE "MAIN/OpenGL_AY_Engine.h"
 #include MAINATENGINE
 
+#include "RetroSnaker.h"
+
 
 ///*
 
@@ -53,6 +55,8 @@ class MainScene :public Object
 
 
 	Texture *m_Background = NULL;
+
+	RetroSnaker *m_RetroSnaker = NULL;
 
 public:
 	virtual void Start();

@@ -52,3 +52,22 @@ void Object::OnMousePassiveEvent(int Mouse_X, int Mouse_Y)
 {
 
 }
+
+void Object::registerUpdateTime(float Time)
+{
+	static int LastTime = 0;
+	int Temp = Time * 1000;
+	int CurTime = GetTickCount();
+	if (CurTime - LastTime >= Temp)
+	{
+
+		this->updateTime(LastTime);
+
+		LastTime = CurTime;
+	}
+}
+
+void Object::updateTime(int Time)
+{
+
+}

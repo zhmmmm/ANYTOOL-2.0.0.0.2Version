@@ -124,13 +124,21 @@ class Texture
 {
 	string m_FileName;
 	TextureINFO m_TextureINFO;
-	
+	bool m_Visible = true;
+	int m_Tag = 0;
 public:
+
+
 	Texture();
 	Texture(const char *FileName);
 	~Texture();
 
 	static Texture *Create(const char *FileName);
+	void SetVisible(bool Visible);
+	bool GetVisible() { return m_Visible; }
+	void SetTag(int Tag);
+	int GetTag() { return m_Tag; }
+	ATVector2D *GetPosition() { return &_Position; }
 
 	void DrawTexture();
 	void DeleteTexture();
@@ -151,6 +159,12 @@ public:
 	void SetTexturePosition(ATATPOS2D *Position);
 	void SetTexturePosition(ATVector2D Position);
 	void SetTexturePosition(ATVector2D *Position);
+
+
+	//拷贝构造
+	Texture(const Texture& that);
+	//同类赋值 重载 = 运算符
+	Texture& operator = (const Texture& that);
 private:
 	//赋值信息
 	void AssignmentINFO();

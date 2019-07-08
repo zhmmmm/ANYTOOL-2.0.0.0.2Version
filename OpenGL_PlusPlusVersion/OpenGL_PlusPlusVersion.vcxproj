@@ -162,6 +162,7 @@
     <ClCompile Include="MAIN\OpenGL_AY_Engine.cpp" />
     <ClCompile Include="MAIN\Textures.cpp" />
     <ClCompile Include="MainScene.cpp" />
+    <ClCompile Include="RetroSnaker.cpp" />
     <ClCompile Include="ThirdPartyLibraries\CPLUSPLUS_SRC\stb_image_resize.cpp" />
     <ClCompile Include="ThirdPartyLibraries\CPLUSPLUS_SRC\stb_image_write.cpp" />
     <ClCompile Include="ThirdPartyLibraries\CPLUSPLUS_SRC\std_image.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="MAIN\OpenGL_AY_Engine.h" />
     <ClInclude Include="MAIN\Textures.h" />
     <ClInclude Include="MainScene.h" />
+    <ClInclude Include="RetroSnaker.h" />
     <ClInclude Include="ThirdPartyLibraries\FreeImage\FreeImage.h" />
     <ClInclude Include="ThirdPartyLibraries\FreeImage\TextureManager.h" />
     <ClInclude Include="ThirdPartyLibraries\NOTHINGS_STD\stb_image.h" />

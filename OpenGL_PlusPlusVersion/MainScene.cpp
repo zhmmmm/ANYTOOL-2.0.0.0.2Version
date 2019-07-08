@@ -6,8 +6,10 @@
 
 
 
+
 void MainScene::ATOpenGLInitData()
 {
+	m_RetroSnaker = new RetroSnaker();
 	MainScene::Start();
 }
 
@@ -24,8 +26,8 @@ void MainScene::Start()
 	this->m_CameraPos_X = 0;
 
 
-	m_Background = new Texture("res/Image/Background.jpg");
-	m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
+	//m_Background = new Texture("res/Image/Background.jpg");
+	//m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
 }
 
 BASS_3DVECTOR Pos;
@@ -42,7 +44,7 @@ ATMatrix4 m;
 
 Matrix4 M;
 
-void MainScene::Update()
+/*void MainScene::Update()
 {
 	Camera::CameraToWorld(this);
 	ATENGINE->ATENGINE_Disable(GL_TEXTURE_2D);
@@ -59,14 +61,22 @@ void MainScene::Update()
 	Camera::CameraToWorld(this);
 
 	m_Background->DrawTexture();
+}*/
+
+
+
+void MainScene::Update()
+{
+
+	m_RetroSnaker->runing();
 }
 
 
 
 void MainScene::End()
 {
-	delete m_Background;
-	m_Background = NULL;
+	delete m_RetroSnaker;
+	m_RetroSnaker = NULL;
 }
 
 
@@ -110,10 +120,13 @@ void MainScene::OnOrdinaryKeyboardDownEvent(unsigned char Key, int X, int Y)
 }
 void MainScene::OnSpecialKeyboardDownEvent(int Key, int X, int Y)
 {
+	m_RetroSnaker->OnSpecialKeyboardDownEvent(Key,X,Y);
+
+
 	//std::cout << "功能按下！" << Key << " X = " << X << " Y = " << Y << std::endl;
 	if (Key == 101)//KEYUP
 	{
-
+		
 	}
 	if (Key == 103)//KEYDOWN
 	{
