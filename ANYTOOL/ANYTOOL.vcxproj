@@ -95,11 +95,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>;E:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\OpenGL\INCLUDE;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>;D:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\OpenGL\INCLUDE;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>E:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\ThirdPartyLibraries\FreeImage;E:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\OpenGL\LIB;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\ThirdPartyLibraries\FreeImage;D:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\OpenGL\LIB;</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -121,11 +121,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>;E:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\OpenGL\INCLUDE;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>;D:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\OpenGL\INCLUDE;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>E:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\ThirdPartyLibraries\FreeImage;E:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\OpenGL\LIB;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\ThirdPartyLibraries\FreeImage;D:\ProjectFile\ANYTOOL\ANYTOOL\ATENGINE\OpenGL\LIB;</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -238,9 +238,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ANYTOOL.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\ANYTOOL.rc2" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ANYTOOL.ico" />

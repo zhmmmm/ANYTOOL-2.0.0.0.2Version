@@ -90,12 +90,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>;E:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\OpenGL\INCLUDE;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>;D:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\OpenGL\INCLUDE;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>;E:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\OpenGL\LIB;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>;D:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\ThirdPartyLibraries\FreeImage;D:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\OpenGL\LIB;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -104,12 +104,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>;E:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\OpenGL\INCLUDE;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>;D:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\OpenGL\INCLUDE;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>;E:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\OpenGL\LIB;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>;D:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\ThirdPartyLibraries\FreeImage;D:\ProjectFile\ANYTOOL\OpenGL_PlusPlusVersion\OpenGL\LIB;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
