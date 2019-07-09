@@ -84,8 +84,6 @@ void MainScene::Update()
 	//m_RetroSnaker->runing();
 
 	Camera::CameraToWorld(this);
-	ATENGINE->ATENGINE_DisableCilentState(GL_COLOR_ARRAY);
-	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
 
 	m_TextureTest->SetTexturePosition(ATVector2D(400, 300));
 	m_TextureTest->DrawTexture();
