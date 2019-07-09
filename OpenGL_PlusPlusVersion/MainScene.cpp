@@ -9,9 +9,12 @@
 
 void MainScene::ATOpenGLInitData()
 {
-	m_RetroSnaker = new RetroSnaker();
+	//m_RetroSnaker = new RetroSnaker();
 	MainScene::Start();
 }
+
+
+int tid = 0;
 
 void MainScene::Start()
 {
@@ -26,8 +29,12 @@ void MainScene::Start()
 	this->m_CameraPos_X = 0;
 
 
-	//m_Background = new Texture("res/Image/Background.jpg");
-	//m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
+	m_Background = new Texture("res/Image/Background.jpg");
+	m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
+
+	m_TextureTest = Texture::Create("res/GuidGirl.png");
+
+	MainScene::Init();
 }
 
 BASS_3DVECTOR Pos;
@@ -64,19 +71,52 @@ Matrix4 M;
 }*/
 
 
+void MainScene::Init()
+{
+
+
+}
 
 void MainScene::Update()
 {
+	//m_RetroSnaker->runing();
 
-	m_RetroSnaker->runing();
+	Camera::CameraToWorld(this);
+	ATENGINE->ATENGINE_DisableCilentState(GL_COLOR_ARRAY);
+	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
+
+
+	m_TextureTest->SetTexturePosition(ATVector2D(400, 300));
+	m_TextureTest->DrawTexture();
+
+
+	m_Background->SetTexturePosition(ATVector2D(400, 300));
+	m_Background->DrawTexture();
+
+
+
 }
 
 
 
 void MainScene::End()
 {
-	delete m_RetroSnaker;
-	m_RetroSnaker = NULL;
+	if (m_RetroSnaker)
+	{
+		delete m_RetroSnaker;
+		m_RetroSnaker = NULL;
+	}
+
+	if (m_Background)
+	{
+		delete m_Background;
+		m_Background = NULL;
+	}
+	if (m_TextureTest)
+	{
+		delete m_TextureTest;
+		m_TextureTest = NULL;
+	}
 }
 
 

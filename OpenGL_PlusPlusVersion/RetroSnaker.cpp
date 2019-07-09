@@ -15,7 +15,7 @@ RetroSnaker::~RetroSnaker()
 void RetroSnaker::initting()
 {
 	ATA->InitAudioEngine();
-	//ATA->LoadMusicsAndPlay("res/RetroSnaker/YZFHKM.mp3");
+	ATA->LoadMusicsAndPlay("res/RetroSnaker/YZFHKM.mp3");
 
 	m_Pos.x = this->m_WindowsWidth / 2;
 	m_Pos.y = this->m_WindowsHeight / 2;
@@ -54,7 +54,7 @@ void RetroSnaker::runing()
 {
 
 	//每一秒移动一个单位
-	this->registerUpdateTime(0.1);
+	this->registerUpdateTime(0.4);
 
 	Camera::CameraToWorld(this);
 

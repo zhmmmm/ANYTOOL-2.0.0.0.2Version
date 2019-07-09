@@ -5,6 +5,7 @@
 #include "OpenGLDefine/OpenGL_Define.h"
 #include <Windows.h>
 #pragma comment(lib, "glew32.lib")
+#pragma comment(lib, "glut32.lib")
 
 #include "HeaderFile/HeaderFile.h"
 
@@ -744,4 +745,56 @@ public:
 
 
 
+*/
+
+
+
+
+
+
+
+/*
+	////顶点坐标
+	//glEnableVertexAttribArray(0);//激活顶点属性数组
+	//glGenBuffers(1, &VertexID); //创建句柄
+	//glBindBuffer(GL_ARRAY_BUFFER, VertexID); //设置句柄类型
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(positionData), positionData, GL_STATIC_DRAW); //上传数据
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0); //Set up our vertex attributes pointer 具体给shader传输数据
+
+	////顶点uv
+	//glEnableVertexAttribArray(1);//顶点uv
+	//glGenBuffers(1, &UVID);
+	//glBindBuffer(GL_ARRAY_BUFFER, UVID);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(uvData), uvData, GL_STATIC_DRAW);
+	//glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+	////顶点颜色
+	//glEnableVertexAttribArray(2);//顶点color
+	//glGenBuffers(1, &ColorID);
+	//glBindBuffer(GL_ARRAY_BUFFER, ColorID);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(colorData), colorData, GL_STATIC_DRAW);
+	//glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+	////顶点索引
+	//glGenBuffers(1, &IndexID);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexID);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexs), indexs, GL_STATIC_DRAW);
+
+
+
+
+
+
+		//　激活缓存对象
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+
+	//　指定数组格式
+	glInterleavedArrays(GL_C4F_N3F_V3F, 0, NULL);
+
+	//　开始绘制
+	glDrawElements(GL_QUADS, num_indices, GL_UNSIGNED_INT, NULL);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 */

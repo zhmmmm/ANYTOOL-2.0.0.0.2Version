@@ -55,11 +55,13 @@ class MainScene :public Object
 
 
 	Texture *m_Background = NULL;
+	Texture *m_TextureTest = NULL;
 
 	RetroSnaker *m_RetroSnaker = NULL;
 
 public:
 	virtual void Start();
+	virtual void Init();
 	virtual void ATOpenGLInitData();
 	virtual void Update();
 	virtual void End();
