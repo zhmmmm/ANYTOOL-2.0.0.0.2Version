@@ -174,6 +174,7 @@ void ATEngine::Init(DWORD Init, int *Argc, char **Argv)
 {
 	glutInit(Argc, Argv);
 	glewInit();
+	glfwInit();
 }
 
 void ATEngine::InitMode(unsigned int Define)

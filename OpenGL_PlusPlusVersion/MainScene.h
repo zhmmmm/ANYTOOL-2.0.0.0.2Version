@@ -59,6 +59,7 @@ class MainScene :public Object
 
 	RetroSnaker *m_RetroSnaker = NULL;
 
+
 public:
 	virtual void Start();
 	virtual void Init();

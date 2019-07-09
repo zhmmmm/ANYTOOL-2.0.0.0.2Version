@@ -110,6 +110,27 @@ private:
 	void LoadTexture(const char *FileName);
 };
 
+
+
+
+
+
+
+
+
+class gl_texture_t
+{
+public:
+	GLsizei width;
+	GLsizei height;
+	GLenum format;
+	GLint internalFormat;
+	GLuint id;
+	GLubyte *texels;
+};
+
+
+
 //支持常用图片
 /*
 IMAGEBMP   0
@@ -170,4 +191,27 @@ private:
 	void AssignmentINFO();
 protected:
 	ATVector2D _Position;
+public:
+
+
+
+
+
+
+
+	//================================================
+	/*
+	扩展
+	*/
+	static Texture *CreateEx(string FileName);
+private:
+
+	gl_texture_t *LoadPNGEx(string FileName);
+
+	void GetPNGtextureInfoEx(int color_type, gl_texture_t *texinfo);
+
+	void BindTextureEx(gl_texture_t *GL_Texture);
+
+	void AssignmentINFOEx(gl_texture_t *GL_Texture);
+
 };

@@ -2,9 +2,11 @@
 #include <iostream>
 #include <glew.h>//OpenGL头文件
 #include <glut.h>//创建管理OpenGL窗口相关函数
+#include <glfw3.h>
 #include "OpenGLDefine/OpenGL_Define.h"
 #include <Windows.h>
 #pragma comment(lib, "glew32.lib")
+#pragma comment (lib,"glfw3.lib")
 #pragma comment(lib, "glut32.lib")
 
 #include "HeaderFile/HeaderFile.h"

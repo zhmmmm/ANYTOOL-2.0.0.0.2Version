@@ -7,6 +7,11 @@
 #include "../../ThirdPartyLibraries/NOTHINGS_STD/stb_image_resize.h"
 #include "../../ThirdPartyLibraries/NOTHINGS_STD/stb_image_write.h"
 #include "../../ThirdPartyLibraries/FreeImage/TextureManager.h"
+//这两个库重要
+#include "../../ThirdPartyLibraries/COCOS__LIB/external/png/include/win32/png.h"
+#pragma  comment(lib, "../../ThirdPartyLibraries/COCOS__LIB/external/png/prebuilt/win32/libpng.lib")
+#include "../../ThirdPartyLibraries/COCOS__LIB/external/win32-specific/zlib/include/zlib.h"
+#pragma comment(lib,"../../ThirdPartyLibraries/COCOS__LIB/external/win32-specific/zlib/prebuilt/libzlib.lib")
 
 /*
 	一个重要的对象

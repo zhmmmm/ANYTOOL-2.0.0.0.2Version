@@ -29,10 +29,12 @@ void MainScene::Start()
 	this->m_CameraPos_X = 0;
 
 
+
 	m_Background = new Texture("res/Image/Background.jpg");
 	m_Background->SetTextureSize(ATATCONTENTSIZE(800, 600));
 
-	m_TextureTest = Texture::Create("res/GuidGirl.png");
+	m_TextureTest = Texture::CreateEx("res/GuidGirl.png");
+	m_TextureTest->SetTexturePosition(ATVector2D(this->m_WindowsWidth / 2,this->m_WindowsHeight / 2));
 
 	MainScene::Init();
 }
@@ -85,7 +87,6 @@ void MainScene::Update()
 	ATENGINE->ATENGINE_DisableCilentState(GL_COLOR_ARRAY);
 	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
 
-
 	m_TextureTest->SetTexturePosition(ATVector2D(400, 300));
 	m_TextureTest->DrawTexture();
 
@@ -94,7 +95,7 @@ void MainScene::Update()
 	m_Background->DrawTexture();
 
 
-
+	
 }
 
 
