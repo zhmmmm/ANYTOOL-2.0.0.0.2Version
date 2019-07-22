@@ -29,26 +29,26 @@ BASS_3DVECTOR Vel;
 
 void MainScene::Update()
 {
-	//ATENGINE->ATENGINE_Disable(GL_TEXTURE_2D);
+	ATENGINE->ATENGINE_Disable(GL_TEXTURE_2D);
 
-	//Camera::CameraToWorld(this);
-	//float buf[128] = { 0 };
-	//ATA->GetAudioStreamData(ATA->GetCurPlayMusic(), buf);
-	//Gadget::CreateMusicMapCircular2D(buf, 80, 0, 300);
+	Camera::CameraToWorld(this);
+	float buf[128] = { 0 };
+	ATA->GetAudioStreamData(ATA->GetCurPlayMusic(), buf);
+	Gadget::CreateMusicMapCircular2D(buf, 80, 0, 300);
 
-	//Camera::CameraToWorld(this);
-	//ATENGINE->Rotate(m_Angle++, ATATPOS3D(0, 0, 1));
-	//Gadget::CreateCircular2D(360, 100);
+	Camera::CameraToWorld(this);
+	ATENGINE->Rotate(m_Angle++, ATATPOS3D(0, 0, 1));
+	Gadget::CreateCircular2D(360, 100);
 
-	//Camera::CameraToWorld(this);
-	//ATENGINE->Rotate(m_Angle, ATATPOS3D(0, 0, 1));
-	//Gadget::CreateQuadrangle2D();
+	Camera::CameraToWorld(this);
+	ATENGINE->Rotate(m_Angle, ATATPOS3D(0, 0, 1));
+	Gadget::CreateQuadrangle2D();
 
 
-	//ATENGINE->ATENGINE_DisableCilentState(GL_COLOR_ARRAY);
-	//ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
-	//Camera::CameraToWorld(this);
-	//m_Background->DrawTexture();
+	ATENGINE->ATENGINE_DisableCilentState(GL_COLOR_ARRAY);
+	ATENGINE->ATENGINE_Enable(GL_TEXTURE_2D);
+	Camera::CameraToWorld(this);
+	m_Background->DrawTexture();
 }
 
 void MainScene::End()
