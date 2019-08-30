@@ -92,7 +92,6 @@ void MainScene::Update()
 	m_Background->SetTexturePosition(ATVector2D(400, 300));
 	m_Background->DrawTexture();
 
-
 	
 }
 
