@@ -93,6 +93,7 @@ BEGIN_MESSAGE_MAP(CANYTOOLDlg, CDialogEx)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER2, &CANYTOOLDlg::OnNMCustomdrawSlider_EditMusicVolume)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER1, &CANYTOOLDlg::OnNMCustomdrawSlider_EditMusicProgress)
 
+	ON_BN_CLICKED(IDC_BUTTON6, &CANYTOOLDlg::OnBnClicked_Environmental)
 END_MESSAGE_MAP()
 
 
@@ -355,6 +356,11 @@ void CANYTOOLDlg::OnBnClicked_PlayMusic()
 void CANYTOOLDlg::OnBnClicked_PauseMusic()
 {
 	MAIN_M_FUNCTION->PauseMusic();
+}
+
+void CANYTOOLDlg::OnBnClicked_Environmental()
+{
+	MAIN_M_FUNCTION->OpenEnvironmentalScience();
 }
 
 //================================================

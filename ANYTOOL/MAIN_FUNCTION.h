@@ -142,6 +142,8 @@ public:
 	void Get_ComputerName();
 	//打开电脑录音程序
 	void SoundRecording();
+	//打开电脑环境变量配置程序
+	void OpenEnvironmentalScience();
 private:
 	// 更改exe文件图标
 	bool ChangeExeIcon(LPWSTR IconFile, LPWSTR ExeFile);

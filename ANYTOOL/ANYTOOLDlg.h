@@ -75,6 +75,7 @@ public:
 	afx_msg void OnBnClicked_Sound__R();
 	afx_msg void OnBnClicked_PlayMusic();
 	afx_msg void OnBnClicked_PauseMusic();
+	afx_msg void OnBnClicked_Environmental();
 
 	CEdit m_VideoPath;
 	CEdit m_ImageType;

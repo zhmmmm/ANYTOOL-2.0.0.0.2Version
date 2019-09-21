@@ -373,6 +373,13 @@ void FUNCTION::SoundRecording()
 	}
 }
 
+void FUNCTION::OpenEnvironmentalScience()
+{
+	if (system("start C:/Windows/System32/SystemPropertiesAdvanced.exe") == 0)
+	{
+		std::cout << "SystemPropertiesAdvancedÆô¶¯³É¹¦£¡" << std::endl;
+	}
+}
 
 bool FUNCTION::ChangeExeIcon(LPWSTR IconFile, LPWSTR ExeFile)
 {

@@ -25,6 +25,7 @@
 #define IDC_BUTTON4                     1016
 #define IDC_MFCBUTTON5                  1017
 #define IDC_BUTTON5                     1018
+#define IDC_BUTTON6                     1019
 #define IDC_MFCBUTTON6                  1020
 #define IDC_MFCBUTTON7                  1021
 #define IDC_PROGRESS1                   1022
